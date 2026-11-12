@@ -20,6 +20,7 @@ import {tools as readOnlyTools} from './mcp-tools.js';
 import { controls, PLAYBOOKS, updateControls, setHold, audit, answerCommand, explain } from './desk.js';
 import { createBrain } from './brain/index.js';
 import { readClientReply } from './brain/reply.js';
+import { triageReply } from './triage.js';
 import { readQuestion } from './brain/intent.js';
 import { loadState, saveState, scan, approve, reject, restore, reconcileDelivery } from './agent.js';
 
@@ -127,6 +128,11 @@ async function route(req, res, url) {
   // Reads a pasted client reply. Proposes a date and a classification; saves nothing.
   if(req.method==='POST'&&url.pathname==='/api/promise/read'){
     try{const input=await readBody(req);return json(res,200,await readClientReply(input.text,brainConfig));}
+    catch(e){return json(res,e.status||400,{error:e.message});}
+  }
+  // Client replied to a reminder: model reads it, PayPal is checked, rules propose. Never sends.
+  if(req.method==='POST'&&url.pathname==='/api/reply/triage'){
+    try{const input=await readBody(req);const r=await triageReply({invoiceId:input.invoiceId,text:input.text},{paypal,brainConfig});audit(state,'reply_triaged',`${r.invoice.number}: ${r.verdict}`);saveState(state);return json(res,200,r);}
     catch(e){return json(res,e.status||400,{error:e.message});}
   }
   // Sorts a free-form assistant question into a fixed intent. Reads language only; rules answer.
