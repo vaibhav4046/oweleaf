@@ -1,6 +1,6 @@
 # OLYMPUS state
 
-Updated 12 November 2026, 15:00 UTC.
+Updated 12 November 2026, 14:35 UTC.
 
 - Product: local-first PayPal invoice follow-up review for solo freelancers.
 - Deadline: 12 November 2026, 12:00 PST = 20:00 UTC (verified on the official Devpost schedule and rules pages, 10:15 UTC).
