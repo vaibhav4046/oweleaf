@@ -16,19 +16,21 @@
 - [x] Fresh source checks block stale/held/changed invoices.
 - [x] Explicit fixture/sandbox/live labels and no unsupported outcome claims.
 - [x] `node run.mjs --test` passes 152/152 in a clean checkout.
-- [ ] Clean-clone smoke test repeated immediately before filing. `node run.mjs --test` has passed 152/152 in the clean release checkout.
+- [x] Clean-clone smoke test repeated: `node run.mjs --test` passes 152/152 in the release checkout.
+- [x] Simulated AI-agent persona evaluation passes 9/9: `npm run persona-eval`; results are labelled as non-human evidence.
 - [ ] PayPal Sandbox replay and local-model path rechecked with documented credentials/runtime.
 
 ## Demo and presentation
 
 - [x] YouTube demo link present in README.
 - [x] Current public 1:57 video: https://youtu.be/jNWdOlZoj2U . Captions/rights status remains to be checked.
-- [ ] Three-minute script clearly shows PayPal + AI, source facts, wait decision, approval guard and outcome.
+- [x] Judge-first 90-second script checked in: `DEMO_SCRIPT_90S.md`.
+- [ ] Three-minute video itself re-recorded to match the script.
 - [ ] Backup recording/export retained locally.
 
 ## Final release
 
-- [x] Public main verified at `23ee8c5`.
+- [x] Public main verified at `4652f09`.
 - [x] Re-open public repository and verify licence, README, source and demo link.
 - [ ] Obtain explicit owner final-submit decision and personal form answers,then file Devpost before 20:00 UK on 12 November 2026.
 - [ ] Save actual confirmation URL/screenshot in the release notes.
