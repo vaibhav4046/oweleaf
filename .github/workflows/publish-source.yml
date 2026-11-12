@@ -13,8 +13,8 @@ jobs:
           python3 - <<'PYCODE'
           import zipfile,hashlib
           from pathlib import Path
-          archive=Path('3-reconciled-source.zip')
-          assert hashlib.sha256(archive.read_bytes()).hexdigest()=='c83529984e99d6931c3458569169f227fba1216b7f2d52d2d14f710571f5fe7d'
+          archive=Path('1-v042-source.zip')
+          assert hashlib.sha256(archive.read_bytes()).hexdigest()=='edf72d4fc476be9f783e02ee720bc76739837642f4cec04e3f4618344cbd1c50'
           with zipfile.ZipFile(archive) as z:
             for item in z.infolist():
               path=Path(item.filename)
@@ -29,13 +29,13 @@ jobs:
         run: |
           git config user.name 'oweleaf-release'
           git config user.email 'oweleaf-release@users.noreply.github.com'
-          cp 3-reconciled-source.zip /tmp/oweleaf-v0.4.1.zip
-          echo 'c83529984e99d6931c3458569169f227fba1216b7f2d52d2d14f710571f5fe7d  oweleaf-v0.4.1.zip' > /tmp/oweleaf-v0.4.1.sha256
-          git rm 3-reconciled-source.zip
+          cp 1-v042-source.zip /tmp/oweleaf-v0.4.2.zip
+          echo 'edf72d4fc476be9f783e02ee720bc76739837642f4cec04e3f4618344cbd1c50  oweleaf-v0.4.2.zip' > /tmp/oweleaf-v0.4.2.sha256
+          git rm 1-v042-source.zip
           git add .
-          git commit -m 'Reconcile merged source, revisioned sample assets and reliable reset'
+          git commit -m 'Polish decision status, ready counts, guide completion and reset feedback'
           git push
       - name: Publish verified source release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create v0.4.1 /tmp/oweleaf-v0.4.1.zip /tmp/oweleaf-v0.4.1.sha256 --target main --title 'Oweleaf v0.4.1 - focused invoice review' --notes '152 Node tests,27 full-app UI checks and20 static-sample checks. Automated checks, not human-usability evidence. Source snapshot includes no-login fixture demo and browser-only sample. No production-readiness or AI-superiority claim. See README for measured limits and earlier synthetic PayPal sandbox evidence.'
+        run: gh release create v0.4.2 /tmp/oweleaf-v0.4.2.zip /tmp/oweleaf-v0.4.2.sha256 --target main --title 'Oweleaf v0.4.2 - focused invoice review' --notes '152 Node tests,29 full-app UI checks and26 static-sample checks. Automated checks, not human-usability evidence. Source snapshot includes no-login fixture demo and browser-only sample. No production-readiness or AI-superiority claim. See README for measured limits and earlier synthetic PayPal sandbox evidence.'
