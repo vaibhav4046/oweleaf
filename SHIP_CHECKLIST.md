@@ -34,7 +34,7 @@
 
 - [x] Public main re-verified after the final evidence updates.
 - [x] Re-open public repository and verify licence, README, source and demo link.
-- [x] Paste-ready submission text: `DEVPOST_SUBMISSION.md`.
+- [x] Paste-ready submission text prepared locally for the owner (not published).
 - [ ] YouTube description updated (stale counts 145/25/12; PayPal standard-wording note).
 - [ ] Obtain explicit owner final-submit decision and personal form answers,then file Devpost before 20:00 UK on 12 November 2026.
 - [ ] Save actual confirmation URL/screenshot in the release notes.

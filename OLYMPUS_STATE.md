@@ -14,6 +14,6 @@ Updated 12 November 2026, 15:00 UTC.
 - Video: https://youtu.be/jNWdOlZoj2U , 1:57, public. Its description carries stale counts (145/25/12) and predates the PayPal-wording correction. Not re-recorded.
 - PayPal Sandbox path: NOT replayed today. No sandbox credentials on this machine. Evidence remains the earlier recorded run (`evals/SANDBOX_FINDINGS.md`).
 - Simulated judge panel: NOT re-run after these fixes. `EVALUATION_SCORECARD.md` still reflects the earlier panel (median 68, lowest 56).
-- Paste-ready submission text: `DEVPOST_SUBMISSION.md`.
-- Next executable action: owner files Devpost using `DEVPOST_SUBMISSION.md`, edits the YouTube description, saves the confirmation URL.
+- Paste-ready submission text prepared locally for the owner (not published).
+- Next executable action: owner files Devpost with the prepared text, edits the YouTube description, saves the confirmation URL.
 - No target-user study, production certification, payment benefit or AI-superiority claim.
