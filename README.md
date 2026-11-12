@@ -37,8 +37,8 @@ Each freelancer runs their own copy against their own PayPal account, so there i
 
 ## Current verified checks
 
-- 182/182 Node tests, including pagination, dependency timeouts, recovery, approval safety, authentication, the promise ledger, reply reading, the assistant, and the stdio and hosted MCP servers. Run on Windows 11 / Node 24 on 12 November after fixing a path-separator bug that returned 404 for every page on Windows.
-- Earlier recorded runs: 29/29 full-app and 26/26 static-sample scripted UI checks (before the 12 November UI changes; not re-run, the scripts need Playwright). Since then the app, the static sample, the landing page and the assistant were checked by hand in a real browser at desktop and 375 px width, with no console errors. Not human-usability testing.
+- 187/187 Node tests, including pagination, dependency timeouts, recovery, approval safety, authentication, the promise ledger, reply reading, the assistant, and the stdio and hosted MCP servers. Run on Windows 11 / Node 24 on 12 November after fixing a path-separator bug that returned 404 for every page on Windows.
+- Scripted UI checks re-run after the 12 November UI changes (Windows 11, Playwright Chromium): 29/29 full-app and 26/26 static-sample, zero page errors. Two stale test expectations were updated to match the new sample (sample moved to `/app.html`; one seeded invoice now waits on a client promise, so two drafts are ready, not three). The app, the static sample, the landing page and the assistant were also checked by hand in a real browser at desktop and 375 px width, with no console errors. Not human-usability testing.
 - Earlier actual sandbox recording: four synthetic invoices, local CPU model, eight integrated UI checks. No real customers or money. API success is not inbox delivery or payment.
 - New: reversible dismissed drafts, source-bound plain-language copy, visible decision states, paid totals and reactive guide. Also: bounded complete-list reads, explicit fixture/sandbox/live labels, clearer private-account setup. Interrupted approvals never auto-retry; corrupt state/auth fail closed.
 
