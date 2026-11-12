@@ -102,14 +102,14 @@ export class PayPalClient {
     return this.api(`/v2/invoicing/invoices/${id}/send`, { method: 'POST', body: { send_to_invoicer: true } });
   }
 
-  // Reminder carries the agent's drafted subject + note - the chaser goes through PayPal itself.
-  async remind(id, { subject, note, ccEmails = [] } = {}) {
+  // PayPal's Invoicing v2 spec says user-provided subject/note on remind are not honored:
+  // PayPal emails its own standard reminder. Approval decides whether and when that goes out.
+  async remind(id, { subject, note } = {}) {
     return this.api(`/v2/invoicing/invoices/${id}/remind`, {
       method: 'POST',
       body: {
         subject: subject || 'Payment reminder',
         note: note || '',
-        cc_emails: ccEmails,
         send_to_invoicer: true,
       },
     });

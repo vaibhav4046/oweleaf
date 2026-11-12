@@ -1,6 +1,6 @@
 # Oweleaf
 
-Solo freelancers should not have to choose between chasing a late invoice and protecting a client relationship. Oweleaf puts the invoice, exact reminder and a "wait for the client" note into one approval. The real PayPal sandbox path is recorded; the click-through below is an invented-data sample, not a live payment app.
+Solo freelancers should not have to choose between chasing a late invoice and protecting a client relationship. Oweleaf puts the invoice, a drafted reminder and a "wait for the client" note into one approval, and rereads PayPal before anything goes out. The real PayPal sandbox path is recorded; the click-through below is an invented-data sample, not a live payment app.
 
 ## Try it
 
@@ -27,7 +27,7 @@ Judge-first replay: [DEMO_SCRIPT_90S.md](DEMO_SCRIPT_90S.md). Simulated agent-as
 - Earlier actual sandbox recording: four synthetic invoices, local CPU model, eight integrated UI checks. No real customers or money. API success is not inbox delivery or payment.
 - New: reversible dismissed drafts, source-bound plain-language copy, visible decision states, paid totals and reactive guide. Also: bounded complete-list reads, explicit fixture/sandbox/live labels, clearer private-account setup. Interrupted approvals never auto-retry; corrupt state/auth fail closed.
 
-**Rules guard the send. The model drafts the words.** A human reviews each reminder, and the app rereads the invoice before sending. The recorded CPU integration allowed 105 seconds; earlier calls timed out or made factual errors. No conclusive AI-superiority or winning-odds claim.
+**Rules guard the send. The model drafts the words.** A human reviews each reminder, and the app rereads the invoice before sending. Known limit: PayPal's Invoicing v2 specification states that a custom subject and note on the remind call are not honored, so the payer receives PayPal's standard reminder; the draft is your own wording to copy into a personal message. The delivered email text was not checked in a sandbox inbox. The recorded CPU integration allowed 105 seconds; earlier calls timed out or made factual errors. No conclusive AI-superiority or winning-odds claim.
 
 <details>
 <summary>Evidence, model setup, research and honest limits</summary>

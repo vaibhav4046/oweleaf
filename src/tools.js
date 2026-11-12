@@ -30,7 +30,7 @@ export function buildRegistry({ paypal, mcp = null }) {
     handler: (args) => paypal.listInvoices(args),
   });
   reg.register('paypal.remind', {
-    description: 'Send a PayPal invoice reminder with drafted subject/note',
+    description: "Trigger PayPal's standard invoice reminder (PayPal ignores custom subject/note)",
     handler: (args) => paypal.remind(args.id, args),
   });
   reg.register('paypal.recordPayment', {
