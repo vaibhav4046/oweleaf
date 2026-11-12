@@ -21,6 +21,7 @@ import { controls, PLAYBOOKS, updateControls, setHold, audit, answerCommand, exp
 import { createBrain } from './brain/index.js';
 import { readClientReply } from './brain/reply.js';
 import { triageReply } from './triage.js';
+import { openVault, validateCredentials } from './vault.js';
 import { readQuestion } from './brain/intent.js';
 import { loadState, saveState, scan, approve, reject, restore, reconcileDelivery } from './agent.js';
 
@@ -28,15 +29,25 @@ loadEnv();
 
 const PORT = Number(process.env.PORT || 4173);
 const MOCK = process.env.FARTHING_MOCK === '1';
-const sourceEnvironment=MOCK?'fixture':(process.env.PAYPAL_ENV||'sandbox');
-
-const paypal = MOCK
-  ? new MockPayPalClient()
-  : new PayPalClient({
-      clientId: process.env.PAYPAL_CLIENT_ID,
-      clientSecret: process.env.PAYPAL_CLIENT_SECRET,
-      env: process.env.PAYPAL_ENV || 'sandbox',
-    });
+// PayPal connection, in order: fixture (tests and demo), keys the owner connected in the
+// app (encrypted vault), keys from .env, or none. With none the app still starts, and every
+// PayPal call says to connect first instead of crashing at boot.
+const vault = MOCK ? null : openVault();
+const notConnected = new Proxy({}, { get: () => async () => { throw Object.assign(new Error('PayPal is not connected. Open Connect PayPal to add your keys.'), { status: 409 }); } });
+function resolvePayPal() {
+  if (MOCK) return { client: new MockPayPalClient(), source: 'fixture', env: 'fixture' };
+  const saved = vault.get();
+  if (saved) return { client: new PayPalClient(saved), source: 'vault', env: saved.env };
+  if (process.env.PAYPAL_CLIENT_ID && process.env.PAYPAL_CLIENT_SECRET) {
+    const env = process.env.PAYPAL_ENV || 'sandbox';
+    return { client: new PayPalClient({ clientId: process.env.PAYPAL_CLIENT_ID, clientSecret: process.env.PAYPAL_CLIENT_SECRET, env }), source: 'env', env };
+  }
+  return { client: notConnected, source: 'none', env: 'none' };
+}
+let connection = resolvePayPal();
+let paypal = connection.client;
+let sourceEnvironment = connection.env;
+function useConnection(next) { connection = next; paypal = next.client; sourceEnvironment = next.env; }
 
 const brainConfig = {
   timeoutMs: Number(process.env.BRAIN_TIMEOUT_MS || 30000),
@@ -130,6 +141,39 @@ async function route(req, res, url) {
     try{const input=await readBody(req);return json(res,200,await readClientReply(input.text,brainConfig));}
     catch(e){return json(res,e.status||400,{error:e.message});}
   }
+  if(req.method==='GET'&&url.pathname==='/api/paypal/connection'){
+    const saved=connection.source==='vault'?vault.status():null;
+    return json(res,200,{connected:connection.source!=='none',source:connection.source,env:connection.env,clientIdHint:saved?.clientIdHint||null,connectedAt:saved?.connectedAt||null,canChange:!MOCK&&identity?.role==='owner'&&!auth.fixtureOpen});
+  }
+  // Owner connects their own PayPal app. Keys are checked with PayPal first, then encrypted.
+  if(req.method==='POST'&&url.pathname==='/api/paypal/connect'){
+    try{
+      if(MOCK)throw Object.assign(Error('This is the sample. Run the app without sample mode to connect PayPal.'),{status:409});
+      if(identity?.role!=='owner')throw Object.assign(Error('Owner access required'),{status:403});
+      auth.checkRate('paypal-connect');
+      const input=await readBody(req),credentials=validateCredentials(input);
+      if(credentials.env==='live'&&input.confirmLive!=='LIVE')throw Object.assign(Error('Type LIVE to confirm a real PayPal account. Approved reminders will email real customers.'),{status:400});
+      const candidate=new PayPalClient(credentials);
+      try{await candidate.token();}
+      catch{auth.fail('paypal-connect');audit(state,'paypal_connect_failed',credentials.env);saveState(state);throw Object.assign(Error(`PayPal did not accept these keys for ${credentials.env==='live'?'Live':'Sandbox'}. Check both values and the environment.`),{status:400});}
+      const status=vault.set(credentials);
+      // Drafts written for the previous account must not be approvable against the new one.
+      let retired=0;for(const p of state.proposals)if(p.status==='pending'){p.status='stale';retired++;}
+      useConnection({client:candidate,source:'vault',env:credentials.env});
+      audit(state,'paypal_connected',`${credentials.env} / client ID ending ${status.clientIdHint} / ${retired} pending drafts retired / ${identity.username}`);saveState(state);
+      return json(res,200,{connected:true,source:'vault',env:status.env,clientIdHint:status.clientIdHint,connectedAt:status.connectedAt,retired});
+    }catch(e){return json(res,e.status||400,{error:e.message});}
+  }
+  if(req.method==='POST'&&url.pathname==='/api/paypal/disconnect'){
+    try{
+      if(MOCK)throw Object.assign(Error('This is the sample. There is no PayPal connection to remove.'),{status:409});
+      if(identity?.role!=='owner')throw Object.assign(Error('Owner access required'),{status:403});
+      vault.clear();let retired=0;for(const p of state.proposals)if(p.status==='pending'){p.status='stale';retired++;}
+      useConnection(resolvePayPal());
+      audit(state,'paypal_disconnected',`${retired} pending drafts retired / ${identity.username}`);saveState(state);
+      return json(res,200,{connected:connection.source!=='none',source:connection.source,env:connection.env});
+    }catch(e){return json(res,e.status||400,{error:e.message});}
+  }
   // Client replied to a reminder: model reads it, PayPal is checked, rules propose. Never sends.
   if(req.method==='POST'&&url.pathname==='/api/reply/triage'){
     try{const input=await readBody(req);const r=await triageReply({invoiceId:input.invoiceId,text:input.text},{paypal,brainConfig});audit(state,'reply_triaged',`${r.invoice.number}: ${r.verdict}`);saveState(state);return json(res,200,r);}
@@ -221,7 +265,7 @@ const server = createServer((req, res) => {
 });
 
 server.listen(PORT, '127.0.0.1', async () => {
-  console.log(`Oweleaf listening on http://127.0.0.1:${PORT}  (mode: ${MOCK ? 'MOCK fixture data' : (process.env.PAYPAL_ENV || 'sandbox')}, brain: ${brain.name}/${brain.model})`);
+  console.log(`Oweleaf listening on http://127.0.0.1:${PORT}  (mode: ${MOCK ? 'MOCK fixture data' : sourceEnvironment === 'none' ? 'PayPal not connected' : sourceEnvironment + ' via ' + connection.source}, brain: ${brain.name}/${brain.model})`);
   // boot scan, then the 24/7 loop
   try {
     const r = controls(state).routineEnabled ? await scan({ paypal, brain, state }) : {scanned:[],newProposals:[]};
