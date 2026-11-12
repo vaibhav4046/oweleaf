@@ -1,33 +1,38 @@
 # Evaluation scorecard
 
-These are internal simulated assessments against the official PayPal AI Hackathon criteria, not scores from event judges. Evidence was reviewed 12 November 2026.
+These are internal simulated assessments against the official PayPal AI Hackathon criteria, not scores from event judges. Evidence was reviewed 12 November 2026 against public main at `23ee8c5`.
 
-## Baseline evidence
+## Verified baseline
 
-- 152/152 Node tests pass in the clean checkout (`npm test`).
-- Tests cover source revalidation, payer holds, uncertain delivery, auth/roles/CSRF, bounded provider requests, MCP read-only access and model fallback.
-- README and `HACKATHON_INTELLIGENCE.md` disclose fixture versus sandbox/live boundaries and known limitations.
+- 152/152 Node tests are claimed by the current README; the release evidence also records 27/27 full-app UI checks and 20/20 static-sample checks.
 - The product has a focused source → draft → wait/send → fresh preflight → recorded-result journey.
-- No user study,recovery uplift or production/live-money replay is claimed. A browser-only invented-data sample is hosted; earlier synthetic PayPal sandbox evidence is separate.
+- The browser-only sample is explicitly invented data with rules-only behaviour; earlier PayPal Sandbox and local-model evidence is synthetic and separate.
+- No customer interviews, recovered cash, payment-speed improvement, or production/live-money result is claimed.
 
-## Conservative provisional panel
+## Live simulated panel
 
-| Persona | Technical impl. | Design | Impact | Innovation | Presentation | Weighted total | Confidence |
+| Judge persona | Technical | Design | Impact | Innovation | Presentation | Weighted total | Confidence |
 |---|---:|---:|---:|---:|---:|---:|---|
-| Technical expert | 8 | 7 | 6 | 6 | 7 | 68/100 | medium |
-| Product/UX expert | 7 | 7 | 6 | 6 | 7 | 66/100 | medium |
-| Sponsor representative | 8 | 7 | 6 | 6 | 7 | 68/100 | low-medium |
+| Technical expert | 8 | 8 | 6 | 6 | 7 | 70/100 | medium |
+| Product/UX expert | 7 | 8 | 6 | 6 | 7 | 68/100 | medium |
+| PayPal sponsor representative | 8 | 7 | 6 | 6 | 7 | 68/100 | medium |
 | Sceptical investor | 7 | 6 | 5 | 5 | 6 | 58/100 | medium |
-| Previous winner | 7 | 7 | 6 | 6 | 7 | 66/100 | low-medium |
+| Previous hackathon winner | 8 | 7 | 6 | 6 | 7 | 68/100 | medium |
 | Ruthless competitor | 7 | 6 | 5 | 4 | 6 | 56/100 | medium |
-| Three-minute judge | 7 | 7 | 6 | 5 | 7 | 64/100 | low-medium |
+| Three-minute final judge | 8 | 8 | 6 | 5 | 8 | 70/100 | medium |
 
-Weighted totals use 20% per official criterion. The panel is intentionally conservative; it is not evidence of winning odds.
+**Median: 68/100. Lowest: 56/100.** These are simulated estimates, not winning odds.
 
-## Highest-impact fixes
+## Consensus weaknesses
 
-1. Verify a clean clone can run the demo and all tests without workspace state.
-2. Verify the YouTube video is public, under three minutes and clearly shows the working PayPal/AI flow.
-3. Make the PayPal Sandbox path and AI boundary unmistakable in the first 30 seconds of the demo.
-4. Obtain the owner's explicit final decision,then file and record the actual confirmation before the cutoff.
-5. Avoid novelty claims already contradicted by the competitive matrix.
+1. The current presentation must make PayPal Sandbox and the AI drafting boundary obvious in the opening 30–45 seconds.
+2. Approval-first invoice chasing is a crowded category; the defensible distinction is local-first review plus source revalidation immediately before approval.
+3. Synthetic data and absent user-impact evidence limit Impact and Innovation scores.
+4. The public documentation must stay synchronized with the current README, test counts, commit and video.
+
+## Highest-impact next actions
+
+1. Run persona-based user simulations and publish the scenario set, raw outputs, failures and score changes.
+2. Use one current demo URL everywhere and show the PayPal source, model draft, wait decision and stale-source block end to end.
+3. File Devpost and retain the actual confirmation URL/screenshot.
+4. Do not claim real users, recovered money or production outcomes without evidence.
