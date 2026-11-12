@@ -1,16 +1,14 @@
 # OLYMPUS state
 
-Updated: 12 November 2026 (Europe/London)
+Updated 12 November 2026, after merged-head verification.
 
-- Objective: ship Oweleaf for the PayPal AI Hackathon.
-- Verified deadline: 12 November 2026, 20:00 UK time.
-- Selected product: local-first PayPal invoice follow-up review for solo freelancers.
-- Current phase: submission hardening.
-- Release base: public `main` at commit `cc050e7` (merged PR #1).
-- Current verified test result: `npm test` = 145/145 passing in the clean `repo_oweleaf` checkout.
-- Deployment URL: none required; local run is the documented path. Hosted URL is unverified.
-- Demo URL: https://youtu.be/SHzMgcIb-0E (public visibility and rights status still require final check).
-- Next executable actions: verify demo link/runtime; complete Devpost submission and retain confirmation.
-- Blockers: no confirmed Devpost submission in repository evidence; live PayPal/model replay depends on credentials/model runtime; no target-user usability study.
-
-Do not claim a submission, hosted deployment, customer outcome, or live payment unless direct evidence is recorded here.
+- Product: local-first PayPal invoice follow-up review for solo freelancers.
+- Phase: submission hardening. No Devpost submission has been made. Final filing remains held for the owner's explicit decision.
+- Deadline: 12 November 2026,20:00 Europe/London.
+- Merge base reviewed: ee9004f85147cff1072b6481caa4784789039c53. Earlier panel patch f31b5ac retained; concurrent unique-temp persistence patch retained after152/152 fresh Node tests.
+- Full-app checks:27/27 automated UI checks,zero page errors. Static browser-only checks:20/20 after fixing sample reset redirect and revisioned assets. Not human usability evidence.
+- Hosted sample: https://vaibhav4046.github.io/oweleaf/ . Browser-only,invented data,rules,no model/PayPal/sending. Deployment recheck required after this revision.
+- Public narrated walkthrough: https://youtu.be/jNWdOlZoj2U ,1:57. Original sandbox stills and labelled fixture UI; edited/retimed,AI narration. Manual transcript timing publication was processing.
+- Sandbox evidence remains the earlier four synthetic invoices,one local CPU-model draft and eight integrated UI checks. No new provider replay claimed.
+- No target-user study,production certification,payment benefit or reliable AI-superiority claim.
+- Remaining: verify deployed revision and current video captions,review final form,declarations and owner-supplied personal answers. Silence is not an answer or permission to file.

@@ -15,21 +15,21 @@
 - [x] Human approval remains required before reminder send.
 - [x] Fresh source checks block stale/held/changed invoices.
 - [x] Explicit fixture/sandbox/live labels and no unsupported outcome claims.
-- [x] `npm test` passes 145/145 in a clean checkout.
-- [x] Clean-clone smoke test repeated immediately before filing (`node run.mjs --test`, 145/145).
+- [x] `node run.mjs --test` passes 152/152 in a clean checkout.
+- [ ] Clean-clone smoke test repeated immediately before filing. Earlier f31b5ac clone152/152 passed; merged source152/152 passed separately.
 - [ ] PayPal Sandbox replay and local-model path rechecked with documented credentials/runtime.
 
 ## Demo and presentation
 
 - [x] YouTube demo link present in README.
-- [ ] Video confirmed public, under 3 minutes, rights-clean and readable.
+- [x] New public1:57video opened and pixels inspected: https://youtu.be/jNWdOlZoj2U . Captions processing needs follow-up; AI narration/original stills disclosed.
 - [ ] Three-minute script clearly shows PayPal + AI, source facts, wait decision, approval guard and outcome.
 - [ ] Backup recording/export retained locally.
 
 ## Final release
 
-- [x] Push final commit to `https://github.com/vaibhav4046/oweleaf` (main `cc050e7`, merged PR #1).
+- [x] Earlier merge pushed to `https://github.com/vaibhav4046/oweleaf` (main `cc050e7`, merged PR #1).
 - [x] Re-open public repository and verify licence, README, source and demo link.
-- [ ] File Devpost submission before 20:00 UK on 12 November 2026.
+- [ ] Obtain explicit owner final-submit decision and personal form answers,then file Devpost before 20:00 UK on 12 November 2026.
 - [ ] Save actual confirmation URL/screenshot in the release notes.
 - [ ] Keep repository/demo available through judging.

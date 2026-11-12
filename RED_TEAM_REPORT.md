@@ -6,12 +6,12 @@ Updated 12 November 2026. Severity: P0 blocks the demo; P1 breaks a critical jou
 
 | Attack | Result | Severity | Evidence/status |
 |---|---|---:|---|
-| Concurrent state writes | Fixed by unique per-process staging files and parent-directory creation | P1 → fixed | `src/agent.js`; `npm test` 145/145 |
+| Concurrent state writes | Fixed by unique per-process staging files and parent-directory creation | P1 → fixed | `src/agent.js`; `npm test` 152/152 |
 | Paid/stale invoice approval | Blocked after fresh provider read | P1 → fixed | reliability tests |
 | Changed amount, recipient, currency or invoice number | Original proposal rejected as changed | P1 → fixed | reliability tests |
 | Hold/pause introduced during model/preflight | Approval blocked | P1 → fixed | reliability tests |
 | Provider timeout/uncertain delivery | No automatic blind replay | P1 → fixed | reliability tests |
-| Model timeout, malformed JSON, invented dates/threats | Rules fallback and semantic guard | P1 → fixed | brain/reliability tests |
+| Model timeout, malformed JSON, invented dates/threats | Rules fallback and bounded factual guard | P1 → fixed | brain/reliability tests |
 | Reader/operator/CSRF/bearer misuse | Mutations rejected; MCP read-only | P1 → fixed | auth/secure tests |
 | Corrupt state/auth | Quarantine and fail-closed recovery | P1 → fixed | reliability tests |
 | Untrusted imported source text | Retained as data; no link fetch/instruction execution | P1 → fixed | workspace tests |

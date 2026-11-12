@@ -4,11 +4,11 @@ These are internal simulated assessments against the official PayPal AI Hackatho
 
 ## Baseline evidence
 
-- 145/145 Node tests pass in the clean checkout (`npm test`).
+- 152/152 Node tests pass in the clean checkout (`npm test`).
 - Tests cover source revalidation, payer holds, uncertain delivery, auth/roles/CSRF, bounded provider requests, MCP read-only access and model fallback.
 - README and `HACKATHON_INTELLIGENCE.md` disclose fixture versus sandbox/live boundaries and known limitations.
 - The product has a focused source → draft → wait/send → fresh preflight → recorded-result journey.
-- No user study, recovery uplift, hosted deployment or independently verified live end-to-end replay is currently claimed.
+- No user study,recovery uplift or production/live-money replay is claimed. A browser-only invented-data sample is hosted; earlier synthetic PayPal sandbox evidence is separate.
 
 ## Conservative provisional panel
 
@@ -29,5 +29,5 @@ Weighted totals use 20% per official criterion. The panel is intentionally conse
 1. Verify a clean clone can run the demo and all tests without workspace state.
 2. Verify the YouTube video is public, under three minutes and clearly shows the working PayPal/AI flow.
 3. Make the PayPal Sandbox path and AI boundary unmistakable in the first 30 seconds of the demo.
-4. Submit and record the actual Devpost confirmation before the cutoff.
+4. Obtain the owner's explicit final decision,then file and record the actual confirmation before the cutoff.
 5. Avoid novelty claims already contradicted by the competitive matrix.
