@@ -2,6 +2,10 @@
 
 Solo freelancers should not have to choose between chasing a late invoice and protecting a client relationship. Oweleaf puts the invoice, a drafted reminder and a "wait for the client" note into one approval, and rereads PayPal before anything goes out. The real PayPal sandbox path is recorded; the click-through below is an invented-data sample, not a live payment app.
 
+- **PayPal:** Sandbox OAuth 2.0 and Invoicing API v2 (list, read, remind). The invoice is read again from PayPal immediately before any reminder call; a paid or changed invoice blocks the approval.
+- **AI:** a local Qwen3-1.7B LoRA drafts the follow-up wording. Deterministic rules, not the model, decide whether a send is allowed.
+- **Video (1:57):** https://youtu.be/jNWdOlZoj2U
+
 ## Try it
 
 [Open the browser-only sample](https://vaibhav4046.github.io/oweleaf/) - invented data, no backend, model or sending. [Rules vs recorded model example](https://vaibhav4046.github.io/oweleaf/comparison.html).
@@ -22,7 +26,7 @@ Judge-first replay: [DEMO_SCRIPT_90S.md](DEMO_SCRIPT_90S.md). Simulated agent-as
 
 ## Current verified checks
 
-- 152/152 Node tests, including pagination, dependency timeouts, recovery, approval safety and authentication.
+- 152/152 Node tests, including pagination, dependency timeouts, recovery, approval safety and authentication. Re-run on Windows 11 / Node 24 on 12 November after fixing a path-separator bug that returned 404 for every page on Windows.
 - 29/29 full-app automated UI checks; 26/26 separate static-sample checks. Desktop/mobile pixels inspected, zero page errors. Not human-usability testing.
 - Earlier actual sandbox recording: four synthetic invoices, local CPU model, eight integrated UI checks. No real customers or money. API success is not inbox delivery or payment.
 - New: reversible dismissed drafts, source-bound plain-language copy, visible decision states, paid totals and reactive guide. Also: bounded complete-list reads, explicit fixture/sandbox/live labels, clearer private-account setup. Interrupted approvals never auto-retry; corrupt state/auth fail closed.

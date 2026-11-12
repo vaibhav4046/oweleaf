@@ -16,6 +16,8 @@
 - [x] Fresh source checks block stale/held/changed invoices.
 - [x] Explicit fixture/sandbox/live labels and no unsupported outcome claims.
 - [x] `node run.mjs --test` passes 152/152 in a clean checkout.
+- [x] Windows 11 / Node 24: 152/152 after the path-separator and rename fixes; demo UI checked in a browser.
+- [ ] Scripted UI checks (29 full-app, 26 static) re-run after the 12 November UI changes.
 - [x] Clean-clone smoke test repeated: `node run.mjs --test` passes 152/152 in the release checkout.
 - [x] Simulated AI-agent persona evaluation passes 9/9: `npm run persona-eval`; results are labelled as non-human evidence.
 - [ ] PayPal Sandbox replay and local-model path rechecked with documented credentials/runtime.
@@ -32,6 +34,8 @@
 
 - [x] Public main re-verified after the final evidence updates.
 - [x] Re-open public repository and verify licence, README, source and demo link.
+- [x] Paste-ready submission text: `DEVPOST_SUBMISSION.md`.
+- [ ] YouTube description updated (stale counts 145/25/12; PayPal standard-wording note).
 - [ ] Obtain explicit owner final-submit decision and personal form answers,then file Devpost before 20:00 UK on 12 November 2026.
 - [ ] Save actual confirmation URL/screenshot in the release notes.
 - [ ] Keep repository/demo available through judging.
