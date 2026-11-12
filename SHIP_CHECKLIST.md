@@ -28,8 +28,8 @@
 
 ## Final release
 
-- [ ] Push final commit to `https://github.com/vaibhav4046/oweleaf`.
-- [ ] Re-open public repository and verify licence, README, source and demo link.
+- [x] Push final commit to `https://github.com/vaibhav4046/oweleaf` (main `cc050e7`, merged PR #1).
+- [x] Re-open public repository and verify licence, README, source and demo link.
 - [ ] File Devpost submission before 20:00 UK on 12 November 2026.
 - [ ] Save actual confirmation URL/screenshot in the release notes.
 - [ ] Keep repository/demo available through judging.
