@@ -1,0 +1,68 @@
+{
+  "at": "2026-11-12T00:37:56.172Z",
+  "scope": "Actual local authenticated application, real PayPal sandbox containing only synthetic test invoices, local CPU model; no UI send clicked",
+  "checks": [
+    {
+      "name": "real sandbox list has four synthetic invoices",
+      "passed": true
+    },
+    {
+      "name": "boot scan completed",
+      "passed": true
+    },
+    {
+      "name": "actual model provider visible",
+      "passed": true
+    },
+    {
+      "name": "sandbox source wait disables send",
+      "passed": true
+    },
+    {
+      "name": "wait survives reload",
+      "passed": true
+    },
+    {
+      "name": "not due actual sandbox invoice cannot send",
+      "passed": true
+    },
+    {
+      "name": "mobile no overflow",
+      "passed": true
+    }
+  ],
+  "state": {
+    "mock": false,
+    "brain": {
+      "provider": "openai-compatible",
+      "model": "oweleaf-v2"
+    },
+    "paused": false,
+    "lastScanAt": "2026-11-12T00:37:58.593Z",
+    "proposals": [
+      {
+        "id": "[local proposal identifier]",
+        "invoiceId": "[private synthetic provider identifier]",
+        "invoiceNumber": "OWELEAF-SANDBOX-1",
+        "payerName": "Oweleaf Synthetic Test",
+        "payerEmail": "oweleaf-test@example.com",
+        "amount": "1.00",
+        "currency": "GBP",
+        "daysOverdue": 3,
+        "tone": "gentle",
+        "subject": "Nudge: invoice OWELEAF-SANDBOX-1 (GBP 1.00)",
+        "note": "Hi Oweleaf Synthetic Test, just a quick nudge - invoice OWELEAF-SANDBOX-1 for GBP 1.00 was due on 2026-11-09 and is now 3 days overdue. Could you share a payment update? Thank you.",
+        "reasoning": "3 days overdue -> gentle tone (1-7 days) -> action remind",
+        "provider": "openai-compatible",
+        "model": "oweleaf-v2",
+        "fallback": false,
+        "fallbackReason": null,
+        "status": "pending",
+        "createdAt": "2026-11-12T00:37:58.593Z"
+      }
+    ],
+    "actions": []
+  },
+  "videoPath": "/downloads/oweleaf-sandbox-ui/page@ba1bf5b1cdfd244dde1e11096a772ddc.webm",
+  "completedAt": "2026-11-12T00:39:28.523Z"
+}

@@ -1,0 +1,41 @@
+{
+  "at": "2026-11-12T00:32:53.583Z",
+  "stage": "remind",
+  "mode": "real PayPal sandbox, synthetic OWELEAF-SANDBOX-1, nonexistent example recipient; no payment",
+  "checks": [
+    {
+      "name": "PayPal sandbox reminder returned success",
+      "passed": true
+    },
+    {
+      "name": "provider invoice read after reminder",
+      "passed": true
+    }
+  ],
+  "subject": "Payment update: invoice OWELEAF-SANDBOX-1 (GBP 1.00)",
+  "note": "Invoice OWELEAF-SANDBOX-1 for GBP 1.00 was due on 2026-11-09. Could you share a payment update? Thank you.",
+  "wordSource": "Exact approved synthetic test words, not model output",
+  "providerMetadata": {
+    "create_time": "2026-11-12T00:31:43Z",
+    "last_update_time": "2026-11-12T00:31:43Z",
+    "created_by_flow": "REGULAR_SINGLE",
+    "recipient_view_url": "https://www.sandbox.paypal.com/invoice/p/#2ASV3T6YK5Y5AB3B",
+    "invoicer_view_url": "https://www.sandbox.paypal.com/invoice/details/INV2-2ASV-3T6Y-K5Y5-AB3B",
+    "caller_type": "API_V2_INVOICE",
+    "spam_info": {}
+  },
+  "summary": {
+    "id": "[private synthetic provider identifier]",
+    "number": "OWELEAF-SANDBOX-1",
+    "status": "UNPAID",
+    "payerName": "Oweleaf Synthetic Test",
+    "payerEmail": "oweleaf-test@example.com",
+    "amount": "1.00",
+    "currency": "GBP",
+    "dueDate": "2026-11-09",
+    "daysOverdue": 3,
+    "chaseable": true
+  },
+  "pass": true,
+  "completedAt": "2026-11-12T00:32:54.955Z"
+}

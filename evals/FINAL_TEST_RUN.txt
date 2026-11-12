@@ -1,0 +1,802 @@
+TAP version 13
+# Subtest: one-time setup, salted scrypt storage, no plaintext secret
+ok 1 - one-time setup, salted scrypt storage, no plaintext secret
+  ---
+  duration_ms: 88.839148
+  type: 'test'
+  ...
+# Subtest: real sessions expire idle and on restart; cookie flags present
+ok 2 - real sessions expire idle and on restart; cookie flags present
+  ---
+  duration_ms: 170.868762
+  type: 'test'
+  ...
+# Subtest: absolute session maximum applies even while active
+ok 3 - absolute session maximum applies even while active
+  ---
+  duration_ms: 168.233576
+  type: 'test'
+  ...
+# Subtest: reader cannot mutate, operator needs csrf, bearer is always read-only
+ok 4 - reader cannot mutate, operator needs csrf, bearer is always read-only
+  ---
+  duration_ms: 0.546136
+  type: 'test'
+  ...
+# Subtest: failed authentication is bounded, cooldown expires
+ok 5 - failed authentication is bounded, cooldown expires
+  ---
+  duration_ms: 584.60929
+  type: 'test'
+  ...
+# Subtest: MCP token hashed, read-only, expires, revokes and owner-only issuance
+ok 6 - MCP token hashed, read-only, expires, revokes and owner-only issuance
+  ---
+  duration_ms: 6.286066
+  type: 'test'
+  ...
+# Subtest: local passwords, roles and usernames validated
+ok 7 - local passwords, roles and usernames validated
+  ---
+  duration_ms: 0.409474
+  type: 'test'
+  ...
+# Subtest: logout invalidates server-side session
+ok 8 - logout invalidates server-side session
+  ---
+  duration_ms: 171.886165
+  type: 'test'
+  ...
+# Subtest: request timeout bounds a dependency ignoring AbortSignal
+ok 9 - request timeout bounds a dependency ignoring AbortSignal
+  ---
+  duration_ms: 22.065867
+  type: 'test'
+  ...
+# Subtest: request timeout bounds a never-ending response body
+ok 10 - request timeout bounds a never-ending response body
+  ---
+  duration_ms: 21.057681
+  type: 'test'
+  ...
+# Subtest: ollama timeout returns explicit rules fallback
+ok 11 - ollama timeout returns explicit rules fallback
+  ---
+  duration_ms: 20.342934
+  type: 'test'
+  ...
+# Subtest: openai timeout returns explicit rules fallback
+ok 12 - openai timeout returns explicit rules fallback
+  ---
+  duration_ms: 19.990592
+  type: 'test'
+  ...
+# Subtest: PayPal auth timeout rejects without retry
+ok 13 - PayPal auth timeout rejects without retry
+  ---
+  duration_ms: 21.269672
+  type: 'test'
+  ...
+# Subtest: PayPal reminder timeout is not replayed
+ok 14 - PayPal reminder timeout is not replayed
+  ---
+  duration_ms: 21.012509
+  type: 'test'
+  ...
+# Subtest: model draft objects and overlong/control subject cannot pass as words
+ok 15 - model draft objects and overlong/control subject cannot pass as words
+  ---
+  duration_ms: 0.461099
+  type: 'test'
+  ...
+# Subtest: experimental MCP HTTP timeout bounds response and body
+ok 16 - experimental MCP HTTP timeout bounds response and body
+  ---
+  duration_ms: 63.059258
+  type: 'test'
+  ...
+# Subtest: semantic guard rejects observed sent-date hallucination and new deadline
+ok 17 - semantic guard rejects observed sent-date hallucination and new deadline
+  ---
+  duration_ms: 1.64289
+  type: 'test'
+  ...
+# Subtest: model factual refusal has explicit fallback reason and source words
+ok 18 - model factual refusal has explicit fallback reason and source words
+  ---
+  duration_ms: 0.758687
+  type: 'test'
+  ...
+# Subtest: official nested payment_term due date and unpaid statuses are read safely
+ok 19 - official nested payment_term due date and unpaid statuses are read safely
+  ---
+  duration_ms: 0.400983
+  type: 'test'
+  ...
+# Subtest: semantic guard rejects observed before-due contradiction for overdue invoice
+ok 20 - semantic guard rejects observed before-due contradiction for overdue invoice
+  ---
+  duration_ms: 0.138904
+  type: 'test'
+  ...
+# Subtest: all rules fallback tones avoid unsupported terms and pass factual guard
+ok 21 - all rules fallback tones avoid unsupported terms and pass factual guard
+  ---
+  duration_ms: 0.408498
+  type: 'test'
+  ...
+# Subtest: desk API, restart persistence and real stdio MCP roundtrip
+ok 22 - desk API, restart persistence and real stdio MCP roundtrip
+  ---
+  duration_ms: 451.166438
+  type: 'test'
+  ...
+# Subtest: control defaults preserve one-hour review-only routine
+ok 23 - control defaults preserve one-hour review-only routine
+  ---
+  duration_ms: 0.999351
+  type: 'test'
+  ...
+# Subtest: all built-in playbooks have explicit waits and cooldowns
+ok 24 - all built-in playbooks have explicit waits and cooldowns
+  ---
+  duration_ms: 0.234363
+  type: 'test'
+  ...
+# Subtest: valid controls persist in state
+ok 25 - valid controls persist in state
+  ---
+  duration_ms: 0.217776
+  type: 'test'
+  ...
+# Subtest: reject invalid controls {"playbookId":"send-all"}
+ok 26 - reject invalid controls {"playbookId":"send-all"}
+  ---
+  duration_ms: 0.228838
+  type: 'test'
+  ...
+# Subtest: reject invalid controls {"routineEnabled":"yes"}
+ok 27 - reject invalid controls {"routineEnabled":"yes"}
+  ---
+  duration_ms: 0.107787
+  type: 'test'
+  ...
+# Subtest: reject invalid controls {"intervalMinutes":0}
+ok 28 - reject invalid controls {"intervalMinutes":0}
+  ---
+  duration_ms: 0.095643
+  type: 'test'
+  ...
+# Subtest: reject invalid controls {"intervalMinutes":5.5}
+ok 29 - reject invalid controls {"intervalMinutes":5.5}
+  ---
+  duration_ms: 0.12921
+  type: 'test'
+  ...
+# Subtest: reject invalid controls {"intervalMinutes":10081}
+ok 30 - reject invalid controls {"intervalMinutes":10081}
+  ---
+  duration_ms: 0.085561
+  type: 'test'
+  ...
+# Subtest: reject invalid controls {"autoSend":true}
+ok 31 - reject invalid controls {"autoSend":true}
+  ---
+  duration_ms: 0.263521
+  type: 'test'
+  ...
+# Subtest: payer holds normalise case and can be removed
+ok 32 - payer holds normalise case and can be removed
+  ---
+  duration_ms: 0.735811
+  type: 'test'
+  ...
+# Subtest: invalid holds rejected
+ok 33 - invalid holds rejected
+  ---
+  duration_ms: 1.287826
+  type: 'test'
+  ...
+# Subtest: hold blocks fresh scans
+ok 34 - hold blocks fresh scans
+  ---
+  duration_ms: 1.635272
+  type: 'test'
+  ...
+# Subtest: hold added after draft blocks approval and provider send
+ok 35 - hold added after draft blocks approval and provider send
+  ---
+  duration_ms: 1.285115
+  type: 'test'
+  ...
+# Subtest: hold added during remote preflight also blocks
+ok 36 - hold added during remote preflight also blocks
+  ---
+  duration_ms: 0.794956
+  type: 'test'
+  ...
+# Subtest: patient playbook filters early overdue drafts
+ok 37 - patient playbook filters early overdue drafts
+  ---
+  duration_ms: 0.357141
+  type: 'test'
+  ...
+# Subtest: stricter playbook invalidates send eligibility of old draft
+ok 38 - stricter playbook invalidates send eligibility of old draft
+  ---
+  duration_ms: 0.650089
+  type: 'test'
+  ...
+# Subtest: playbook cooldown is enforced
+ok 39 - playbook cooldown is enforced
+  ---
+  duration_ms: 0.258891
+  type: 'test'
+  ...
+# Subtest: command brief separates currency balances and is source-bound
+ok 40 - command brief separates currency balances and is source-bound
+  ---
+  duration_ms: 0.640006
+  type: 'test'
+  ...
+# Subtest: commands search names and explain invoice
+ok 41 - commands search names and explain invoice
+  ---
+  duration_ms: 0.418535
+  type: 'test'
+  ...
+# Subtest: command cannot mutate: send all
+ok 42 - command cannot mutate: send all
+  ---
+  duration_ms: 0.094064
+  type: 'test'
+  ...
+# Subtest: command cannot mutate: approve F-1042
+ok 43 - command cannot mutate: approve F-1042
+  ---
+  duration_ms: 0.053112
+  type: 'test'
+  ...
+# Subtest: command cannot mutate: refund this
+ok 44 - command cannot mutate: refund this
+  ---
+  duration_ms: 0.051147
+  type: 'test'
+  ...
+# Subtest: command cannot mutate: pay invoice
+ok 45 - command cannot mutate: pay invoice
+  ---
+  duration_ms: 0.049676
+  type: 'test'
+  ...
+# Subtest: command cannot mutate: delete history
+ok 46 - command cannot mutate: delete history
+  ---
+  duration_ms: 0.061678
+  type: 'test'
+  ...
+# Subtest: unknown command is honest and not invented chat
+ok 47 - unknown command is honest and not invented chat
+  ---
+  duration_ms: 0.16498
+  type: 'test'
+  ...
+# Subtest: explain paid invoice says not sendable
+ok 48 - explain paid invoice says not sendable
+  ---
+  duration_ms: 0.188641
+  type: 'test'
+  ...
+# Subtest: hold introduced while the model prepares a draft stops that new proposal
+ok 49 - hold introduced while the model prepares a draft stops that new proposal
+  ---
+  duration_ms: 0.394559
+  type: 'test'
+  ...
+# Subtest: pause introduced while model prepares a draft stops that proposal
+ok 50 - pause introduced while model prepares a draft stops that proposal
+  ---
+  duration_ms: 0.357164
+  type: 'test'
+  ...
+# Subtest: overdueDays: past due positive, future due negative, missing null
+ok 51 - overdueDays: past due positive, future due negative, missing null
+  ---
+  duration_ms: 0.847539
+  type: 'test'
+  ...
+# Subtest: invoiceSummary: SENT + past due is chaseable; PAID and not-yet-due are not
+ok 52 - invoiceSummary: SENT + past due is chaseable; PAID and not-yet-due are not
+  ---
+  duration_ms: 1.133305
+  type: 'test'
+  ...
+# Subtest: tone ladder boundaries: 7 gentle, 8 firm, 21 firm, 22 final
+ok 53 - tone ladder boundaries: 7 gentle, 8 firm, 21 firm, 22 final
+  ---
+  duration_ms: 0.191041
+  type: 'test'
+  ...
+# Subtest: heuristic brain: waits on non-chaseable, drafts within tone templates
+ok 54 - heuristic brain: waits on non-chaseable, drafts within tone templates
+  ---
+  duration_ms: 0.306178
+  type: 'test'
+  ...
+# Subtest: parseDecision: accepts clean JSON, rejects slop and threats schema
+ok 55 - parseDecision: accepts clean JSON, rejects slop and threats schema
+  ---
+  duration_ms: 0.304216
+  type: 'test'
+  ...
+# Subtest: SLM fallback: unreachable ollama host fails closed to heuristic
+ok 56 - SLM fallback: unreachable ollama host fails closed to heuristic
+  ---
+  duration_ms: 26.50708
+  type: 'test'
+  ...
+# Subtest: full loop: scan queues exactly the chaseable invoices, approve sends via PayPal, no duplicates on rescan
+ok 57 - full loop: scan queues exactly the chaseable invoices, approve sends via PayPal, no duplicates on rescan
+  ---
+  duration_ms: 2.623042
+  type: 'test'
+  ...
+# Subtest: chaser copy never threatens and never invents discounts (template scan)
+ok 58 - chaser copy never threatens and never invents discounts (template scan)
+  ---
+  duration_ms: 0.159615
+  type: 'test'
+  ...
+# Subtest: MCP HTTP client: initialize -> tools/list -> tools/call round trip
+ok 59 - MCP HTTP client: initialize -> tools/list -> tools/call round trip
+  ---
+  duration_ms: 2.969091
+  type: 'test'
+  ...
+# Subtest: MCP HTTP client: parses SSE-wrapped responses
+ok 60 - MCP HTTP client: parses SSE-wrapped responses
+  ---
+  duration_ms: 0.424703
+  type: 'test'
+  ...
+# Subtest: MCP HTTP client: JSON-RPC error surfaces as McpError
+ok 61 - MCP HTTP client: JSON-RPC error surfaces as McpError
+  ---
+  duration_ms: 0.573447
+  type: 'test'
+  ...
+# Subtest: tool registry: direct PayPal tools route to the client; unknown tools rejected
+ok 62 - tool registry: direct PayPal tools route to the client; unknown tools rejected
+  ---
+  duration_ms: 0.782139
+  type: 'test'
+  ...
+# Subtest: tool registry with MCP: mcp tools registered and callable
+ok 63 - tool registry with MCP: mcp tools registered and callable
+  ---
+  duration_ms: 0.348574
+  type: 'test'
+  ...
+# Subtest: stale paid invoice blocks send
+ok 64 - stale paid invoice blocks send
+  ---
+  duration_ms: 3.857269
+  type: 'test'
+  ...
+# Subtest: changed amount blocks original approval
+ok 65 - changed amount blocks original approval
+  ---
+  duration_ms: 0.931748
+  type: 'test'
+  ...
+# Subtest: changed recipient blocks original approval
+ok 66 - changed recipient blocks original approval
+  ---
+  duration_ms: 1.889657
+  type: 'test'
+  ...
+# Subtest: changed currency blocks original approval
+ok 67 - changed currency blocks original approval
+  ---
+  duration_ms: 0.606922
+  type: 'test'
+  ...
+# Subtest: changed number blocks original approval
+ok 68 - changed number blocks original approval
+  ---
+  duration_ms: 0.61386
+  type: 'test'
+  ...
+# Subtest: concurrent approvals cause at most one send
+ok 69 - concurrent approvals cause at most one send
+  ---
+  duration_ms: 0.802145
+  type: 'test'
+  ...
+# Subtest: uncertain delivery is not blindly retried
+ok 70 - uncertain delivery is not blindly retried
+  ---
+  duration_ms: 0.910755
+  type: 'test'
+  ...
+# Subtest: paused agent neither scans nor sends
+ok 71 - paused agent neither scans nor sends
+  ---
+  duration_ms: 0.439158
+  type: 'test'
+  ...
+# Subtest: pause during preflight blocks send
+ok 72 - pause during preflight blocks send
+  ---
+  duration_ms: 0.918209
+  type: 'test'
+  ...
+# Subtest: successful reminder has 24h cooldown
+ok 73 - successful reminder has 24h cooldown
+  ---
+  duration_ms: 1.116891
+  type: 'test'
+  ...
+# Subtest: concurrent scans do not duplicate queue
+ok 74 - concurrent scans do not duplicate queue
+  ---
+  duration_ms: 0.560951
+  type: 'test'
+  ...
+# Subtest: zero outstanding is never chaseable
+ok 75 - zero outstanding is never chaseable
+  ---
+  duration_ms: 0.307403
+  type: 'test'
+  ...
+# Subtest: partial outstanding, not original total, is shown
+ok 76 - partial outstanding, not original total, is shown
+  ---
+  duration_ms: 0.293095
+  type: 'test'
+  ...
+# Subtest: operations preserve explicit fixture provenance
+ok 77 - operations preserve explicit fixture provenance
+  ---
+  duration_ms: 0.652371
+  type: 'test'
+  ...
+# Subtest: unknown delivery blocks fresh automated proposals
+ok 78 - unknown delivery blocks fresh automated proposals
+  ---
+  duration_ms: 1.101996
+  type: 'test'
+  ...
+# Subtest: final reminder never invents prior contact
+ok 79 - final reminder never invents prior contact
+  ---
+  duration_ms: 0.334732
+  type: 'test'
+  ...
+# Subtest: uncertain delivery can be manually reconciled without resend or immediate requeue
+ok 80 - uncertain delivery can be manually reconciled without resend or immediate requeue
+  ---
+  duration_ms: 1.329795
+  type: 'test'
+  ...
+# Subtest: adversarial model draft never overrides paid/held/changed-recipient send guard
+ok 81 - adversarial model draft never overrides paid/held/changed-recipient send guard
+  ---
+  duration_ms: 0.506829
+  type: 'test'
+  ...
+# Subtest: secure default HTTP, roles, CSRF, source persistence and authenticated MCP roundtrip
+ok 82 - secure default HTTP, roles, CSRF, source persistence and authenticated MCP roundtrip
+  ---
+  duration_ms: 1640.156356
+  type: 'test'
+  ...
+# Subtest: subscription fixture 1
+ok 83 - subscription fixture 1
+  ---
+  duration_ms: 1.236098
+  type: 'test'
+  ...
+# Subtest: subscription fixture 2
+ok 84 - subscription fixture 2
+  ---
+  duration_ms: 0.218391
+  type: 'test'
+  ...
+# Subtest: subscription fixture 3
+ok 85 - subscription fixture 3
+  ---
+  duration_ms: 0.102407
+  type: 'test'
+  ...
+# Subtest: subscription fixture 4
+ok 86 - subscription fixture 4
+  ---
+  duration_ms: 0.113975
+  type: 'test'
+  ...
+# Subtest: subscription fixture 5
+ok 87 - subscription fixture 5
+  ---
+  duration_ms: 0.151889
+  type: 'test'
+  ...
+# Subtest: subscription fixture 6
+ok 88 - subscription fixture 6
+  ---
+  duration_ms: 0.08126
+  type: 'test'
+  ...
+# Subtest: subscription fixture 7
+ok 89 - subscription fixture 7
+  ---
+  duration_ms: 0.140559
+  type: 'test'
+  ...
+# Subtest: subscription fixture 8
+ok 90 - subscription fixture 8
+  ---
+  duration_ms: 0.077693
+  type: 'test'
+  ...
+# Subtest: subscription fixture 9
+ok 91 - subscription fixture 9
+  ---
+  duration_ms: 0.355759
+  type: 'test'
+  ...
+# Subtest: subscription fixture 10
+ok 92 - subscription fixture 10
+  ---
+  duration_ms: 0.340963
+  type: 'test'
+  ...
+# Subtest: subscription fixture 11
+ok 93 - subscription fixture 11
+  ---
+  duration_ms: 0.153178
+  type: 'test'
+  ...
+# Subtest: subscription fixture 12
+ok 94 - subscription fixture 12
+  ---
+  duration_ms: 0.092287
+  type: 'test'
+  ...
+# Subtest: payout fixture 1
+ok 95 - payout fixture 1
+  ---
+  duration_ms: 1.400564
+  type: 'test'
+  ...
+# Subtest: payout fixture 2
+ok 96 - payout fixture 2
+  ---
+  duration_ms: 0.115695
+  type: 'test'
+  ...
+# Subtest: payout fixture 3
+ok 97 - payout fixture 3
+  ---
+  duration_ms: 0.084551
+  type: 'test'
+  ...
+# Subtest: payout fixture 4
+ok 98 - payout fixture 4
+  ---
+  duration_ms: 0.071233
+  type: 'test'
+  ...
+# Subtest: payout fixture 5
+ok 99 - payout fixture 5
+  ---
+  duration_ms: 0.066016
+  type: 'test'
+  ...
+# Subtest: payout fixture 6
+ok 100 - payout fixture 6
+  ---
+  duration_ms: 0.194981
+  type: 'test'
+  ...
+# Subtest: payout fixture 7
+ok 101 - payout fixture 7
+  ---
+  duration_ms: 0.087321
+  type: 'test'
+  ...
+# Subtest: payout fixture 8
+ok 102 - payout fixture 8
+  ---
+  duration_ms: 0.072402
+  type: 'test'
+  ...
+# Subtest: payout fixture 9
+ok 103 - payout fixture 9
+  ---
+  duration_ms: 0.061117
+  type: 'test'
+  ...
+# Subtest: payout fixture 10
+ok 104 - payout fixture 10
+  ---
+  duration_ms: 0.109045
+  type: 'test'
+  ...
+# Subtest: payout fixture 11
+ok 105 - payout fixture 11
+  ---
+  duration_ms: 0.076677
+  type: 'test'
+  ...
+# Subtest: payout fixture 12
+ok 106 - payout fixture 12
+  ---
+  duration_ms: 0.071529
+  type: 'test'
+  ...
+# Subtest: dispute fixture 1
+ok 107 - dispute fixture 1
+  ---
+  duration_ms: 0.700471
+  type: 'test'
+  ...
+# Subtest: dispute fixture 2
+ok 108 - dispute fixture 2
+  ---
+  duration_ms: 0.063892
+  type: 'test'
+  ...
+# Subtest: dispute fixture 3
+ok 109 - dispute fixture 3
+  ---
+  duration_ms: 0.051665
+  type: 'test'
+  ...
+# Subtest: dispute fixture 4
+ok 110 - dispute fixture 4
+  ---
+  duration_ms: 0.051415
+  type: 'test'
+  ...
+# Subtest: dispute fixture 5
+ok 111 - dispute fixture 5
+  ---
+  duration_ms: 0.060303
+  type: 'test'
+  ...
+# Subtest: dispute fixture 6
+ok 112 - dispute fixture 6
+  ---
+  duration_ms: 0.051199
+  type: 'test'
+  ...
+# Subtest: dispute fixture 7
+ok 113 - dispute fixture 7
+  ---
+  duration_ms: 0.051697
+  type: 'test'
+  ...
+# Subtest: dispute fixture 8
+ok 114 - dispute fixture 8
+  ---
+  duration_ms: 0.048717
+  type: 'test'
+  ...
+# Subtest: dispute fixture 9
+ok 115 - dispute fixture 9
+  ---
+  duration_ms: 0.117631
+  type: 'test'
+  ...
+# Subtest: dispute fixture 10
+ok 116 - dispute fixture 10
+  ---
+  duration_ms: 0.080404
+  type: 'test'
+  ...
+# Subtest: dispute fixture 11
+ok 117 - dispute fixture 11
+  ---
+  duration_ms: 0.058034
+  type: 'test'
+  ...
+# Subtest: dispute fixture 12
+ok 118 - dispute fixture 12
+  ---
+  duration_ms: 0.068366
+  type: 'test'
+  ...
+# Subtest: read-only API routes encode IDs and never use POST
+ok 119 - read-only API routes encode IDs and never use POST
+  ---
+  duration_ms: 0.317405
+  type: 'test'
+  ...
+# Subtest: workflow runner calls only requested reader
+ok 120 - workflow runner calls only requested reader
+  ---
+  duration_ms: 0.167453
+  type: 'test'
+  ...
+# Subtest: import subscription produces actual deterministic plan, no side effects
+ok 121 - import subscription produces actual deterministic plan, no side effects
+  ---
+  duration_ms: 2.000033
+  type: 'test'
+  ...
+# Subtest: case source same fingerprint is idempotent
+ok 122 - case source same fingerprint is idempotent
+  ---
+  duration_ms: 0.403368
+  type: 'test'
+  ...
+# Subtest: changed source clears acknowledgement and rejects stale review
+ok 123 - changed source clears acknowledgement and rejects stale review
+  ---
+  duration_ms: 0.673836
+  type: 'test'
+  ...
+# Subtest: source label change is a revision, not hidden provenance overwrite
+ok 124 - source label change is a revision, not hidden provenance overwrite
+  ---
+  duration_ms: 0.279227
+  type: 'test'
+  ...
+# Subtest: notes and tasks stay attached after case update
+ok 125 - notes and tasks stay attached after case update
+  ---
+  duration_ms: 1.06815
+  type: 'test'
+  ...
+# Subtest: invalid task date, title and status refused
+ok 126 - invalid task date, title and status refused
+  ---
+  duration_ms: 0.342726
+  type: 'test'
+  ...
+# Subtest: payout imports actual caller ledger and flags mismatch
+ok 127 - payout imports actual caller ledger and flags mismatch
+  ---
+  duration_ms: 0.404211
+  type: 'test'
+  ...
+# Subtest: dispute import preserves missing inventory, never invents evidence
+ok 128 - dispute import preserves missing inventory, never invents evidence
+  ---
+  duration_ms: 0.254143
+  type: 'test'
+  ...
+# Subtest: source links and hostile text are retained as data, never fetched
+ok 129 - source links and hostile text are retained as data, never fetched
+  ---
+  duration_ms: 0.411242
+  type: 'test'
+  ...
+# Subtest: source validation refuses unknown kind, missing identity and prototype keys
+ok 130 - source validation refuses unknown kind, missing identity and prototype keys
+  ---
+  duration_ms: 0.566788
+  type: 'test'
+  ...
+# Subtest: workspace snapshot is a detached copy
+ok 131 - workspace snapshot is a detached copy
+  ---
+  duration_ms: 0.260088
+  type: 'test'
+  ...
+# Subtest: exposure uses exact minor units and separates currencies
+ok 132 - exposure uses exact minor units and separates currencies
+  ---
+  duration_ms: 0.294614
+  type: 'test'
+  ...
+1..132
+# tests 132
+# suites 0
+# pass 132
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4231.233658

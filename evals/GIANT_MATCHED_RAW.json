@@ -1,0 +1,1236 @@
+{
+  "giant": [
+    {
+      "ts": "2026-11-10T15:58:27.800Z",
+      "kind": "eval",
+      "scenario": "H000-wait-0d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "wait",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 11483,
+      "tokensIn": 206,
+      "tokensOut": 327
+    },
+    {
+      "ts": "2026-11-10T15:58:23.738Z",
+      "kind": "eval",
+      "scenario": "H001-firm-19d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 7413,
+      "tokensIn": 206,
+      "tokensOut": 239
+    },
+    {
+      "ts": "2026-11-10T15:58:27.174Z",
+      "kind": "eval",
+      "scenario": "H007-gentle-7d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "remind",
+        "tone": "gentle"
+      },
+      "latencyMs": 10862,
+      "tokensIn": 208,
+      "tokensOut": 411
+    },
+    {
+      "ts": "2026-11-10T15:58:34.089Z",
+      "kind": "eval",
+      "scenario": "H010-wait--11d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 17774,
+      "tokensIn": 206,
+      "tokensOut": 468
+    },
+    {
+      "ts": "2026-11-10T15:58:35.466Z",
+      "kind": "eval",
+      "scenario": "H017-final-40d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "escalate",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 7665,
+      "tokensIn": 209,
+      "tokensOut": 295
+    },
+    {
+      "ts": "2026-11-10T15:58:42.629Z",
+      "kind": "eval",
+      "scenario": "H018-firm-8d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 7163,
+      "tokensIn": 203,
+      "tokensOut": 227
+    },
+    {
+      "ts": "2026-11-10T15:58:33.839Z",
+      "kind": "eval",
+      "scenario": "H027-wait-5d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 6663,
+      "tokensIn": 205,
+      "tokensOut": 205
+    },
+    {
+      "ts": "2026-11-10T15:58:36.700Z",
+      "kind": "eval",
+      "scenario": "H034-gentle-1d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "remind",
+        "tone": "gentle"
+      },
+      "latencyMs": 12962,
+      "tokensIn": 205,
+      "tokensOut": 357
+    },
+    {
+      "ts": "2026-11-10T15:58:52.514Z",
+      "kind": "eval",
+      "scenario": "H040-wait--4d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 15814,
+      "tokensIn": 205,
+      "tokensOut": 457
+    },
+    {
+      "ts": "2026-11-10T15:58:40.435Z",
+      "kind": "eval",
+      "scenario": "H043-final-25d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 6345,
+      "tokensIn": 206,
+      "tokensOut": 289
+    },
+    {
+      "ts": "2026-11-10T15:59:02.670Z",
+      "kind": "eval",
+      "scenario": "H045-firm-21d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 22235,
+      "tokensIn": 209,
+      "tokensOut": 609
+    },
+    {
+      "ts": "2026-11-10T15:58:50.291Z",
+      "kind": "eval",
+      "scenario": "H056-firm-8d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 16452,
+      "tokensIn": 205,
+      "tokensOut": 537
+    },
+    {
+      "ts": "2026-11-10T15:58:56.129Z",
+      "kind": "eval",
+      "scenario": "H061-wait--5d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 13500,
+      "tokensIn": 207,
+      "tokensOut": 429
+    },
+    {
+      "ts": "2026-11-10T15:59:11.786Z",
+      "kind": "eval",
+      "scenario": "H066-final-30d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 21494,
+      "tokensIn": 206,
+      "tokensOut": 268
+    },
+    {
+      "ts": "2026-11-10T15:59:24.926Z",
+      "kind": "eval",
+      "scenario": "H072-wait--9d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 22256,
+      "tokensIn": 207,
+      "tokensOut": 572
+    },
+    {
+      "ts": "2026-11-10T15:59:30.901Z",
+      "kind": "eval",
+      "scenario": "H082-wait--7d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 19115,
+      "tokensIn": 205,
+      "tokensOut": 326
+    },
+    {
+      "ts": "2026-11-10T15:59:18.576Z",
+      "kind": "eval",
+      "scenario": "H085-firm-11d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 26061,
+      "tokensIn": 204,
+      "tokensOut": 221
+    },
+    {
+      "ts": "2026-11-10T15:59:26.887Z",
+      "kind": "eval",
+      "scenario": "H089-final-34d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 8311,
+      "tokensIn": 206,
+      "tokensOut": 302
+    },
+    {
+      "ts": "2026-11-10T15:59:06.349Z",
+      "kind": "eval",
+      "scenario": "H103-final-24d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 10220,
+      "tokensIn": 205,
+      "tokensOut": 293
+    },
+    {
+      "ts": "2026-11-10T15:59:39.576Z",
+      "kind": "eval",
+      "scenario": "H105-wait-0d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "wait",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 12689,
+      "tokensIn": 206,
+      "tokensOut": 224
+    },
+    {
+      "ts": "2026-11-10T15:59:10.611Z",
+      "kind": "eval",
+      "scenario": "H107-gentle-6d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "remind",
+        "tone": "gentle"
+      },
+      "latencyMs": 4262,
+      "tokensIn": 204,
+      "tokensOut": 212
+    },
+    {
+      "ts": "2026-11-10T15:59:22.314Z",
+      "kind": "eval",
+      "scenario": "H116-wait-0d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "wait",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 11703,
+      "tokensIn": 204,
+      "tokensOut": 150
+    },
+    {
+      "ts": "2026-11-10T15:59:34.246Z",
+      "kind": "eval",
+      "scenario": "H127-final-31d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 9320,
+      "tokensIn": 209,
+      "tokensOut": 312
+    },
+    {
+      "ts": "2026-11-10T15:59:41.052Z",
+      "kind": "eval",
+      "scenario": "H128-firm-18d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 18737,
+      "tokensIn": 205,
+      "tokensOut": 652
+    },
+    {
+      "ts": "2026-11-10T15:59:38.095Z",
+      "kind": "eval",
+      "scenario": "H140-final-22d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 7194,
+      "tokensIn": 207,
+      "tokensOut": 299
+    },
+    {
+      "ts": "2026-11-11T00:11:00.680Z",
+      "kind": "eval",
+      "scenario": "H141-wait--1d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "wait",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 7929,
+      "tokensIn": 205,
+      "tokensOut": 256
+    },
+    {
+      "ts": "2026-11-11T00:11:04.712Z",
+      "kind": "eval",
+      "scenario": "H151-firm-9d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 4032,
+      "tokensIn": 208,
+      "tokensOut": 238
+    },
+    {
+      "ts": "2026-11-11T00:11:23.340Z",
+      "kind": "eval",
+      "scenario": "H155-wait--5d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 13291,
+      "tokensIn": 204,
+      "tokensOut": 425
+    },
+    {
+      "ts": "2026-11-11T00:11:08.262Z",
+      "kind": "eval",
+      "scenario": "H163-gentle-1d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "remind",
+        "tone": "gentle"
+      },
+      "latencyMs": 3550,
+      "tokensIn": 204,
+      "tokensOut": 199
+    },
+    {
+      "ts": "2026-11-11T00:11:41.168Z",
+      "kind": "eval",
+      "scenario": "H164-final-45d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "escalate",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 5844,
+      "tokensIn": 207,
+      "tokensOut": 334
+    },
+    {
+      "ts": "2026-11-11T00:11:29.186Z",
+      "kind": "eval",
+      "scenario": "H170-firm-13d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 5846,
+      "tokensIn": 205,
+      "tokensOut": 234
+    },
+    {
+      "ts": "2026-11-11T00:11:50.105Z",
+      "kind": "eval",
+      "scenario": "H177-wait--8d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 8937,
+      "tokensIn": 206,
+      "tokensOut": 415
+    },
+    {
+      "ts": "2026-11-11T00:12:06.454Z",
+      "kind": "eval",
+      "scenario": "H184-final-28d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "escalate",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 4169,
+      "tokensIn": 207,
+      "tokensOut": 266
+    },
+    {
+      "ts": "2026-11-11T00:12:22.496Z",
+      "kind": "eval",
+      "scenario": "H192-wait-20d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "wait",
+      "tone": "firm",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 16042,
+      "tokensIn": 206,
+      "tokensOut": 435
+    },
+    {
+      "ts": "2026-11-11T00:12:30.483Z",
+      "kind": "eval",
+      "scenario": "H200-firm-16d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 7986,
+      "tokensIn": 205,
+      "tokensOut": 546
+    },
+    {
+      "ts": "2026-11-11T00:11:59.718Z",
+      "kind": "eval",
+      "scenario": "H203-gentle-7d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "remind",
+        "tone": "gentle"
+      },
+      "latencyMs": 9612,
+      "tokensIn": 206,
+      "tokensOut": 370
+    },
+    {
+      "ts": "2026-11-11T00:11:33.327Z",
+      "kind": "eval",
+      "scenario": "H205-wait-8d",
+      "provider": "openai-compatible",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 4141,
+      "tokensIn": 210,
+      "tokensOut": 215
+    }
+  ],
+  "v2": [
+    {
+      "ts": "2026-11-10T16:08:58.661Z",
+      "kind": "eval",
+      "scenario": "H000-wait-0d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "wait",
+      "tone": null,
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 7576,
+      "tokensIn": 198,
+      "tokensOut": 50
+    },
+    {
+      "ts": "2026-11-10T16:08:59.731Z",
+      "kind": "eval",
+      "scenario": "H001-firm-19d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 1058,
+      "tokensIn": 195,
+      "tokensOut": 123
+    },
+    {
+      "ts": "2026-11-10T16:09:05.395Z",
+      "kind": "eval",
+      "scenario": "H007-gentle-7d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "remind",
+        "tone": "gentle"
+      },
+      "latencyMs": 1176,
+      "tokensIn": 196,
+      "tokensOut": 131
+    },
+    {
+      "ts": "2026-11-10T16:09:08.313Z",
+      "kind": "eval",
+      "scenario": "H010-wait--11d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 1237,
+      "tokensIn": 195,
+      "tokensOut": 136
+    },
+    {
+      "ts": "2026-11-10T16:09:14.835Z",
+      "kind": "eval",
+      "scenario": "H017-final-40d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 1335,
+      "tokensIn": 198,
+      "tokensOut": 149
+    },
+    {
+      "ts": "2026-11-10T16:09:15.951Z",
+      "kind": "eval",
+      "scenario": "H018-firm-8d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 1115,
+      "tokensIn": 193,
+      "tokensOut": 124
+    },
+    {
+      "ts": "2026-11-10T16:09:24.664Z",
+      "kind": "eval",
+      "scenario": "H027-wait-5d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "wait",
+      "tone": null,
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 454,
+      "tokensIn": 194,
+      "tokensOut": 45
+    },
+    {
+      "ts": "2026-11-10T16:09:31.591Z",
+      "kind": "eval",
+      "scenario": "H034-gentle-1d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "remind",
+        "tone": "gentle"
+      },
+      "latencyMs": 1140,
+      "tokensIn": 195,
+      "tokensOut": 121
+    },
+    {
+      "ts": "2026-11-10T16:09:36.398Z",
+      "kind": "eval",
+      "scenario": "H040-wait--4d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 1171,
+      "tokensIn": 194,
+      "tokensOut": 131
+    },
+    {
+      "ts": "2026-11-10T16:09:39.931Z",
+      "kind": "eval",
+      "scenario": "H043-final-25d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 1168,
+      "tokensIn": 196,
+      "tokensOut": 127
+    },
+    {
+      "ts": "2026-11-10T16:09:42.222Z",
+      "kind": "eval",
+      "scenario": "H045-firm-21d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 1131,
+      "tokensIn": 197,
+      "tokensOut": 127
+    },
+    {
+      "ts": "2026-11-10T16:09:54.777Z",
+      "kind": "eval",
+      "scenario": "H056-firm-8d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 1179,
+      "tokensIn": 194,
+      "tokensOut": 127
+    },
+    {
+      "ts": "2026-11-10T16:09:58.990Z",
+      "kind": "eval",
+      "scenario": "H061-wait--5d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 1146,
+      "tokensIn": 196,
+      "tokensOut": 131
+    },
+    {
+      "ts": "2026-11-10T16:10:04.741Z",
+      "kind": "eval",
+      "scenario": "H066-final-30d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 1125,
+      "tokensIn": 195,
+      "tokensOut": 129
+    },
+    {
+      "ts": "2026-11-10T16:10:08.772Z",
+      "kind": "eval",
+      "scenario": "H072-wait--9d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "wait",
+      "tone": null,
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 344,
+      "tokensIn": 196,
+      "tokensOut": 38
+    },
+    {
+      "ts": "2026-11-10T16:10:17.992Z",
+      "kind": "eval",
+      "scenario": "H082-wait--7d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 1197,
+      "tokensIn": 195,
+      "tokensOut": 137
+    },
+    {
+      "ts": "2026-11-10T16:10:21.319Z",
+      "kind": "eval",
+      "scenario": "H085-firm-11d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 1104,
+      "tokensIn": 193,
+      "tokensOut": 124
+    },
+    {
+      "ts": "2026-11-10T16:10:25.888Z",
+      "kind": "eval",
+      "scenario": "H089-final-34d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 1172,
+      "tokensIn": 196,
+      "tokensOut": 130
+    },
+    {
+      "ts": "2026-11-10T16:10:40.694Z",
+      "kind": "eval",
+      "scenario": "H103-final-24d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 1077,
+      "tokensIn": 194,
+      "tokensOut": 122
+    },
+    {
+      "ts": "2026-11-10T16:10:41.625Z",
+      "kind": "eval",
+      "scenario": "H105-wait-0d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "wait",
+      "tone": null,
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 454,
+      "tokensIn": 195,
+      "tokensOut": 49
+    },
+    {
+      "ts": "2026-11-10T16:10:43.910Z",
+      "kind": "eval",
+      "scenario": "H107-gentle-6d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "remind",
+        "tone": "gentle"
+      },
+      "latencyMs": 1143,
+      "tokensIn": 193,
+      "tokensOut": 128
+    },
+    {
+      "ts": "2026-11-10T16:10:50.852Z",
+      "kind": "eval",
+      "scenario": "H116-wait-0d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "wait",
+      "tone": null,
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 461,
+      "tokensIn": 194,
+      "tokensOut": 49
+    },
+    {
+      "ts": "2026-11-10T16:11:03.024Z",
+      "kind": "eval",
+      "scenario": "H127-final-31d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 1226,
+      "tokensIn": 197,
+      "tokensOut": 133
+    },
+    {
+      "ts": "2026-11-10T16:11:04.253Z",
+      "kind": "eval",
+      "scenario": "H128-firm-18d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 1229,
+      "tokensIn": 194,
+      "tokensOut": 121
+    },
+    {
+      "ts": "2026-11-10T16:11:20.230Z",
+      "kind": "eval",
+      "scenario": "H140-final-22d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 1141,
+      "tokensIn": 196,
+      "tokensOut": 129
+    },
+    {
+      "ts": "2026-11-10T16:11:21.437Z",
+      "kind": "eval",
+      "scenario": "H141-wait--1d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 1207,
+      "tokensIn": 194,
+      "tokensOut": 131
+    },
+    {
+      "ts": "2026-11-10T16:11:30.608Z",
+      "kind": "eval",
+      "scenario": "H151-firm-9d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 1091,
+      "tokensIn": 196,
+      "tokensOut": 123
+    },
+    {
+      "ts": "2026-11-10T16:11:34.406Z",
+      "kind": "eval",
+      "scenario": "H155-wait--5d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 1153,
+      "tokensIn": 194,
+      "tokensOut": 130
+    },
+    {
+      "ts": "2026-11-10T16:11:42.218Z",
+      "kind": "eval",
+      "scenario": "H163-gentle-1d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "remind",
+        "tone": "gentle"
+      },
+      "latencyMs": 1083,
+      "tokensIn": 194,
+      "tokensOut": 125
+    },
+    {
+      "ts": "2026-11-10T16:11:43.358Z",
+      "kind": "eval",
+      "scenario": "H164-final-45d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 1139,
+      "tokensIn": 196,
+      "tokensOut": 129
+    },
+    {
+      "ts": "2026-11-10T16:11:49.791Z",
+      "kind": "eval",
+      "scenario": "H170-firm-13d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 1075,
+      "tokensIn": 196,
+      "tokensOut": 122
+    },
+    {
+      "ts": "2026-11-10T16:11:58.215Z",
+      "kind": "eval",
+      "scenario": "H177-wait--8d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 1255,
+      "tokensIn": 195,
+      "tokensOut": 143
+    },
+    {
+      "ts": "2026-11-10T16:12:04.670Z",
+      "kind": "eval",
+      "scenario": "H184-final-28d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "final",
+      "expected": {
+        "action": "remind",
+        "tone": "final"
+      },
+      "latencyMs": 1135,
+      "tokensIn": 196,
+      "tokensOut": 130
+    },
+    {
+      "ts": "2026-11-10T16:12:12.080Z",
+      "kind": "eval",
+      "scenario": "H192-wait-20d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "wait",
+      "tone": null,
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 386,
+      "tokensIn": 197,
+      "tokensOut": 42
+    },
+    {
+      "ts": "2026-11-10T16:12:20.515Z",
+      "kind": "eval",
+      "scenario": "H200-firm-16d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "firm",
+      "expected": {
+        "action": "remind",
+        "tone": "firm"
+      },
+      "latencyMs": 1130,
+      "tokensIn": 195,
+      "tokensOut": 129
+    },
+    {
+      "ts": "2026-11-10T16:12:23.254Z",
+      "kind": "eval",
+      "scenario": "H203-gentle-7d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "remind",
+      "tone": "gentle",
+      "expected": {
+        "action": "remind",
+        "tone": "gentle"
+      },
+      "latencyMs": 1158,
+      "tokensIn": 196,
+      "tokensOut": 133
+    },
+    {
+      "ts": "2026-11-10T16:12:24.132Z",
+      "kind": "eval",
+      "scenario": "H205-wait-8d",
+      "provider": "ollama",
+      "model": "farthing2",
+      "fallback": false,
+      "action": "wait",
+      "tone": null,
+      "expected": {
+        "action": "wait"
+      },
+      "latencyMs": 408,
+      "tokensIn": 198,
+      "tokensOut": 45
+    }
+  ]
+}

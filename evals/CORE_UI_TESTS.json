@@ -1,0 +1,100 @@
+{
+  "path": "/tmp/oweleaf-current-ui/page@418c38478299ef75e4eb4ee866e51f4f.webm",
+  "videoOffset": 2.499,
+  "shots": [
+    {
+      "label": "home",
+      "at": 5.493
+    },
+    {
+      "label": "review",
+      "at": 9.747
+    },
+    {
+      "label": "wait_note",
+      "at": 14.088
+    },
+    {
+      "label": "held",
+      "at": 14.201
+    },
+    {
+      "label": "released",
+      "at": 19.235
+    },
+    {
+      "label": "paused",
+      "at": 21.129
+    },
+    {
+      "label": "sent",
+      "at": 21.355
+    },
+    {
+      "label": "studio",
+      "at": 28.393
+    }
+  ],
+  "pageErrors": [],
+  "checks": [
+    {
+      "label": "Authenticated login lands on focused home",
+      "passed": true
+    },
+    {
+      "label": "Fixture label visible",
+      "passed": true
+    },
+    {
+      "label": "Wait note disables send",
+      "passed": true
+    },
+    {
+      "label": "Wait note survives page reload",
+      "passed": true
+    },
+    {
+      "label": "Release note restores approval",
+      "passed": true
+    },
+    {
+      "label": "Pause disables send",
+      "passed": true
+    },
+    {
+      "label": "Simulated send recorded",
+      "passed": true
+    },
+    {
+      "label": "Paid invoice cannot send",
+      "passed": true
+    },
+    {
+      "label": "Not due invoice cannot send",
+      "passed": true
+    },
+    {
+      "label": "Dismiss does not send",
+      "passed": true
+    },
+    {
+      "label": "Mobile page has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "label": "Mobile review stays within viewport",
+      "passed": true
+    },
+    {
+      "label": "Reader home disables approval",
+      "passed": true
+    },
+    {
+      "label": "Reader switching invoice cannot enable approval",
+      "passed": true
+    }
+  ],
+  "recordedAt": "2026-11-11T23:14:58.730Z",
+  "mode": "Authenticated local session; invented fixtures; rules engine; edited/retimed",
+  "externalActions": false
+}

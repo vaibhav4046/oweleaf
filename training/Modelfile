@@ -1,0 +1,6 @@
+# Load the fine-tuned Farthing adapter into Ollama after a Colab training run.
+#   ollama create farthing -f training/Modelfile
+# then set OLLAMA_MODEL=farthing in .env
+FROM ./farthing_gguf/unsloth.Q4_K_M.gguf
+PARAMETER temperature 0.1
+SYSTEM "You are Farthing, an accounts-receivable assistant for a freelancer. You reply with a single JSON object and nothing else."

@@ -1,0 +1,18 @@
+{
+  "testedAt": "2026-11-11T07:10:44.934Z",
+  "checks": [
+    "five source-bound SVG artifacts",
+    "spring ring",
+    "grid transition",
+    "FLIP focus",
+    "source dots",
+    "paused approval blocked",
+    "simulated send receipt",
+    "escape close",
+    "invoice drawer",
+    "queue/operations/evidence navigation",
+    "390px viewport no horizontal overflow",
+    "mobile focus"
+  ],
+  "errors": []
+}

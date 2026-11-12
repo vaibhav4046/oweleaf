@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-12T00:31:42.578Z",
+  "mode": "real sandbox synthetic-only draft, no notification or payment",
+  "number": "OWELEAF-SANDBOX-1",
+  "recipient": "oweleaf-test@example.com",
+  "amount": "1.00",
+  "currency": "GBP",
+  "steps": [
+    {
+      "name": "draft created",
+      "passed": true
+    },
+    {
+      "name": "created draft read back",
+      "passed": true
+    }
+  ],
+  "summary": {
+    "id": "[private synthetic provider identifier]",
+    "number": "OWELEAF-SANDBOX-1",
+    "status": "DRAFT",
+    "payerName": "Oweleaf Synthetic Test",
+    "payerEmail": "oweleaf-test@example.com",
+    "amount": "1.00",
+    "currency": "GBP",
+    "dueDate": "2026-11-09",
+    "daysOverdue": 3,
+    "chaseable": false
+  },
+  "pass": true,
+  "completedAt": "2026-11-12T00:31:44.207Z"
+}

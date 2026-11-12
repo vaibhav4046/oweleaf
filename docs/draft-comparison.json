@@ -1,0 +1,25 @@
+{
+  "input": {
+    "number": "OWELEAF-SANDBOX-1",
+    "status": "UNPAID",
+    "payerName": "Oweleaf Synthetic Test",
+    "payerEmail": "oweleaf-test@example.com",
+    "amount": "1.00",
+    "currency": "GBP",
+    "dueDate": "2026-11-09",
+    "daysOverdue": 3,
+    "chaseable": true
+  },
+  "model": {
+    "recordedAt": "2026-11-12T00:32:49.792Z",
+    "latencyMs": 31506.182628000002,
+    "subject": "Nudge: invoice OWELEAF-SANDBOX-1 (GBP 1.00)",
+    "note": "Hi Oweleaf Synthetic Test, just a quick nudge - invoice OWELEAF-SANDBOX-1 for GBP 1.00 was due on 2026-11-09 and is now 3 days overdue. Could you share a payment update? Thank you."
+  },
+  "rules": {
+    "generatedAt": "2026-11-12T07:32:38.222Z",
+    "subject": "Friendly nudge: invoice OWELEAF-SANDBOX-1 (GBP 1.00)",
+    "note": "Hi Oweleaf,\n\nJust a quick nudge - invoice OWELEAF-SANDBOX-1 for GBP 1.00 was due on 2026-11-09 and looks like it may have slipped through. No worries if it is already on its way.\n\nMany thanks"
+  },
+  "scope": "One synthetic example. Model output from recorded sandbox data; rules regenerated now for identical input. Not preference or quality evidence."
+}

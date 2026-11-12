@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-12T00:30:29.725Z",
+  "mode": "real PayPal sandbox, read-only",
+  "scope": "OAuth token and invoice list/detail contract; no creation, reminder, payment or customer notification",
+  "endpoint": "https://api-m.sandbox.paypal.com",
+  "checks": [
+    {
+      "name": "sandbox token obtained",
+      "passed": true
+    },
+    {
+      "name": "sandbox invoice list returned array",
+      "passed": true,
+      "count": 0
+    }
+  ],
+  "detailSample": [],
+  "completedAt": "2026-11-12T00:30:30.302Z",
+  "pass": true,
+  "limitations": [
+    "Read-only probe is not an end-to-end reminder send",
+    "Empty sandbox requires an approved synthetic test invoice before full demo",
+    "No meaningful model behavior evaluated by this script"
+  ]
+}

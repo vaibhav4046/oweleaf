@@ -1,0 +1,45 @@
+{
+  "kind": "invoice-review-artifact",
+  "mode": "fixture",
+  "proofOfPayment": false,
+  "exportedAt": "2026-11-11T06:58:22.831Z",
+  "invoice": {
+    "id": "INV2-MOCK-0001",
+    "number": "F-1042",
+    "status": "SENT",
+    "payerName": "Amelia Bryant",
+    "payerEmail": "amelia@northwind.example",
+    "amount": "450.00",
+    "currency": "GBP",
+    "dueDate": "2026-11-08",
+    "daysOverdue": 3,
+    "chaseable": true
+  },
+  "proposal": {
+    "id": "P-1794380261476-F-1042",
+    "invoiceId": "INV2-MOCK-0001",
+    "invoiceNumber": "F-1042",
+    "payerName": "Amelia Bryant",
+    "payerEmail": "amelia@northwind.example",
+    "amount": "450.00",
+    "currency": "GBP",
+    "daysOverdue": 3,
+    "tone": "gentle",
+    "subject": "Friendly nudge: invoice F-1042 (GBP 450.00)",
+    "note": "Hi Amelia,\n\nJust a quick nudge - invoice F-1042 for GBP 450.00 was due on 2026-11-08 and looks like it may have slipped through. No worries if it is already on its way.\n\nMany thanks",
+    "reasoning": "3 days overdue -> gentle tone (gentle <= 7d < firm <= 21d < final)",
+    "provider": "heuristic",
+    "model": "rules-ladder",
+    "status": "approved",
+    "createdAt": "2026-11-11T06:57:41.476Z",
+    "executedAt": "2026-11-11T06:58:19.220Z"
+  },
+  "actions": [
+    {
+      "proposalId": "P-1794380261476-F-1042",
+      "type": "remind",
+      "invoiceId": "INV2-MOCK-0001",
+      "at": "2026-11-11T06:58:19.220Z"
+    }
+  ]
+}

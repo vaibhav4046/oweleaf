@@ -1,0 +1,59 @@
+{
+  "at": "2026-11-12T00:40:52.073Z",
+  "scope": "Actual authenticated app: real sandbox synthetic invoice -> local CPU model -> wait/release -> approval click -> actual sandbox reminder success, no live money or real recipient",
+  "checks": [
+    {
+      "name": "real sandbox list has four synthetic invoices",
+      "passed": true
+    },
+    {
+      "name": "boot scan completed",
+      "passed": true
+    },
+    {
+      "name": "actual model provider visible",
+      "passed": true
+    },
+    {
+      "name": "sandbox source wait disables send",
+      "passed": true
+    },
+    {
+      "name": "wait survives reload",
+      "passed": true
+    }
+  ],
+  "state": {
+    "mock": false,
+    "brain": {
+      "provider": "openai-compatible",
+      "model": "oweleaf-v2"
+    },
+    "paused": false,
+    "lastScanAt": "2026-11-12T00:40:54.478Z",
+    "proposals": [
+      {
+        "id": "[local proposal identifier]",
+        "invoiceId": "[private synthetic provider identifier]",
+        "invoiceNumber": "OWELEAF-DESIGN-450",
+        "payerName": "Design Synthetic Test",
+        "payerEmail": "design-test@example.com",
+        "amount": "450.00",
+        "currency": "GBP",
+        "daysOverdue": 3,
+        "tone": "gentle",
+        "subject": "Nudge: invoice OWELEAF-DESIGN-450 (GBP 450.00)",
+        "note": "Hi Design Synthetic Test,\n\nInvoice OWELEAF-DESIGN-450 for GBP 450.00 was due on 2026-11-09. No payment received yet.\n\nRegards",
+        "reasoning": "3 days overdue -> gentle tone (1-7 days)",
+        "provider": "openai-compatible",
+        "model": "oweleaf-v2",
+        "fallback": false,
+        "fallbackReason": null,
+        "status": "pending",
+        "createdAt": "2026-11-12T00:40:54.478Z"
+      }
+    ],
+    "actions": []
+  },
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#approve')\u001b[22m\n\u001b[2m    - locator resolved to <button disabled id=\"approve\">Approve & send via PayPal</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+}

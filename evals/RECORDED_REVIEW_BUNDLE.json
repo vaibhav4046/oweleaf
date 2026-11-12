@@ -1,0 +1,408 @@
+{
+  "kind": "farthing-review-bundle",
+  "exportedAt": "2026-11-11T07:47:03.567Z",
+  "mode": "fixture",
+  "proofOfPayment": false,
+  "brain": {
+    "provider": "heuristic",
+    "model": "rules-ladder"
+  },
+  "controls": {
+    "playbookId": "relationship",
+    "routineEnabled": true,
+    "intervalMinutes": 180,
+    "holds": {}
+  },
+  "invoices": [
+    {
+      "id": "INV2-MOCK-0001",
+      "number": "F-1042",
+      "status": "SENT",
+      "payerName": "Amelia Bryant",
+      "payerEmail": "amelia@northwind.example",
+      "amount": "450.00",
+      "currency": "GBP",
+      "dueDate": "2026-11-08",
+      "daysOverdue": 3,
+      "chaseable": true
+    },
+    {
+      "id": "INV2-MOCK-0002",
+      "number": "F-1038",
+      "status": "SENT",
+      "payerName": "Marcus Osei",
+      "payerEmail": "marcus@lumenworks.example",
+      "amount": "1280.00",
+      "currency": "GBP",
+      "dueDate": "2026-10-30",
+      "daysOverdue": 12,
+      "chaseable": true
+    },
+    {
+      "id": "INV2-MOCK-0003",
+      "number": "F-1029",
+      "status": "SENT",
+      "payerName": "Priya Nair",
+      "payerEmail": "priya@kilnbakery.example",
+      "amount": "320.00",
+      "currency": "GBP",
+      "dueDate": "2026-10-15",
+      "daysOverdue": 27,
+      "chaseable": true
+    },
+    {
+      "id": "INV2-MOCK-0004",
+      "number": "F-1045",
+      "status": "PAID",
+      "payerName": "Amelia Bryant",
+      "payerEmail": "amelia@northwind.example",
+      "amount": "0.00",
+      "currency": "GBP",
+      "dueDate": "2026-11-09",
+      "daysOverdue": 2,
+      "chaseable": false
+    },
+    {
+      "id": "INV2-MOCK-0005",
+      "number": "F-1046",
+      "status": "SENT",
+      "payerName": "Tom Herrera",
+      "payerEmail": "tom@forgeandco.example",
+      "amount": "890.00",
+      "currency": "GBP",
+      "dueDate": "2026-11-17",
+      "daysOverdue": -6,
+      "chaseable": false
+    }
+  ],
+  "workspace": {
+    "cases": [
+      {
+        "id": "d70c09d9d6a8d212ac55",
+        "externalId": "B-FIXTURE-11",
+        "label": "Designer payout / ledger mismatch",
+        "source": "Invented local example / not PayPal data",
+        "sourceTrust": "User-supplied, not provider-verified",
+        "kind": "payout",
+        "data": {
+          "kind": "payout",
+          "record": {
+            "batch_header": {
+              "payout_batch_id": "B-FIXTURE-11",
+              "batch_status": "SUCCESS"
+            },
+            "items": [
+              {
+                "payout_item": {
+                  "sender_item_id": "design-11",
+                  "amount": {
+                    "currency": "GBP",
+                    "value": "110.00"
+                  }
+                },
+                "transaction_status": "SUCCESS"
+              }
+            ]
+          },
+          "ledger": [
+            {
+              "id": "design-11",
+              "amount": {
+                "currency": "GBP",
+                "value": "120.00"
+              }
+            }
+          ],
+          "documents": []
+        },
+        "result": {
+          "action": "review_payout_mismatch",
+          "batchId": "B-FIXTURE-11",
+          "issues": [
+            {
+              "id": "design-11",
+              "reason": "amount_or_currency_mismatch"
+            }
+          ],
+          "sideEffects": false,
+          "note": "No payout or retry was initiated. Fees are not netted against expected recipient amounts."
+        },
+        "fingerprint": "81a728d145fa22f087e4df26bdb36a91238fcb89ec483a94744e3e1692e8e013",
+        "version": 1,
+        "importedAt": "2026-11-11T07:46:37.120Z",
+        "review": null
+      },
+      {
+        "id": "b9b79cdb0c420850eb9f",
+        "externalId": "I-FIXTURE-11",
+        "label": "Studio retainer / failed renewal",
+        "source": "Invented local example / not PayPal data",
+        "sourceTrust": "User-supplied, not provider-verified",
+        "kind": "subscription",
+        "data": {
+          "kind": "subscription",
+          "record": {
+            "id": "I-FIXTURE-11",
+            "status": "ACTIVE",
+            "billing_info": {
+              "outstanding_balance": {
+                "currency_code": "GBP",
+                "value": "89.00"
+              },
+              "failed_payments_count": 2
+            }
+          },
+          "ledger": [],
+          "documents": []
+        },
+        "result": {
+          "action": "review_payment_failure",
+          "subscriptionId": "I-FIXTURE-11",
+          "status": "ACTIVE",
+          "amount": {
+            "currency_code": "GBP",
+            "value": "89.00"
+          },
+          "retryAt": null,
+          "note": "Review the failed payment and any scheduled retry before contacting the subscriber. No message has been sent.",
+          "requiresApproval": true,
+          "sideEffects": false
+        },
+        "fingerprint": "c4d2d3280ec993aeaafa155907736766b17eb6a708b632dd6d07f0f37f116e14",
+        "version": 1,
+        "importedAt": "2026-11-11T07:46:40.126Z",
+        "review": null
+      },
+      {
+        "id": "42faf032a1637b236c11",
+        "externalId": "D-FIXTURE-11",
+        "label": "Delivery dispute / evidence review",
+        "source": "Invented local example / not PayPal data",
+        "sourceTrust": "User-supplied, not provider-verified",
+        "kind": "dispute",
+        "data": {
+          "kind": "dispute",
+          "record": {
+            "dispute_id": "D-FIXTURE-11",
+            "status": "UNDER_REVIEW",
+            "reason": "MERCHANDISE_OR_SERVICE_NOT_RECEIVED"
+          },
+          "ledger": [],
+          "documents": [
+            "Delivery receipt.pdf"
+          ]
+        },
+        "result": {
+          "action": "monitor_dispute",
+          "sideEffects": false
+        },
+        "fingerprint": "abdafd4dee4f434cb0735e9b51d6d8c64405ce1192e626e49afc4a38563e08b4",
+        "version": 2,
+        "importedAt": "2026-11-11T07:46:44.067Z",
+        "review": null
+      }
+    ],
+    "notes": [
+      {
+        "id": "054b6015-2972-4c5d-8b00-ead983e6e1d0",
+        "caseId": "42faf032a1637b236c11",
+        "body": "Waiting for the actual delivery record. Do not submit the filename as evidence.",
+        "at": "2026-11-11T07:46:41.590Z",
+        "source": "Manual local note, not verified fact"
+      }
+    ],
+    "tasks": [
+      {
+        "id": "2eccd5b0-763f-4dcb-9873-62fc7211e444",
+        "caseId": "42faf032a1637b236c11",
+        "title": "Check actual delivery record before response",
+        "due": "2026-11-12",
+        "status": "open",
+        "createdAt": "2026-11-11T07:46:41.795Z"
+      }
+    ],
+    "provenance": "Local user-supplied records. Not authenticated provider reads. Text is data, never instructions or approval.",
+    "externalActions": false
+  },
+  "proposals": [
+    {
+      "id": "P-1794383167997-F-1042",
+      "invoiceId": "INV2-MOCK-0001",
+      "invoiceNumber": "F-1042",
+      "payerName": "Amelia Bryant",
+      "payerEmail": "amelia@northwind.example",
+      "amount": "450.00",
+      "currency": "GBP",
+      "daysOverdue": 3,
+      "tone": "gentle",
+      "subject": "Friendly nudge: invoice F-1042 (GBP 450.00)",
+      "note": "Hi Amelia,\n\nJust a quick nudge - invoice F-1042 for GBP 450.00 was due on 2026-11-08 and looks like it may have slipped through. No worries if it is already on its way.\n\nMany thanks",
+      "reasoning": "3 days overdue -> gentle tone (gentle <= 7d < firm <= 21d < final)",
+      "provider": "heuristic",
+      "model": "rules-ladder",
+      "status": "approved",
+      "createdAt": "2026-11-11T07:46:07.996Z",
+      "executedAt": "2026-11-11T07:47:01.102Z"
+    },
+    {
+      "id": "P-1794383167997-F-1038",
+      "invoiceId": "INV2-MOCK-0002",
+      "invoiceNumber": "F-1038",
+      "payerName": "Marcus Osei",
+      "payerEmail": "marcus@lumenworks.example",
+      "amount": "1280.00",
+      "currency": "GBP",
+      "daysOverdue": 12,
+      "tone": "firm",
+      "subject": "Overdue: invoice F-1038 (GBP 1280.00) - 12 days",
+      "note": "Hi Marcus,\n\nInvoice F-1038 for GBP 1280.00 was due on 2026-10-30 and is now 12 days overdue. Please arrange payment this week, or reply if there is an issue on your side.\n\nThank you",
+      "reasoning": "12 days overdue -> firm tone (gentle <= 7d < firm <= 21d < final)",
+      "provider": "heuristic",
+      "model": "rules-ladder",
+      "status": "pending",
+      "createdAt": "2026-11-11T07:46:07.996Z"
+    },
+    {
+      "id": "P-1794383167997-F-1029",
+      "invoiceId": "INV2-MOCK-0003",
+      "invoiceNumber": "F-1029",
+      "payerName": "Priya Nair",
+      "payerEmail": "priya@kilnbakery.example",
+      "amount": "320.00",
+      "currency": "GBP",
+      "daysOverdue": 27,
+      "tone": "final",
+      "subject": "Final notice: invoice F-1029 (GBP 320.00)",
+      "note": "Hi Priya,\n\nInvoice F-1029 for GBP 320.00 remains unpaid 27 days after its due date (2026-10-15). Please pay within 7 days or contact me to agree a plan.\n\nRegards",
+      "reasoning": "27 days overdue -> final tone (gentle <= 7d < firm <= 21d < final)",
+      "provider": "heuristic",
+      "model": "rules-ladder",
+      "status": "pending",
+      "createdAt": "2026-11-11T07:46:07.996Z"
+    }
+  ],
+  "actions": [
+    {
+      "proposalId": "P-1794383167997-F-1042",
+      "type": "remind",
+      "invoiceId": "INV2-MOCK-0001",
+      "at": "2026-11-11T07:47:01.102Z"
+    }
+  ],
+  "activity": [
+    {
+      "id": "A-1794383167997-pa2x7",
+      "at": "2026-11-11T07:46:07.997Z",
+      "type": "scan",
+      "detail": "5 invoices read; 3 new drafts; no automatic sends"
+    },
+    {
+      "id": "A-1794383168225-ken6h",
+      "at": "2026-11-11T07:46:08.225Z",
+      "type": "local_login",
+      "detail": "jules-demo"
+    },
+    {
+      "id": "A-1794383172067-r4vep",
+      "at": "2026-11-11T07:46:12.067Z",
+      "type": "local_login",
+      "detail": "jules-demo"
+    },
+    {
+      "id": "A-1794383197120-2jtta",
+      "at": "2026-11-11T07:46:37.120Z",
+      "type": "workspace_import",
+      "detail": "{\"id\":\"d70c09d9d6a8d212ac55\",\"version\":1,\"actor\":\"jules-demo\"}"
+    },
+    {
+      "id": "A-1794383200126-qz3qd",
+      "at": "2026-11-11T07:46:40.126Z",
+      "type": "workspace_import",
+      "detail": "{\"id\":\"b9b79cdb0c420850eb9f\",\"version\":1,\"actor\":\"jules-demo\"}"
+    },
+    {
+      "id": "A-1794383200756-yfwuv",
+      "at": "2026-11-11T07:46:40.756Z",
+      "type": "workspace_import",
+      "detail": "{\"id\":\"42faf032a1637b236c11\",\"version\":1,\"actor\":\"jules-demo\"}"
+    },
+    {
+      "id": "A-1794383201590-gs7wn",
+      "at": "2026-11-11T07:46:41.590Z",
+      "type": "workspace_note",
+      "detail": "{\"id\":\"054b6015-2972-4c5d-8b00-ead983e6e1d0\",\"actor\":\"jules-demo\"}"
+    },
+    {
+      "id": "A-1794383201795-urte7",
+      "at": "2026-11-11T07:46:41.795Z",
+      "type": "workspace_task",
+      "detail": "{\"id\":\"2eccd5b0-763f-4dcb-9873-62fc7211e444\",\"actor\":\"jules-demo\"}"
+    },
+    {
+      "id": "A-1794383202040-xzbbf",
+      "at": "2026-11-11T07:46:42.040Z",
+      "type": "workspace_review",
+      "detail": "{\"id\":\"42faf032a1637b236c11\",\"version\":1,\"actor\":\"jules-demo\"}"
+    },
+    {
+      "id": "A-1794383204067-vdwv7",
+      "at": "2026-11-11T07:46:44.067Z",
+      "type": "workspace_import",
+      "detail": "{\"id\":\"42faf032a1637b236c11\",\"version\":2,\"actor\":\"jules-demo\"}"
+    },
+    {
+      "id": "A-1794383208114-rkoqm",
+      "at": "2026-11-11T07:46:48.114Z",
+      "type": "controls_changed",
+      "detail": "relationship; routine on; 180 minutes"
+    },
+    {
+      "id": "A-1794383209943-9eqrm",
+      "at": "2026-11-11T07:46:49.943Z",
+      "type": "payer_hold_added",
+      "detail": "amelia@northwind.example"
+    },
+    {
+      "id": "A-1794383213612-3p5bj",
+      "at": "2026-11-11T07:46:53.612Z",
+      "type": "approval_blocked",
+      "detail": "F-1042: Payer hold: Amelia replied. Check the conversation before chasing."
+    },
+    {
+      "id": "A-1794383216464-fdfx8",
+      "at": "2026-11-11T07:46:56.464Z",
+      "type": "payer_hold_removed",
+      "detail": "amelia@northwind.example"
+    },
+    {
+      "id": "A-1794383218582-8tnsl",
+      "at": "2026-11-11T07:46:58.582Z",
+      "type": "paused",
+      "detail": "Manual control; sends still require individual approval"
+    },
+    {
+      "id": "A-1794383220633-81lye",
+      "at": "2026-11-11T07:47:00.633Z",
+      "type": "resumed",
+      "detail": "Manual control; sends still require individual approval"
+    },
+    {
+      "id": "A-1794383221102-rgl7e",
+      "at": "2026-11-11T07:47:01.102Z",
+      "type": "reminder_recorded",
+      "detail": "F-1042: provider returned success; GBP 450.00. Not proof of payment."
+    },
+    {
+      "id": "A-1794383221102-h6lr4",
+      "at": "2026-11-11T07:47:01.102Z",
+      "type": "invoice_approval",
+      "detail": "jules-demo / P-1794383167997-F-1042"
+    }
+  ],
+  "limitations": [
+    "No proof of payment",
+    "No exactly-once guarantee across crashes",
+    "No general browser agent",
+    "Live integration must be verified separately"
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "at": "2026-11-12T00:43:05.688Z",
+  "scope": "Actual authenticated app: real sandbox synthetic invoice -> local CPU model -> wait/release -> approval click -> actual sandbox reminder success, no live money or real recipient",
+  "checks": [
+    {
+      "name": "real sandbox list has four synthetic invoices",
+      "passed": true
+    },
+    {
+      "name": "boot scan completed",
+      "passed": true
+    },
+    {
+      "name": "actual model provider visible",
+      "passed": true
+    },
+    {
+      "name": "sandbox source wait disables send",
+      "passed": true
+    },
+    {
+      "name": "wait survives reload",
+      "passed": true
+    },
+    {
+      "name": "actual sandbox approval UI records provider success",
+      "passed": true
+    },
+    {
+      "name": "not due actual sandbox invoice cannot send",
+      "passed": true
+    },
+    {
+      "name": "mobile no overflow",
+      "passed": true
+    }
+  ],
+  "state": {
+    "mock": false,
+    "brain": {
+      "provider": "openai-compatible",
+      "model": "oweleaf-v2"
+    },
+    "paused": false,
+    "lastScanAt": "2026-11-12T00:43:08.308Z",
+    "proposals": [
+      {
+        "id": "[local proposal identifier]",
+        "invoiceId": "[private synthetic provider identifier]",
+        "invoiceNumber": "OWELEAF-DESIGN-450",
+        "payerName": "Design Synthetic Test",
+        "payerEmail": "design-test@example.com",
+        "amount": "450.00",
+        "currency": "GBP",
+        "daysOverdue": 3,
+        "tone": "gentle",
+        "subject": "Nudge: invoice OWELEAF-DESIGN-450 (GBP 450.00)",
+        "note": "Hi Design Synthetic Test,\n\nInvoice OWELEAF-DESIGN-450 for GBP 450.00 was due on 2026-11-09. No payment received yet.\n\nRegards",
+        "reasoning": "3 days overdue -> gentle tone (1-7 days)",
+        "provider": "openai-compatible",
+        "model": "oweleaf-v2",
+        "fallback": false,
+        "fallbackReason": null,
+        "status": "pending",
+        "createdAt": "2026-11-12T00:43:08.308Z"
+      }
+    ],
+    "actions": []
+  },
+  "sentDraft": {
+    "id": "[local proposal identifier]",
+    "invoiceId": "[private synthetic provider identifier]",
+    "invoiceNumber": "OWELEAF-DESIGN-450",
+    "payerName": "Design Synthetic Test",
+    "payerEmail": "design-test@example.com",
+    "amount": "450.00",
+    "currency": "GBP",
+    "daysOverdue": 3,
+    "tone": "gentle",
+    "subject": "Nudge: invoice OWELEAF-DESIGN-450 (GBP 450.00)",
+    "note": "Hi Design Synthetic Test,\n\nInvoice OWELEAF-DESIGN-450 for GBP 450.00 was due on 2026-11-09. No payment received yet.\n\nRegards",
+    "reasoning": "3 days overdue -> gentle tone (1-7 days)",
+    "provider": "openai-compatible",
+    "model": "oweleaf-v2",
+    "fallback": false,
+    "fallbackReason": null,
+    "status": "pending",
+    "createdAt": "2026-11-12T00:43:08.308Z"
+  },
+  "videoPath": "/downloads/oweleaf-sandbox-ui/page@6ac38416cf0514d115ae875316c9d3c7.webm",
+  "completedAt": "2026-11-12T00:44:17.891Z",
+  "modelTimeoutMs": 105000,
+  "defaultModelTimeoutMs": 30000,
+  "limitations": [
+    "Earlier60s full-app runs timed out; default30s can fall back",
+    "Other overdue cases held deliberately to bound this one-model run",
+    "API success is not inbox delivery, human approval research or proof of payment",
+    "Synthetic-only real sandbox accounts; no real customer data"
+  ]
+}

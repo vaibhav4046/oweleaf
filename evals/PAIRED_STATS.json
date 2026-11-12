@@ -1,0 +1,24 @@
+[
+  {
+    "metric": "action",
+    "n": 37,
+    "v2_hits": 30,
+    "giant_hits": 25,
+    "v2_wilson": "[65.8, 90.5]",
+    "giant_wilson": "[51.5, 80.4]",
+    "v2_only_correct": 6,
+    "giant_only_correct": 1,
+    "exact_p": 0.125
+  },
+  {
+    "metric": "action+tone",
+    "n": 37,
+    "v2_hits": 28,
+    "giant_hits": 25,
+    "v2_wilson": "[59.9, 86.6]",
+    "giant_wilson": "[51.5, 80.4]",
+    "v2_only_correct": 6,
+    "giant_only_correct": 3,
+    "exact_p": 0.5078125
+  }
+]

@@ -1,0 +1,66 @@
+{
+  "at": "2026-11-11T23:16:30.631Z",
+  "scope": "Actual createBrain OpenAI-compatible adapter to local llama.cpp CPU; two synthetic invoices, not PayPal integration, not laptop proof",
+  "timeoutMs": 60000,
+  "defaultTimeoutMs": 30000,
+  "checks": [
+    {
+      "input": {
+        "number": "PROVIDER-12",
+        "currency": "GBP",
+        "amount": "1280.00",
+        "dueDate": "2026-10-30",
+        "daysOverdue": 12,
+        "status": "UNPAID",
+        "payerName": "Marcus Example",
+        "chaseable": true
+      },
+      "decision": {
+        "action": "remind",
+        "tone": "firm",
+        "subject": "Overdue: invoice PROVIDER-12 (GBP 1280.00) - 12 days",
+        "note": "Hi Marcus,\n\nInvoice PROVIDER-12 for GBP 1280.00 was due on 2026-10-30 and is now 12 days overdue. Could you share a payment update, or reply if there is an issue on your side.\n\nThank you",
+        "reasoning": "12 days overdue -> firm tone (gentle <= 7d < firm <= 21d < final)",
+        "provider": "openai-compatible",
+        "model": "oweleaf-v2",
+        "latencyMs": 35309.894467000006,
+        "tokensIn": 395,
+        "tokensOut": 109,
+        "fallback": true,
+        "fallbackReason": "Draft invents a new payment deadline"
+      },
+      "expectedAction": "remind",
+      "actionPass": true,
+      "fallback": true
+    },
+    {
+      "input": {
+        "number": "PROVIDER-PAID",
+        "currency": "GBP",
+        "amount": "0.00",
+        "dueDate": "2026-10-12",
+        "daysOverdue": 30,
+        "status": "PAID",
+        "payerName": "Priya Example",
+        "chaseable": false
+      },
+      "decision": {
+        "action": "wait",
+        "tone": null,
+        "subject": null,
+        "note": null,
+        "reasoning": "Invoice PROVIDER-PAID for GBP 0.00 was due on 2026-10-12. No prior chases, status PAID, 30 days overdue.",
+        "provider": "openai-compatible",
+        "model": "oweleaf-v2",
+        "latencyMs": 19567.998849999996,
+        "tokensIn": 389,
+        "tokensOut": 71,
+        "fallback": false
+      },
+      "expectedAction": "wait",
+      "actionPass": true,
+      "fallback": false
+    }
+  ],
+  "completedAt": "2026-11-11T23:17:28.693Z"
+}

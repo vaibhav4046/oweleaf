@@ -1,0 +1,15 @@
+{
+  "testedAt": "2026-11-11T06:48:45.841Z",
+  "mode": "fixture/heuristic",
+  "checks": [
+    "operations desk loads three planners",
+    "approval queue loads",
+    "pause blocks sends",
+    "resume restores control",
+    "approval sends simulated reminder and updates history",
+    "foreign-origin POST refused",
+    "3D invoice book renders five fixtures"
+  ],
+  "pageErrors": [],
+  "serverLog": "Farthing listening on http://127.0.0.1:4173  (mode: MOCK fixture data, brain: heuristic/rules-ladder)\nscan: 5 invoices, 3 new proposals\n"
+}

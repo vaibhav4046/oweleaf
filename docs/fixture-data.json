@@ -1,0 +1,103 @@
+{
+  "recordedAt": "2026-11-12",
+  "invoices": [
+    {
+      "id": "INV2-MOCK-0001",
+      "number": "F-1042",
+      "status": "SENT",
+      "payerName": "Amelia Bryant",
+      "payerEmail": "amelia@northwind.example",
+      "amount": "450.00",
+      "currency": "GBP",
+      "dueDate": "2026-11-09",
+      "daysOverdue": 3,
+      "chaseable": true
+    },
+    {
+      "id": "INV2-MOCK-0002",
+      "number": "F-1038",
+      "status": "SENT",
+      "payerName": "Marcus Osei",
+      "payerEmail": "marcus@lumenworks.example",
+      "amount": "1280.00",
+      "currency": "GBP",
+      "dueDate": "2026-10-31",
+      "daysOverdue": 12,
+      "chaseable": true
+    },
+    {
+      "id": "INV2-MOCK-0003",
+      "number": "F-1029",
+      "status": "SENT",
+      "payerName": "Priya Nair",
+      "payerEmail": "priya@kilnbakery.example",
+      "amount": "320.00",
+      "currency": "GBP",
+      "dueDate": "2026-10-16",
+      "daysOverdue": 27,
+      "chaseable": true
+    },
+    {
+      "id": "INV2-MOCK-0004",
+      "number": "F-1045",
+      "status": "PAID",
+      "payerName": "Amelia Bryant",
+      "payerEmail": "amelia@northwind.example",
+      "amount": "0.00",
+      "currency": "GBP",
+      "dueDate": "2026-11-10",
+      "daysOverdue": 2,
+      "chaseable": false
+    },
+    {
+      "id": "INV2-MOCK-0005",
+      "number": "F-1046",
+      "status": "SENT",
+      "payerName": "Tom Herrera",
+      "payerEmail": "tom@forgeandco.example",
+      "amount": "890.00",
+      "currency": "GBP",
+      "dueDate": "2026-11-18",
+      "daysOverdue": -6,
+      "chaseable": false
+    }
+  ],
+  "proposals": [
+    {
+      "action": "remind",
+      "tone": "gentle",
+      "subject": "Friendly nudge: invoice F-1042 (GBP 450.00)",
+      "note": "Hi Amelia,\n\nJust a quick nudge - invoice F-1042 for GBP 450.00 was due on 2026-11-09 and looks like it may have slipped through. No worries if it is already on its way.\n\nMany thanks",
+      "reasoning": "3 days overdue -> gentle tone (gentle <= 7d < firm <= 21d < final)",
+      "id": "STATIC-0",
+      "invoiceId": "INV2-MOCK-0001",
+      "status": "pending",
+      "provider": "heuristic",
+      "model": "rules-ladder"
+    },
+    {
+      "action": "remind",
+      "tone": "firm",
+      "subject": "Overdue: invoice F-1038 (GBP 1280.00) - 12 days",
+      "note": "Hi Marcus,\n\nInvoice F-1038 for GBP 1280.00 was due on 2026-10-31 and is now 12 days overdue. Could you share a payment update, or reply if there is an issue on your side.\n\nThank you",
+      "reasoning": "12 days overdue -> firm tone (gentle <= 7d < firm <= 21d < final)",
+      "id": "STATIC-1",
+      "invoiceId": "INV2-MOCK-0002",
+      "status": "pending",
+      "provider": "heuristic",
+      "model": "rules-ladder"
+    },
+    {
+      "action": "remind",
+      "tone": "final",
+      "subject": "Payment update requested: invoice F-1029 (GBP 320.00)",
+      "note": "Hi Priya,\n\nInvoice F-1029 for GBP 320.00 remains unpaid 27 days after its due date (2026-10-16). Please share a payment update or contact me with any question.\n\nRegards",
+      "reasoning": "27 days overdue -> final tone (gentle <= 7d < firm <= 21d < final)",
+      "id": "STATIC-2",
+      "invoiceId": "INV2-MOCK-0003",
+      "status": "pending",
+      "provider": "heuristic",
+      "model": "rules-ladder"
+    }
+  ]
+}

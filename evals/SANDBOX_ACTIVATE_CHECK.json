@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-12T00:32:10.651Z",
+  "stage": "activate",
+  "mode": "real PayPal sandbox, synthetic OWELEAF-SANDBOX-1, nonexistent example recipient; no payment",
+  "checks": [
+    {
+      "name": "draft made payable with both notification flags false",
+      "passed": true
+    }
+  ],
+  "summary": {
+    "id": "[private synthetic provider identifier]",
+    "number": "OWELEAF-SANDBOX-1",
+    "status": "UNPAID",
+    "payerName": "Oweleaf Synthetic Test",
+    "payerEmail": "oweleaf-test@example.com",
+    "amount": "1.00",
+    "currency": "GBP",
+    "dueDate": "2026-11-09",
+    "daysOverdue": 3,
+    "chaseable": true
+  },
+  "pass": true,
+  "completedAt": "2026-11-12T00:32:12.335Z"
+}

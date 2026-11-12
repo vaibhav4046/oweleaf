@@ -1,0 +1,22 @@
+{
+  "testedAt": "2026-11-11T08:43:36.374Z",
+  "checks": [
+    "default protected page redirects to setup/login",
+    "actual owner setup creates session and redirects",
+    "three real JSON intake workflows through UI",
+    "source review, durable note and dated follow-up task",
+    "task done/reopen",
+    "changed source invalidates reviewed version",
+    "cases, notes, tasks and revision persist across reload",
+    "actual workspace JSON export",
+    "hostile source label escaped and not executed",
+    "actual owner creates reader through UI",
+    "authenticated studio CSRF mutation works",
+    "nonce CSP approval page handlers work",
+    "actual reader login hides action controls; server tests enforce permissions",
+    "390px secured workspace no horizontal overflow",
+    "reader can log out; session invalidated"
+  ],
+  "errors": [],
+  "consoleErrors": []
+}

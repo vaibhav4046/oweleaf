@@ -1,0 +1,179 @@
+{
+  "kind": "farthing-review-bundle",
+  "exportedAt": "2026-11-11T07:25:53.616Z",
+  "mode": "fixture",
+  "proofOfPayment": false,
+  "brain": {
+    "provider": "heuristic",
+    "model": "rules-ladder"
+  },
+  "controls": {
+    "playbookId": "standard",
+    "routineEnabled": true,
+    "intervalMinutes": 180,
+    "holds": {}
+  },
+  "invoices": [
+    {
+      "id": "INV2-MOCK-0001",
+      "number": "F-1042",
+      "status": "SENT",
+      "payerName": "Amelia Bryant",
+      "payerEmail": "amelia@northwind.example",
+      "amount": "450.00",
+      "currency": "GBP",
+      "dueDate": "2026-11-08",
+      "daysOverdue": 3,
+      "chaseable": true
+    },
+    {
+      "id": "INV2-MOCK-0002",
+      "number": "F-1038",
+      "status": "SENT",
+      "payerName": "Marcus Osei",
+      "payerEmail": "marcus@lumenworks.example",
+      "amount": "1280.00",
+      "currency": "GBP",
+      "dueDate": "2026-10-30",
+      "daysOverdue": 12,
+      "chaseable": true
+    },
+    {
+      "id": "INV2-MOCK-0003",
+      "number": "F-1029",
+      "status": "SENT",
+      "payerName": "Priya Nair",
+      "payerEmail": "priya@kilnbakery.example",
+      "amount": "320.00",
+      "currency": "GBP",
+      "dueDate": "2026-10-15",
+      "daysOverdue": 27,
+      "chaseable": true
+    },
+    {
+      "id": "INV2-MOCK-0004",
+      "number": "F-1045",
+      "status": "PAID",
+      "payerName": "Amelia Bryant",
+      "payerEmail": "amelia@northwind.example",
+      "amount": "0.00",
+      "currency": "GBP",
+      "dueDate": "2026-11-09",
+      "daysOverdue": 2,
+      "chaseable": false
+    },
+    {
+      "id": "INV2-MOCK-0005",
+      "number": "F-1046",
+      "status": "SENT",
+      "payerName": "Tom Herrera",
+      "payerEmail": "tom@forgeandco.example",
+      "amount": "890.00",
+      "currency": "GBP",
+      "dueDate": "2026-11-17",
+      "daysOverdue": -6,
+      "chaseable": false
+    }
+  ],
+  "proposals": [
+    {
+      "id": "P-1794381949237-F-1042",
+      "invoiceId": "INV2-MOCK-0001",
+      "invoiceNumber": "F-1042",
+      "payerName": "Amelia Bryant",
+      "payerEmail": "amelia@northwind.example",
+      "amount": "450.00",
+      "currency": "GBP",
+      "daysOverdue": 3,
+      "tone": "gentle",
+      "subject": "Friendly nudge: invoice F-1042 (GBP 450.00)",
+      "note": "Hi Amelia,\n\nJust a quick nudge - invoice F-1042 for GBP 450.00 was due on 2026-11-08 and looks like it may have slipped through. No worries if it is already on its way.\n\nMany thanks",
+      "reasoning": "3 days overdue -> gentle tone (gentle <= 7d < firm <= 21d < final)",
+      "provider": "heuristic",
+      "model": "rules-ladder",
+      "status": "pending",
+      "createdAt": "2026-11-11T07:25:49.236Z"
+    },
+    {
+      "id": "P-1794381949237-F-1038",
+      "invoiceId": "INV2-MOCK-0002",
+      "invoiceNumber": "F-1038",
+      "payerName": "Marcus Osei",
+      "payerEmail": "marcus@lumenworks.example",
+      "amount": "1280.00",
+      "currency": "GBP",
+      "daysOverdue": 12,
+      "tone": "firm",
+      "subject": "Overdue: invoice F-1038 (GBP 1280.00) - 12 days",
+      "note": "Hi Marcus,\n\nInvoice F-1038 for GBP 1280.00 was due on 2026-10-30 and is now 12 days overdue. Please arrange payment this week, or reply if there is an issue on your side.\n\nThank you",
+      "reasoning": "12 days overdue -> firm tone (gentle <= 7d < firm <= 21d < final)",
+      "provider": "heuristic",
+      "model": "rules-ladder",
+      "status": "pending",
+      "createdAt": "2026-11-11T07:25:49.236Z"
+    },
+    {
+      "id": "P-1794381949237-F-1029",
+      "invoiceId": "INV2-MOCK-0003",
+      "invoiceNumber": "F-1029",
+      "payerName": "Priya Nair",
+      "payerEmail": "priya@kilnbakery.example",
+      "amount": "320.00",
+      "currency": "GBP",
+      "daysOverdue": 27,
+      "tone": "final",
+      "subject": "Final notice: invoice F-1029 (GBP 320.00)",
+      "note": "Hi Priya,\n\nInvoice F-1029 for GBP 320.00 remains unpaid 27 days after its due date (2026-10-15). Please pay within 7 days or contact me to agree a plan.\n\nRegards",
+      "reasoning": "27 days overdue -> final tone (gentle <= 7d < firm <= 21d < final)",
+      "provider": "heuristic",
+      "model": "rules-ladder",
+      "status": "pending",
+      "createdAt": "2026-11-11T07:25:49.236Z"
+    }
+  ],
+  "actions": [],
+  "activity": [
+    {
+      "id": "A-1794381949237-5p8em",
+      "at": "2026-11-11T07:25:49.237Z",
+      "type": "scan",
+      "detail": "5 invoices read; 3 new drafts; no automatic sends"
+    },
+    {
+      "id": "A-1794381951016-ov0tu",
+      "at": "2026-11-11T07:25:51.016Z",
+      "type": "controls_changed",
+      "detail": "patient; routine off; 180 minutes"
+    },
+    {
+      "id": "A-1794381951403-xhya2",
+      "at": "2026-11-11T07:25:51.403Z",
+      "type": "controls_changed",
+      "detail": "standard; routine on; 180 minutes"
+    },
+    {
+      "id": "A-1794381951652-buvhk",
+      "at": "2026-11-11T07:25:51.652Z",
+      "type": "payer_hold_added",
+      "detail": "amelia@northwind.example"
+    },
+    {
+      "id": "A-1794381953355-jq0yi",
+      "at": "2026-11-11T07:25:53.355Z",
+      "type": "approval_blocked",
+      "detail": "F-1042: Payer hold: Waiting for a reply"
+    },
+    {
+      "id": "A-1794381953555-lq0jj",
+      "at": "2026-11-11T07:25:53.555Z",
+      "type": "payer_hold_removed",
+      "detail": "amelia@northwind.example"
+    }
+  ],
+  "limitations": [
+    "No proof of payment",
+    "No exactly-once guarantee across crashes",
+    "No general browser agent",
+    "Live integration must be verified separately"
+  ]
+}

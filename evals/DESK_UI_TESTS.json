@@ -1,0 +1,17 @@
+{
+  "testedAt": "2026-11-11T07:43:34.160Z",
+  "checks": [
+    "brief actual invoices and source reasons",
+    "source-bound command",
+    "command sending boundary",
+    "settings persist across reload",
+    "held draft blocked through actual UI",
+    "hold release",
+    "real review bundle download",
+    "pause/resume",
+    "390px desk no overflow",
+    "390px studio no overflow",
+    "reduced motion focus"
+  ],
+  "errors": []
+}

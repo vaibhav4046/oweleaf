@@ -1,0 +1,74 @@
+{
+  "at": "2026-11-12T00:32:12.367Z",
+  "stage": "model",
+  "mode": "real PayPal sandbox, synthetic OWELEAF-SANDBOX-1, nonexistent example recipient; no payment",
+  "checks": [
+    {
+      "name": "actual source invoice processed by local CPU model without fallback",
+      "passed": true
+    }
+  ],
+  "rawModelResponse": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"action\": \"remind\", \"tone\": \"gentle\", \"subject\": \"Nudge: invoice OWELEAF-SANDBOX-1 (GBP 1.00)\", \"note\": \"Hi Oweleaf Synthetic Test, just a quick nudge - invoice OWELEAF-SANDBOX-1 for GBP 1.00 was due on 2026-11-09 and is now 3 days overdue. Could you share a payment update? Thank you.\", \"reasoning\": \"3 days overdue -> gentle tone (1-7 days) -> action remind\"}"
+        }
+      }
+    ],
+    "created": 1794443569,
+    "model": "/downloads/farthing-v2-q4_k_m.gguf",
+    "system_fingerprint": "b12283-f3b407ca1",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 129,
+      "prompt_tokens": 400,
+      "total_tokens": 529,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-BQGzg6QLpO1bDWgL7kP51BWOdLeyDjPY",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 400,
+      "prompt_ms": 10397.641,
+      "prompt_per_token_ms": 25.9941025,
+      "prompt_per_second": 38.47026455327704,
+      "predicted_n": 129,
+      "predicted_ms": 21096.949,
+      "predicted_per_token_ms": 164.8199140625,
+      "predicted_per_second": 6.067228014818635
+    }
+  },
+  "decision": {
+    "action": "remind",
+    "tone": "gentle",
+    "subject": "Nudge: invoice OWELEAF-SANDBOX-1 (GBP 1.00)",
+    "note": "Hi Oweleaf Synthetic Test, just a quick nudge - invoice OWELEAF-SANDBOX-1 for GBP 1.00 was due on 2026-11-09 and is now 3 days overdue. Could you share a payment update? Thank you.",
+    "reasoning": "3 days overdue -> gentle tone (1-7 days) -> action remind",
+    "provider": "openai-compatible",
+    "model": "oweleaf-v2",
+    "latencyMs": 31506.182628000002,
+    "tokensIn": 400,
+    "tokensOut": 129,
+    "fallback": false
+  },
+  "summary": {
+    "id": "[private synthetic provider identifier]",
+    "number": "OWELEAF-SANDBOX-1",
+    "status": "UNPAID",
+    "payerName": "Oweleaf Synthetic Test",
+    "payerEmail": "oweleaf-test@example.com",
+    "amount": "1.00",
+    "currency": "GBP",
+    "dueDate": "2026-11-09",
+    "daysOverdue": 3,
+    "chaseable": true
+  },
+  "pass": true,
+  "completedAt": "2026-11-12T00:32:49.792Z"
+}

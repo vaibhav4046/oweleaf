@@ -1,0 +1,20 @@
+{
+  "name": "oweleaf",
+  "version": "0.3.0",
+  "description": "A local invoice follow-up assistant for solo service freelancers.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "demo": "FARTHING_MOCK=1 node src/server.js",
+    "test": "node --test test/*.test.js",
+    "eval": "node src/harness/eval.js",
+    "bench": "node src/harness/bench.js",
+    "scan": "node src/cli-scan.js",
+    "workflows:demo": "node src/cli-workflows.js",
+    "mcp:read": "node src/mcp-server.js"
+  },
+  "license": "MIT"
+}

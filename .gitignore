@@ -1,0 +1,9 @@
+.env
+data/
+traces/
+node_modules/
+*.gguf
+*.bin
+*.pem
+*.key
+media/

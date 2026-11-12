@@ -1,0 +1,1 @@
+The recorded review bundle is the actual export downloaded during the authenticated local fixture product-film session. All data are invented. No PayPal call or proof of payment is represented. Auth/session data are not exported.

@@ -1,0 +1,68 @@
+{
+  "description": "Golden scenarios for the chase-decision task. Each gives an invoice summary (as produced by src/paypal.js invoiceSummary) and optional payer history, and expects an action and, for remind, a tone. The heuristic ladder is the reference; the SLM must match it on action and tone while drafting better copy.",
+  "scenarios": [
+    {
+      "id": "E01-gentle-3d",
+      "summary": { "id": "INV-E01", "number": "T-101", "status": "SENT", "payerName": "Amelia Bryant", "payerEmail": "a@example.com", "amount": "450.00", "currency": "GBP", "dueDate": "2026-11-07", "daysOverdue": 3, "chaseable": true },
+      "history": [],
+      "expect": { "action": "remind", "tone": "gentle" }
+    },
+    {
+      "id": "E02-gentle-boundary-7d",
+      "summary": { "id": "INV-E02", "number": "T-102", "status": "SENT", "payerName": "Marcus Osei", "payerEmail": "m@example.com", "amount": "80.00", "currency": "GBP", "dueDate": "2026-11-03", "daysOverdue": 7, "chaseable": true },
+      "history": [],
+      "expect": { "action": "remind", "tone": "gentle" }
+    },
+    {
+      "id": "E03-firm-boundary-8d",
+      "summary": { "id": "INV-E03", "number": "T-103", "status": "SENT", "payerName": "Priya Nair", "payerEmail": "p@example.com", "amount": "1280.00", "currency": "GBP", "dueDate": "2026-11-02", "daysOverdue": 8, "chaseable": true },
+      "history": [],
+      "expect": { "action": "remind", "tone": "firm" }
+    },
+    {
+      "id": "E04-firm-14d-after-gentle",
+      "summary": { "id": "INV-E04", "number": "T-104", "status": "SENT", "payerName": "Tom Herrera", "payerEmail": "t@example.com", "amount": "320.00", "currency": "GBP", "dueDate": "2026-10-27", "daysOverdue": 14, "chaseable": true },
+      "history": [{ "date": "2026-11-01", "event": "gentle reminder sent for invoice T-104" }],
+      "expect": { "action": "remind", "tone": "firm" }
+    },
+    {
+      "id": "E05-final-30d",
+      "summary": { "id": "INV-E05", "number": "T-105", "status": "SENT", "payerName": "Sofia Ricci", "payerEmail": "s@example.com", "amount": "2100.00", "currency": "GBP", "dueDate": "2026-10-11", "daysOverdue": 30, "chaseable": true },
+      "history": [
+        { "date": "2026-10-16", "event": "gentle reminder sent for invoice T-105" },
+        { "date": "2026-10-26", "event": "firm reminder sent for invoice T-105" }
+      ],
+      "expect": { "action": "remind", "tone": "final" }
+    },
+    {
+      "id": "E06-paid-wait",
+      "summary": { "id": "INV-E06", "number": "T-106", "status": "PAID", "payerName": "Amelia Bryant", "payerEmail": "a@example.com", "amount": "600.00", "currency": "GBP", "dueDate": "2026-11-05", "daysOverdue": 5, "chaseable": false },
+      "history": [],
+      "expect": { "action": "wait" }
+    },
+    {
+      "id": "E07-not-yet-due-wait",
+      "summary": { "id": "INV-E07", "number": "T-107", "status": "SENT", "payerName": "Tom Herrera", "payerEmail": "t@example.com", "amount": "890.00", "currency": "GBP", "dueDate": "2026-11-16", "daysOverdue": -6, "chaseable": false },
+      "history": [],
+      "expect": { "action": "wait" }
+    },
+    {
+      "id": "E08-draft-wait",
+      "summary": { "id": "INV-E08", "number": "T-108", "status": "DRAFT", "payerName": "Marcus Osei", "payerEmail": "m@example.com", "amount": "150.00", "currency": "GBP", "dueDate": "2026-10-20", "daysOverdue": 21, "chaseable": false },
+      "history": [],
+      "expect": { "action": "wait" }
+    },
+    {
+      "id": "E09-final-boundary-22d",
+      "summary": { "id": "INV-E09", "number": "T-109", "status": "SENT", "payerName": "Priya Nair", "payerEmail": "p@example.com", "amount": "75.00", "currency": "GBP", "dueDate": "2026-10-19", "daysOverdue": 22, "chaseable": true },
+      "history": [],
+      "expect": { "action": "remind", "tone": "final" }
+    },
+    {
+      "id": "E10-firm-boundary-21d",
+      "summary": { "id": "INV-E10", "number": "T-110", "status": "SENT", "payerName": "Sofia Ricci", "payerEmail": "s@example.com", "amount": "999.00", "currency": "GBP", "dueDate": "2026-10-20", "daysOverdue": 21, "chaseable": true },
+      "history": [],
+      "expect": { "action": "remind", "tone": "firm" }
+    }
+  ]
+}

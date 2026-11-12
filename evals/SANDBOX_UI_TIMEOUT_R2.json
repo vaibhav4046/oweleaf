@@ -1,0 +1,51 @@
+{
+  "at": "2026-11-12T00:36:33.083Z",
+  "scope": "Actual local authenticated application, real PayPal sandbox containing only synthetic test invoices, local CPU model; no UI send clicked",
+  "checks": [
+    {
+      "name": "real sandbox list has four synthetic invoices",
+      "passed": true
+    },
+    {
+      "name": "boot scan completed",
+      "passed": true
+    },
+    {
+      "name": "actual model provider visible",
+      "passed": false
+    }
+  ],
+  "state": {
+    "mock": false,
+    "brain": {
+      "provider": "openai-compatible",
+      "model": "oweleaf-v2"
+    },
+    "paused": false,
+    "lastScanAt": "2026-11-12T00:36:35.752Z",
+    "proposals": [
+      {
+        "id": "[local proposal identifier]",
+        "invoiceId": "[private synthetic provider identifier]",
+        "invoiceNumber": "OWELEAF-SANDBOX-1",
+        "payerName": "Oweleaf Synthetic Test",
+        "payerEmail": "oweleaf-test@example.com",
+        "amount": "1.00",
+        "currency": "GBP",
+        "daysOverdue": 3,
+        "tone": "gentle",
+        "subject": "Friendly nudge: invoice OWELEAF-SANDBOX-1 (GBP 1.00)",
+        "note": "Hi Oweleaf,\n\nJust a quick nudge - invoice OWELEAF-SANDBOX-1 for GBP 1.00 was due on 2026-11-09 and looks like it may have slipped through. No worries if it is already on its way.\n\nMany thanks",
+        "reasoning": "3 days overdue -> gentle tone (gentle <= 7d < firm <= 21d < final)",
+        "provider": "openai-compatible",
+        "model": "oweleaf-v2",
+        "fallback": true,
+        "fallbackReason": "Dependency timeout after 60000ms",
+        "status": "pending",
+        "createdAt": "2026-11-12T00:36:35.752Z"
+      }
+    ],
+    "actions": []
+  },
+  "error": "actual model provider visible"
+}

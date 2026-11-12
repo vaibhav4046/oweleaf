@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-12T00:28:51.656Z",
+  "mode": "real PayPal sandbox, read-only",
+  "scope": "OAuth token and invoice list/detail contract; no creation, reminder, payment or customer notification",
+  "endpoint": "https://api-m.sandbox.paypal.com",
+  "checks": [],
+  "pass": false,
+  "error": {
+    "type": "Error",
+    "status": 401,
+    "message": "Sandbox probe failed. Inspect error type/status privately; no raw provider body or token included."
+  }
+}

@@ -1,0 +1,12 @@
+Oweleaf final editable PowerPoint, rendered with LibreOffice to PDF then per-slide PNG, 11 Nov 2026. Native text and shapes; raster only for actual page/UI screenshots. Full-size individual slides inspected, not contact-sheet only.
+1 | slide-1.png | Fixed persona-card overlap by shorter body and heading; final fits with space around body | passed
+2 | slide-2.png | Fixed statistic-card overlap and lower caveat; final two-line historical denominator fits within card, original IPSE/Reddit crops readable at intended deck size | passed
+3 | slide-3.png | Published £m values and total visually aligned; direct PDF table crop, uncertainty and micro-business denominator included | passed
+4 | slide-4.png | Shortened title to avoid subtitle collision; three editable step cards with no overflow | passed
+5 | slide-5.png | Screenshot initially exceeded slide height; reduced actual crop to 3.8in high, keeps action area and separates footer; native steps fit | passed after final re-render
+6 | slide-6.png | Qualitative before/after columns aligned, no false time/cost metric, caveat below with no overlap | passed
+7 | slide-7.png | Short title, four architecture blocks, attached arrows, model caveat fits; no clipping | passed
+8 | slide-8.png | Shortened title and founder text; both columns clear, repository attribution fits | passed
+Exact final export rechecked on affected slide 5. Other final slides unchanged after their full-size final render checks.
+
+Film 167.891s: seven narration audio files transcribed individually; ambiguous names in 3/4/5/7 regenerated without the names. Final frame samples at 4,21,49,78,93,100,104,108,114,124,140,160 seconds inspected. UI states show actual wait note and simulated send, persistent edited/fixture label. No invented UI or claims of continuous timing. No real customer send.

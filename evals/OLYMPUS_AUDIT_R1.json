@@ -1,0 +1,155 @@
+{
+  "at": "2026-11-11T08:40:29.585Z",
+  "environment": {
+    "node": "v22.23.4",
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz",
+    "logicalCpus": 1,
+    "memoryBytes": 2090590208,
+    "scope": "temporary isolated local server; fixture PayPal; rules engine; not user laptop or AI latency",
+    "browser": "156.0.8078.47",
+    "axe": "4.14.0"
+  },
+  "workloads": [
+    {
+      "endpoint": "GET /api/desk",
+      "n": 300,
+      "concurrency": 1,
+      "engine": "rules fixture, 5 invoices",
+      "elapsedMs": 497.242025,
+      "reqPerSec": 603.3279266771549,
+      "p50Ms": 1.0353900000000067,
+      "p95Ms": 3.614285999999993,
+      "p99Ms": 11.894206999999824,
+      "failed": 0,
+      "pass": true
+    },
+    {
+      "endpoint": "GET /api/desk",
+      "n": 300,
+      "concurrency": 10,
+      "engine": "rules fixture, 5 invoices",
+      "elapsedMs": 359.761352,
+      "reqPerSec": 833.8861257114689,
+      "p50Ms": 10.580044000000044,
+      "p95Ms": 24.034369999999853,
+      "p99Ms": 28.195981000000074,
+      "failed": 0,
+      "pass": true
+    },
+    {
+      "endpoint": "GET /api/desk",
+      "n": 300,
+      "concurrency": 50,
+      "engine": "rules fixture, 5 invoices",
+      "elapsedMs": 294.92598299999963,
+      "reqPerSec": 1017.2043742921097,
+      "p50Ms": 43.9152509999999,
+      "p95Ms": 82.28034399999979,
+      "p99Ms": 89.73887500000001,
+      "failed": 0,
+      "pass": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "anonymous state refused",
+      "passed": true
+    },
+    {
+      "name": "malformed JSON refused",
+      "passed": true
+    },
+    {
+      "name": "oversize input refused",
+      "passed": true
+    },
+    {
+      "name": "foreign origin refused",
+      "passed": true
+    },
+    {
+      "name": "foreign host refused",
+      "passed": false
+    },
+    {
+      "name": "no csrf mutation refused",
+      "passed": true
+    },
+    {
+      "name": "unknown payer hold refused",
+      "passed": true
+    },
+    {
+      "name": "encoded private path not served",
+      "passed": true
+    },
+    {
+      "name": "keyboard skip link first focus",
+      "passed": true
+    },
+    {
+      "name": "skip link focuses selected review",
+      "passed": true
+    },
+    {
+      "name": "keyboard invoice selection retains focus",
+      "passed": true
+    },
+    {
+      "name": "1440px no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "390px no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "network failure displayed, no false send",
+      "passed": true
+    },
+    {
+      "name": "reload recovers after network failure",
+      "passed": true
+    },
+    {
+      "name": "browser no page errors",
+      "passed": true,
+      "actual": []
+    }
+  ],
+  "a11y": [
+    {
+      "viewport": 1440,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        }
+      ],
+      "passes": 20
+    },
+    {
+      "viewport": 390,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        }
+      ],
+      "passes": 20
+    }
+  ],
+  "coldReadinessMs": 144.04560700000002,
+  "failures": 1,
+  "serverRssKb": 71492,
+  "serverCpuStat": [
+    64,
+    7
+  ],
+  "cpuStatUnit": "user/system ticks at system clock frequency; not inference CPU",
+  "completedAt": "2026-11-11T08:40:35.510Z"
+}

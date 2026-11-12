@@ -1,0 +1,133 @@
+{
+  "shots": [
+    {
+      "label": "login",
+      "at": 2.32
+    },
+    {
+      "label": "inbox_intro",
+      "at": 5.414
+    },
+    {
+      "label": "persona",
+      "at": 8.087
+    },
+    {
+      "label": "studio",
+      "at": 14.043
+    },
+    {
+      "label": "studio_end",
+      "at": 26.688
+    },
+    {
+      "label": "import",
+      "at": 27.774
+    },
+    {
+      "label": "payout_plan",
+      "at": 30.015
+    },
+    {
+      "label": "case_memory",
+      "at": 33.629
+    },
+    {
+      "label": "reviewed_case",
+      "at": 35.75
+    },
+    {
+      "label": "source_changed",
+      "at": 36.923
+    },
+    {
+      "label": "workspace_end",
+      "at": 39.237
+    },
+    {
+      "label": "policy",
+      "at": 40.751
+    },
+    {
+      "label": "policy_end",
+      "at": 43.71
+    },
+    {
+      "label": "hold",
+      "at": 45.773
+    },
+    {
+      "label": "hold_end",
+      "at": 47.974
+    },
+    {
+      "label": "pause",
+      "at": 51.2
+    },
+    {
+      "label": "simulated_send",
+      "at": 53.314
+    },
+    {
+      "label": "send_end",
+      "at": 55.115
+    },
+    {
+      "label": "export",
+      "at": 56.413
+    },
+    {
+      "label": "export_end",
+      "at": 58.612
+    },
+    {
+      "label": "security",
+      "at": 59.527
+    },
+    {
+      "label": "security_controls",
+      "at": 61.627
+    },
+    {
+      "label": "security_controls_end",
+      "at": 64.627
+    },
+    {
+      "label": "reader",
+      "at": 67.158
+    },
+    {
+      "label": "mcp",
+      "at": 70.493
+    },
+    {
+      "label": "mcp_end",
+      "at": 72.993
+    },
+    {
+      "label": "proof",
+      "at": 73.678
+    },
+    {
+      "label": "proof_end",
+      "at": 78.679
+    },
+    {
+      "label": "close",
+      "at": 79.711
+    },
+    {
+      "label": "close_end",
+      "at": 83.712
+    }
+  ],
+  "recordedAt": "2026-11-11T07:47:36.073Z",
+  "mode": "Authenticated local sessions; invented fixtures; deterministic rules engine; edited/retimed",
+  "externalActions": false,
+  "expectedNetworkRejections": [
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+  ],
+  "pageErrors": [],
+  "expectedRejectionReason": "Two HTTP 400 responses at actual held/paused invoice approval. These are deliberate guard demonstrations, not unhandled script errors."
+}

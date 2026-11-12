@@ -1,0 +1,145 @@
+{
+  "at": "2026-11-11T23:14:12.586Z",
+  "environment": {
+    "node": "v22.23.4",
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz",
+    "logicalCpus": 1,
+    "memoryBytes": 2090590208,
+    "scope": "temporary isolated local server; fixture PayPal; rules engine; not user laptop or AI latency",
+    "browser": "156.0.8078.47",
+    "axe": "4.14.0"
+  },
+  "workloads": [
+    {
+      "endpoint": "GET /api/desk",
+      "n": 300,
+      "concurrency": 1,
+      "engine": "rules fixture, 5 invoices",
+      "elapsedMs": 398.9513240000001,
+      "reqPerSec": 751.971435994031,
+      "p50Ms": 1.0237970000000587,
+      "p95Ms": 2.5023020000000997,
+      "p99Ms": 4.590167999999949,
+      "failed": 0,
+      "pass": true
+    },
+    {
+      "endpoint": "GET /api/desk",
+      "n": 300,
+      "concurrency": 10,
+      "engine": "rules fixture, 5 invoices",
+      "elapsedMs": 345.8246069999998,
+      "reqPerSec": 867.4917687392909,
+      "p50Ms": 10.101436999999805,
+      "p95Ms": 20.134977000000163,
+      "p99Ms": 24.180993999999828,
+      "failed": 0,
+      "pass": true
+    },
+    {
+      "endpoint": "GET /api/desk",
+      "n": 300,
+      "concurrency": 50,
+      "engine": "rules fixture, 5 invoices",
+      "elapsedMs": 293.9246240000002,
+      "reqPerSec": 1020.6698435718669,
+      "p50Ms": 44.979259000000184,
+      "p95Ms": 79.32272599999988,
+      "p99Ms": 86.13832299999967,
+      "failed": 0,
+      "pass": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "anonymous state refused",
+      "passed": true
+    },
+    {
+      "name": "malformed JSON refused",
+      "passed": true
+    },
+    {
+      "name": "oversize input refused",
+      "passed": true
+    },
+    {
+      "name": "foreign origin refused",
+      "passed": true
+    },
+    {
+      "name": "foreign host refused via raw HTTP Host",
+      "passed": true,
+      "actual": 403
+    },
+    {
+      "name": "no csrf mutation refused",
+      "passed": true
+    },
+    {
+      "name": "unknown payer hold refused",
+      "passed": true
+    },
+    {
+      "name": "encoded private path not served",
+      "passed": true
+    },
+    {
+      "name": "keyboard skip link first focus",
+      "passed": true
+    },
+    {
+      "name": "skip link focuses selected review",
+      "passed": true
+    },
+    {
+      "name": "keyboard invoice selection retains focus",
+      "passed": true
+    },
+    {
+      "name": "1440px no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "390px no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "network failure displayed, no false send",
+      "passed": true
+    },
+    {
+      "name": "reload recovers after network failure",
+      "passed": true
+    },
+    {
+      "name": "browser no page errors",
+      "passed": true,
+      "actual": []
+    }
+  ],
+  "a11y": [
+    {
+      "viewport": 1440,
+      "violations": [],
+      "incomplete": [],
+      "passes": 20
+    },
+    {
+      "viewport": 390,
+      "violations": [],
+      "incomplete": [],
+      "passes": 20
+    }
+  ],
+  "coldReadinessMs": 212.61203899999998,
+  "serverRssKb": 71168,
+  "serverCpuStat": [
+    61,
+    7
+  ],
+  "cpuStatUnit": "user/system ticks at system clock frequency; not inference CPU",
+  "completedAt": "2026-11-11T23:14:20.942Z"
+}

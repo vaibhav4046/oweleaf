@@ -1,0 +1,60 @@
+{
+  "at": "2026-11-12T00:33:37.009Z",
+  "sourceFormats": [
+    "https://www.paypal.com/us/brc/article/freelancer-invoice-template-online",
+    "https://www.paypal.com/us/brc/article/free-service-invoice-template-online"
+  ],
+  "scope": "Only field structure based on public sample formats. All services, names, recipients and debts invented. No real money, payment, copied invoice or people. Activation disables both notification flags.",
+  "checks": [
+    {
+      "number": "OWELEAF-DESIGN-450",
+      "summary": {
+        "id": "[private synthetic provider identifier]",
+        "number": "OWELEAF-DESIGN-450",
+        "status": "UNPAID",
+        "payerName": "Design Synthetic Test",
+        "payerEmail": "design-test@example.com",
+        "amount": "450.00",
+        "currency": "GBP",
+        "dueDate": "2026-11-09",
+        "daysOverdue": 3,
+        "chaseable": true
+      },
+      "passed": true
+    },
+    {
+      "number": "OWELEAF-CONSULT-1280",
+      "summary": {
+        "id": "[private synthetic provider identifier]",
+        "number": "OWELEAF-CONSULT-1280",
+        "status": "UNPAID",
+        "payerName": "Consulting Synthetic Test",
+        "payerEmail": "consult-test@example.com",
+        "amount": "1280.00",
+        "currency": "GBP",
+        "dueDate": "2026-10-31",
+        "daysOverdue": 12,
+        "chaseable": true
+      },
+      "passed": true
+    },
+    {
+      "number": "OWELEAF-NOTDUE-890",
+      "summary": {
+        "id": "[private synthetic provider identifier]",
+        "number": "OWELEAF-NOTDUE-890",
+        "status": "UNPAID",
+        "payerName": "Future Synthetic Test",
+        "payerEmail": "future-test@example.com",
+        "amount": "890.00",
+        "currency": "GBP",
+        "dueDate": "2026-11-20",
+        "daysOverdue": -8,
+        "chaseable": false
+      },
+      "passed": true
+    }
+  ],
+  "pass": true,
+  "completedAt": "2026-11-12T00:33:42.612Z"
+}

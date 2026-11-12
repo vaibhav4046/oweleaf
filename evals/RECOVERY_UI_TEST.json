@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-11T08:44:32.741Z",
+  "mode": "isolated invented uncertain-delivery fixture, real authenticated browser, no PayPal send",
+  "checks": [
+    {
+      "name": "owner sees explicit uncertain-delivery recovery",
+      "passed": true
+    },
+    {
+      "name": "uncertain send cannot be approved",
+      "passed": true
+    },
+    {
+      "name": "owner resolution recorded without resending",
+      "passed": true
+    },
+    {
+      "name": "record is reconciled with manual evidence",
+      "passed": true
+    },
+    {
+      "name": "only reconciliation action, no reminder",
+      "passed": true
+    }
+  ]
+}
