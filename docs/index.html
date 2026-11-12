@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Oweleaf | The invoice chaser that knows when not to chase</title>
 <meta name="description" content="Oweleaf reads overdue PayPal invoices, remembers what each client promised, and prepares a follow-up only when a promise is broken. You approve every send. The problem, the evidence, the cost and a working sample.">
-<link rel="stylesheet" href="./landing.css?v=050">
+<link rel="stylesheet" href="./landing.css?v=052">
 </head>
 <body>
 <header class="hero" id="top">
@@ -35,7 +35,7 @@
       <p class="built"><span><b>PayPal</b> Invoicing API v2</span><span><b>Local AI</b> Qwen3 1.7B reads replies</span><span><b>MCP</b> for Claude and ChatGPT</span><span><b>Node.js</b> 0 dependencies</span></p>
     </div>
 
-    <div class="stage" aria-label="Preview of the Oweleaf screens, invented sample data">
+    <div class="stage" aria-label="Preview of the Oweleaf screens, invented sample data"><div class="stage-3d">
       <div class="glass g-plan">
         <small>Today's plan</small>
         <div class="row"><span><i class="dot go"></i>Marcus Osei &middot; &pound;1,280</span><span>Promise passed. Follow up</span></div>
@@ -55,7 +55,7 @@
         <div class="bubble">Marcus. Promised by 8 Nov, still unpaid. Priya asked for time until her payment run.</div>
       </div>
       <span class="tag">Invented sample data</span>
-    </div>
+    </div></div>
   </div>
 </header>
 
@@ -136,7 +136,7 @@
         <li><b>Read and decide</b>Approve one reminder, dismiss it, or paste the client's reply and save their date.</li>
         <li><b>Or just ask</b>The Ask Oweleaf box answers &ldquo;who should I chase today?&rdquo; in plain words.</li>
       </ol>
-      <div class="cta"><a class="btn solid" style="background:#242424;color:#fff;border-color:#242424" href="./app.html">Try the three invoices</a></div>
+      <div class="cta"><a class="btn solid" href="./app.html">Try the three invoices</a></div>
       <div class="why">
         <div><h3>Why a person approves every send</h3><p>This is someone's money and someone's client. Software prepares. A person decides.</p></div>
         <div><h3>Why the AI reads and writes, and rules decide</h3><p>We measured it. On ten test replies the model named the type of reply correctly seven times, in about 0.2 seconds each. Asked for dates, it failed, and it obeyed an instruction hidden inside one client message. So the model reads language and drafts wording. Fixed rules work out every date, got all ten right, and cannot be talked into anything.</p></div>
@@ -230,7 +230,7 @@
       <p>His earlier public project, <a href="https://github.com/vaibhav4046/reqkeeper">ReqKeeper</a>, settles payment requests on one rule: an agent may propose, a human approves the exact action, and a second payment is refused. Oweleaf applies the same rule to a more everyday problem. Software may read, remember and prepare. A person decides when a client hears from them.</p>
       <p>The project started as an earlier invoice-agent experiment and was rebuilt during the hackathon around one user and one decision: chase, or wait.</p>
       <div class="cta" style="margin-top:26px">
-        <a class="btn solid" style="background:#242424;color:#fff;border-color:#242424" href="./app.html">Open the working sample</a>
+        <a class="btn solid" href="./app.html">Open the working sample</a>
         <a class="btn" href="https://github.com/vaibhav4046/oweleaf">Read the source</a>
       </div>
     </div>
@@ -255,5 +255,7 @@
 </main>
 
 <footer><div><span>oweleaf. / the case for the product</span><span>Sample data is invented. No customer is contacted from this site.</span></div></footer>
+<div class="progress" aria-hidden="true"></div>
+<script src="./landing.js?v=052" defer></script>
 </body>
 </html>
