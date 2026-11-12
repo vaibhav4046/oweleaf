@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Oweleaf | The invoice chaser that knows when not to chase</title>
 <meta name="description" content="Oweleaf reads overdue PayPal invoices, remembers what each client promised, and prepares a follow-up only when a promise is broken. You approve every send. The problem, the evidence, the cost and a working sample.">
-<link rel="stylesheet" href="./landing.css?v=049">
+<link rel="stylesheet" href="./landing.css?v=050">
 </head>
 <body>
 <header class="hero" id="top">
@@ -32,7 +32,7 @@
         <a class="btn" href="https://youtu.be/jNWdOlZoj2U">Watch the walkthrough</a>
         <a class="btn" href="https://github.com/vaibhav4046/oweleaf">Source</a>
       </div>
-      <p class="built"><span><b>PayPal</b> Invoicing API v2</span><span><b>Local AI</b> Qwen3 1.7B</span><span><b>MCP</b> for Claude and ChatGPT</span><span><b>Node.js</b> 0 dependencies</span></p>
+      <p class="built"><span><b>PayPal</b> Invoicing API v2</span><span><b>Local AI</b> Qwen3 1.7B reads replies</span><span><b>MCP</b> for Claude and ChatGPT</span><span><b>Node.js</b> 0 dependencies</span></p>
     </div>
 
     <div class="stage" aria-label="Preview of the Oweleaf screens, invented sample data">
@@ -122,20 +122,24 @@
       <h2 id="solution-title">One screen. Three jobs. No chasing by accident.</h2>
       <ol class="jobs">
         <li><div><h3>It checks PayPal for you.</h3><p>Oweleaf reads your invoices from PayPal and sorts them: late, paid, not due yet. Paid and not-due invoices cannot be chased at all.</p></div></li>
-        <li><div><h3>It remembers what the client said.</h3><p>Client replied? Save their words and the date they gave. Oweleaf goes quiet for that client until then, on every one of their invoices.</p></div></li>
+        <li><div><h3>It reads what the client said.</h3><p>Client replied? Paste their message. A small AI model on your own computer reads it in under a second and tells you what it is: a promise to pay, &ldquo;already paid&rdquo;, a request for more time, or a dispute. Fixed rules work out the date. Oweleaf then goes quiet for that client until that day, on every one of their invoices.</p></div></li>
         <li><div><h3>It follows up only when it is fair.</h3><p>The day after the promised date, Oweleaf looks at PayPal again. Paid: nothing happens. Still unpaid: a short follow-up is ready that mentions the client's own date. You read it and approve it. PayPal is read one more time before anything goes out.</p></div></li>
       </ol>
-      <p><strong>The whole journey, in four steps.</strong></p>
+      <figure>
+        <img src="./ai-reply.jpg" width="1180" height="640" loading="lazy" alt="Screenshot of Oweleaf running locally. A pasted client message says finance will pay on Friday. Below it: Reads as a promise to pay by 13 Nov. Read by local AI model qwen3:1.7b in 0.6 seconds. The date is worked out by fixed rules from the word Friday. The date field shows 13 November 2026.">
+        <figcaption>A real run on 12 November 2026: the local model (qwen3:1.7b through Ollama, on a laptop GPU) read this reply in 0.6 seconds. Invoices are invented sample data. On this website the same box is read by the fixed rules only, because no AI model runs in a browser-only sample, and it says so.</figcaption>
+      </figure>
+      <p style="margin-top:28px"><strong>The whole journey, in four steps.</strong></p>
       <ol class="steps">
         <li><b>Open the sample</b>No login, no install. It opens on a broken promise and a kept wait.</li>
         <li><b>Pick an invoice</b>Marcus, Priya or Amelia. Each shows a different decision.</li>
-        <li><b>Read and decide</b>Approve one reminder, dismiss it, or save the client's date.</li>
+        <li><b>Read and decide</b>Approve one reminder, dismiss it, or paste the client's reply and save their date.</li>
         <li><b>Or just ask</b>The Ask Oweleaf box answers &ldquo;who should I chase today?&rdquo; in plain words.</li>
       </ol>
       <div class="cta"><a class="btn solid" style="background:#242424;color:#fff;border-color:#242424" href="./app.html">Try the three invoices</a></div>
       <div class="why">
         <div><h3>Why a person approves every send</h3><p>This is someone's money and someone's client. Software prepares. A person decides.</p></div>
-        <div><h3>Why rules decide and the model only writes</h3><p>In our own tests the small model invented a deadline and mixed up before and after the due date. So it drafts wording for ordinary reminders, and fixed rules control what may be sent and what the follow-up says about a promise.</p></div>
+        <div><h3>Why the AI reads and writes, and rules decide</h3><p>We measured it. On ten test replies the model named the type of reply correctly seven times, in about 0.2 seconds each. Asked for dates, it failed, and it obeyed an instruction hidden inside one client message. So the model reads language and drafts wording. Fixed rules work out every date, got all ten right, and cannot be talked into anything.</p></div>
         <div><h3>Why it runs on your computer</h3><p>Your PayPal keys and client notes stay on your machine. There is no Oweleaf server to trust or to leak.</p></div>
         <div><h3>Why we say what PayPal really sends</h3><p>PayPal's reminder email uses PayPal's standard wording, whatever an app passes in.<sup><a href="#s4">[4]</a></sup> Oweleaf decides whether and when that reminder goes. Your drafted words are yours to copy or open in your own email.</p></div>
       </div>
@@ -199,18 +203,18 @@
       <div class="flow" role="list" aria-label="Architecture">
         <div role="listitem"><b>PayPal</b>Sandbox, OAuth 2.0, Invoicing API v2: list, read, remind.</div>
         <div role="listitem"><b>Oweleaf rules</b>Promise ledger, cooldowns, paid and changed-invoice checks, draft checks.</div>
-        <div role="listitem"><b>Local model</b>Qwen3-1.7B with a task LoRA, on CPU. Drafts ordinary reminders.</div>
+        <div role="listitem"><b>Local AI model</b>Qwen3 1.7B through Ollama, on your own machine. Reads client replies and drafts ordinary reminders.</div>
         <div role="listitem" class="you"><b>You</b>Read, then approve or wait. PayPal is reread before the reminder call.</div>
       </div>
       <div class="facts">
-        <div><b>170 tests</b>Approval safety, stale-invoice blocking, promises, MCP, restart recovery, login. <code>node run.mjs --test</code></div>
+        <div><b>182 tests</b>Approval safety, stale-invoice blocking, promises, reply reading, MCP, restart recovery, login. <code>node run.mjs --test</code></div>
         <div><b>0 dependencies</b>Plain Node.js 20+. Nothing to install, nothing to audit from npm.</div>
         <div><b>150 at once</b>150 simultaneous users, 1,800 requests, 0 failures, 95% answered within 93 ms. One laptop, sample data. <code>node scripts/load-check.mjs</code></div>
       </div>
       <p style="margin-top:28px"><strong>Built to scale without a server bill.</strong> Each freelancer runs their own copy with their own PayPal keys, so there is no central service to pay for or to overload. This page and the sample are static files on a content network, and the sample keeps its state in your browser tab. A hundred visitors or a hundred thousand cost the same.</p>
       <div class="honest">
-        <div><h3>Real</h3>A recorded run on a PayPal Sandbox account on 12 November 2026: four synthetic invoices read, a model-written draft, a wait, a release, and a successful reminder call.</div>
-        <div><h3>Sample</h3>This site's click-through, the assistant and the hosted MCP address use invented invoices and fixed rules. No PayPal or model calls. Labelled on screen.</div>
+        <div><h3>Real</h3>A recorded run on a PayPal Sandbox account on 12 November 2026: four synthetic invoices read, a model-written draft, a wait, a release, and a successful reminder call. A separate real-model run on client replies is recorded in <code>evals/REPLY_READER_EVAL.json</code>.</div>
+        <div><h3>Sample</h3>This site's click-through, the assistant and the hosted MCP address use invented invoices and fixed rules. No PayPal or model calls. Labelled on screen. To see the AI run: <code>node run.mjs --demo --ai</code> with Ollama.</div>
         <div><h3>Not claimed</h3>Real customers, money recovered, faster payment, production security, or that the model beats larger models. The reminder email PayPal delivers was not inspected in an inbox.</div>
       </div>
     </div>
