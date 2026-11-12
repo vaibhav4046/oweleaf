@@ -1,4 +1,4 @@
-name: Publish checked source tree
+name: Publish tested panel corrections
 on:
   workflow_dispatch:
 permissions:
@@ -8,31 +8,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Verify and extract approved source snapshot
+      - name: Verify and extract source snapshot
         run: |
           python3 - <<'PYCODE'
-          import zipfile, hashlib
+          import zipfile,hashlib
           from pathlib import Path
-          archive=Path('3-source-current.zip')
-          assert hashlib.sha256(archive.read_bytes()).hexdigest()=='e44bbc4d81fd2fed72d0debe3cb96beb7def65cca4ac987f39555e7291e1cc2b', 'Unexpected source snapshot'
+          archive=Path('2-panel-source.zip')
+          assert hashlib.sha256(archive.read_bytes()).hexdigest()=='38bb9b47b9e6e0620240ee2863c9e2f11f661a31d9f327fdc012249f739bb880'
           with zipfile.ZipFile(archive) as z:
             for item in z.infolist():
               path=Path(item.filename)
               assert path.parts[0]=='oweleaf' and '..' not in path.parts and '.git' not in path.parts
-              target=Path(*path.parts[1:])
-              if item.is_dir(): continue
-              assert item.file_size < 10000000
-              target.parent.mkdir(parents=True,exist_ok=True)
-              target.write_bytes(z.read(item))
+              if item.is_dir():continue
+              assert item.file_size<10000000
+              target=Path(*path.parts[1:]);target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(z.read(item))
           PYCODE
-      - name: Verify source tests
+      - name: Verify isolated tests
         run: node run.mjs --test
-      - name: Commit readable tree and remove obsolete root bundles
+      - name: Commit readable source and remove transport archive
         run: |
           git config user.name 'oweleaf-release'
           git config user.email 'oweleaf-release@users.noreply.github.com'
-          git rm --ignore-unmatch 2-LICENSE 3-oweleaf-source.zip 4-6-approval.png 5-SOURCE_MANIFEST.json source-current.zip 2-source-current.zip 3-source-current.zip
-          git rm -r --ignore-unmatch .github/workflows/.github
+          cp 2-panel-source.zip /tmp/oweleaf-v0.4.0.zip
+          echo '38bb9b47b9e6e0620240ee2863c9e2f11f661a31d9f327fdc012249f739bb880  oweleaf-v0.4.0.zip' > /tmp/oweleaf-v0.4.0.sha256
+          git rm 2-panel-source.zip
           git add .
-          git commit -m 'Publish readable source, no-login demo and browser sample'
+          git commit -m 'Fix review reversibility, source copy, paid totals and sample clarity'
           git push
+      - name: Publish verified source release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create v0.4.0 /tmp/oweleaf-v0.4.0.zip /tmp/oweleaf-v0.4.0.sha256 --target main --title 'Oweleaf v0.4.0 - focused invoice review' --notes '152 Node tests,27 full-app UI checks and18 static-sample checks. Automated checks, not human-usability evidence. Source snapshot includes no-login fixture demo and browser-only sample. No production-readiness or AI-superiority claim. See README for measured limits and earlier synthetic PayPal sandbox evidence.'
