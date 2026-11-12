@@ -17,7 +17,7 @@ const money = (currency, value) => (value === null || value === undefined ? null
 
 // A "paid" reading must be backed by payment words in the message itself, the same way a
 // date must be quoted. Measured on qwen3:1.7b against Sandbox: it read "Thanks, noted." as paid.
-const PAID_EVIDENCE = /\b(paid|sent|transferr?ed|went out|gone out|settled|cleared|remitted|wired)\b/i;
+const PAID_EVIDENCE = /\b(paid|sent|transferr?ed|went out|gone out|settled|cleared|remitted|wired|payment (was |has been )?made)\b/i;
 
 function finalKind(read, text) {
   if (read.provider === 'rules') {

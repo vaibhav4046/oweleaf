@@ -91,7 +91,7 @@ async function route(req, res, url) {
   if(req.method==='POST'&&['/api/auth/setup','/api/auth/login'].includes(url.pathname)){
     try{const body=await readBody(req);const rateKey='auth:'+String(body.username||'').toLowerCase().slice(0,40);auth.checkRate(rateKey);if(url.pathname.endsWith('setup'))auth.setup(body);const session=auth.login(body,rateKey);res.setHeader('Set-Cookie',auth.cookie(session.secret));audit(state,'local_login',session.username);saveState(state);return json(res,200,{ok:true,csrf:session.csrf,username:session.username,role:session.role});}catch(e){audit(state,'local_auth_failed','Authentication refused; no secret content recorded');saveState(state);return json(res,e.status||400,{error:e.message});}
   }
-  const publicPaths=['/login.html','/login.js','/session.js','/ui.css','/desk.css','/workspace.css'];
+  const publicPaths=['/favicon.svg','/login.html','/login.js','/session.js','/ui.css','/desk.css','/workspace.css'];
   const publicAsset=publicPaths.includes(url.pathname)||url.pathname.startsWith('/fonts/');
   if(!publicAsset){const denied=auth.authorize(req,identity);if(denied){if(req.method==='GET'&&!url.pathname.startsWith('/api/')){res.writeHead(302,{Location:'/login.html','Cache-Control':'no-store'});return res.end();}return json(res,denied.code,{error:denied.error});}}
   if(req.method==='POST'&&url.pathname==='/api/auth/logout'){auth.logout(req);res.setHeader('Set-Cookie',auth.cookie('',{clear:true}));return json(res,200,{ok:true});}
