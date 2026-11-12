@@ -10,7 +10,7 @@ import { invoiceSummary } from './paypal.js';
 import { policyBlock, audit } from './desk.js';
 import { trace } from './harness/trace.js';
 
-import {readLedger} from './persistence.js';
+import {readLedger,replaceFile} from './persistence.js';
 const DB_FILE = resolve('data/state.json');
 
 export function loadState() {
@@ -28,7 +28,7 @@ export function saveState(state) {
   // Use a unique sibling so each rename remains atomic and independent.
   const temporary = `${DB_FILE}.${process.pid}.${randomUUID()}.tmp`;
   writeFileSync(temporary, JSON.stringify(state, null, 2));
-  renameSync(temporary, DB_FILE);
+  replaceFile(temporary, DB_FILE);
 }
 
 const scanning = new WeakSet();

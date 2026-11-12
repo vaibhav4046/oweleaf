@@ -9,7 +9,7 @@ import {randomBytes} from 'node:crypto';
 import {LocalAuth} from './auth.js';
 import {importCase,reviewCase,addNote,addTask,setTask,workspaceSnapshot,workInbox} from './workspace.js';
 import { readFileSync, existsSync } from 'node:fs';
-import { resolve, join } from 'node:path';
+import { resolve, join, sep } from 'node:path';
 import {fileURLToPath} from 'node:url';
 const PUBLIC_ROOT=fileURLToPath(new URL('./public/',import.meta.url));
 import { config as loadEnv } from './env.js';
@@ -177,7 +177,7 @@ async function route(req, res, url) {
   if (req.method === 'GET') {
     const path = url.pathname === '/' ? '/index.html' : url.pathname;
     const file = resolve(join(PUBLIC_ROOT, path));
-    if (existsSync(file) && file.startsWith(resolve(PUBLIC_ROOT) + '/')) {
+    if (existsSync(file) && file.startsWith(resolve(PUBLIC_ROOT) + sep)) {
       const ext = path.endsWith('.js') ? 'text/javascript' : path.endsWith('.css') ? 'text/css' : path.endsWith('.ttf') ? 'font/ttf' : path.endsWith('.woff2') ? 'font/woff2' : path.endsWith('.svg') ? 'image/svg+xml' : 'text/html';
       res.statusCode=200;res.setHeader('Content-Type',ext);
       const raw=readFileSync(file);if(ext==='text/html'){const nonce=randomBytes(18).toString('base64');res.setHeader('Content-Security-Policy',`default-src 'self'; script-src 'self' 'nonce-${nonce}'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'`);return res.end(raw.toString().replace(/<script(?![^>]*\bsrc=)/g,`<script nonce="${nonce}"`).replace('</head>','<script src="/session.js"></script></head>'));}return res.end(raw);

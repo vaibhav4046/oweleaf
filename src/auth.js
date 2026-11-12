@@ -1,13 +1,13 @@
 // Local-only authentication. Not PayPal OAuth or multi-tenant production auth.
 import {randomBytes,scryptSync,timingSafeEqual,createHash} from 'node:crypto';
-import {existsSync,readFileSync,mkdirSync,writeFileSync,renameSync} from 'node:fs';
+import {existsSync,readFileSync,mkdirSync,writeFileSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
-import {readLedger} from './persistence.js';
+import {readLedger,replaceFile} from './persistence.js';
 const kdf={N:32768,r:8,p:1,maxmem:64*1024*1024};
 const digest=s=>createHash('sha256').update(s).digest('hex');
 export class LocalAuth {
  constructor({file=resolve('data/auth.json'),now=()=>Date.now(),fixtureOpen=false}={}){this.file=file;this.now=now;this.fixtureOpen=fixtureOpen;this.db=readLedger(file,{users:[],tokens:[]},d=>d&&Array.isArray(d.users)&&Array.isArray(d.tokens));this.sessions=new Map();this.failures=new Map();this.setupCode=this.db.users.length?null:randomBytes(24).toString('hex');}
- save(){mkdirSync(dirname(this.file),{recursive:true,mode:0o700});writeFileSync(this.file+'.tmp',JSON.stringify(this.db),{mode:0o600});renameSync(this.file+'.tmp',this.file);}
+ save(){mkdirSync(dirname(this.file),{recursive:true,mode:0o700});writeFileSync(this.file+'.tmp',JSON.stringify(this.db),{mode:0o600});replaceFile(this.file+'.tmp',this.file);}
  user(input){if(typeof input!=='string'||!/^[a-zA-Z0-9_.-]{3,40}$/.test(input))throw Error('Username needs 3-40 letters, digits, dot, dash or underscore');return input.toLowerCase()}
  password(input){if(typeof input!=='string'||input.length<12||input.length>128)throw Error('Password needs 12-128 characters');return input}
  createUser({username,password,role='reader'}){username=this.user(username);password=this.password(password);if(!['owner','operator','reader'].includes(role))throw Error('Invalid role');if(this.db.users.some(u=>u.username===username))throw Error('Username already exists');if(this.db.users.length>=20)throw Error('Local user limit reached');const salt=randomBytes(16).toString('hex'),hash=scryptSync(password,salt,64,kdf).toString('hex');const u={username,salt,hash,role};this.db.users.push(u);this.save();return {username,role};}
