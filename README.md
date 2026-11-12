@@ -1,33 +1,38 @@
 # Oweleaf
 
-A local invoice follow-up review for UK solo service freelancers. Choose an invoice, read the source and exact draft, then approve one reminder or save a persistent wait note. Before a reminder, Oweleaf reads the invoice again and checks amount, currency, recipient, payment state and payer holds. Uncertain sends are not blindly retried.
+**One approval, a fresh invoice check, a reminder recorded through the real PayPal sandbox.** Oweleaf helps solo service freelancers read an overdue invoice, review the exact reminder, and send one or save a wait note. Real integration evidence: four synthetic sandbox invoices, one local CPU-model reminder, eight integrated UI checks. No real customers or money. API success is not proof of inbox delivery or payment.
+
+## Try it in three lines
+
+```sh
+node run.mjs --test
+node run.mjs --demo
+# Open http://127.0.0.1:4173 and create a local owner with the setup code in your terminal.
+```
+
+Node.js 20+. Zero PayPal or model credentials for fixture mode, no npm install and no account connection. This demo uses invented invoices and rules, not the sandbox/model path. `--demo` creates an isolated temporary workspace every run, so test leftovers cannot contaminate a first look. This is a local app, not a hosted service. For persistent work, unzip the current archive and use `npm start` or `npm run demo` there.
+
+![Original approval UI, invented fixture data](4-6-approval.png)
 
 Public integrated demo: https://youtu.be/rbd67UlYfJY
 
-## Run at £0
+**Rules are the safety boundary. The local model is the drafting voice.** Approval rechecks the invoice amount, currency, recipient, payment state, pause and payer holds. Model output cannot authorize a send. The recorded CPU run used a 105-second limit; earlier calls timed out and earlier drafts made factual errors. Refused output falls back to clearly labelled rules. This is a known latency and quality limit, not an AI-superiority claim.
 
-Node.js 20+; no application dependencies. This repository ships a complete source archive plus a standard-library launcher, not a hosted service. The launcher materializes the same source into `.oweleaf-app/` and runs it. It does not fetch code or use any account.
+## Current verified checks
 
-```
-node 4-run.mjs --test
-node 4-run.mjs --demo
-# Open http://127.0.0.1:4173
-# Use the one-time setup code printed locally to create your own owner login.
-```
+- 138/138 Node tests after hardening (132 original plus six new recovery/input regressions).
+- 21/21 automated UI checks, including wait/reload/release, approval, paid/not-due guards, mobile bounds and reader restrictions. Desktop/mobile pixels inspected.
+- Corrupt state/auth quarantines fail closed, with a recovery marker. Interrupted approvals need manual provider-history reconciliation, never a blind resend.
+- New dismissible first-run guide, replayable from More. Reduced-motion support.
 
-For the current source and documentation snapshot, unzip `2-oweleaf-source-current.zip`, enter its `oweleaf/` folder, run `npm test` and `npm run demo`. The app has no install step. The fixture demo uses invented data and rules, with simulated sends. It is not the integrated sandbox recording.
-
-## Verified PayPal + AI integration
-
-On 12 November 2026 an actual authenticated local app read four wholly synthetic invoices from the real PayPal sandbox. A local CPU v2 model generated a source-grounded GBP450 reminder without fallback. Saving a wait note blocked send; the wait survived reload; after release, an approval click invoked PayPal's actual sandbox reminder API and returned success. A not-due GBP890 invoice could not send. Eight integrated UI checks and 132 Node tests passed. Exact evidence and failures are in `evals/SANDBOX_FINDINGS.md` and raw JSON in the source archive.
-
-No real money, live accounts, real services, debt or customer's data were involved. API success is not proof of inbox delivery or payment. Other overdue test cases were deliberately held to bound the recorded model run to one invoice.
+<details>
+<summary>Evidence, model setup, research and honest limits</summary>
 
 ## Use a sandbox and local model
 
 Unzip the source first. Copy `.env.example` to `.env` and supply your own matching PayPal Sandbox Client ID and Secret. Never commit `.env`. Use `PAYPAL_ENV=sandbox` and never use real customers for testing. The synthetic preparation scripts create account state and can send sandbox reminders; do not replay them blindly against existing invoices.
 
-The app supports Ollama and OpenAI-compatible providers. The recorded model is a task-specific Qwen3-1.7B LoRA, v2, Q4_K_M GGUF. Its identity/hash and training limitations are in `training/MODEL_CARD.md`. Exact recorded inference weights are now a free separate download: https://drive.google.com/drive/folders/1QKowbbtmtR_lsBVqIutJC47aol_hT1Ta?authuser=lalwanivaibhav079%40gmail.com . Download the entire folder, unzip it, keep all 45 parts and metadata together, and run `python3 join_model.py` (Windows: `py join_model.py`). The script checks each part and the final 1,107,409,312-byte GGUF against SHA256 `8995426484543fbc2d7dc24234eadddebd8ec4d2194be6953b576ae9922e3c7b`. Import with `ollama create farthing2 -f Modelfile`, then use `BRAIN_PROVIDER=ollama OLLAMA_MODEL=farthing2 BRAIN_TIMEOUT_MS=105000 npm start` after your sandbox setup. Apache 2.0 base-model licence, modification notice and model card are included. Exact inference weights are available; exact retraining is not reproducible from a fully frozen v2 dataset. Different hardware or decoding conditions may produce different output. Alternatively supply your own local model, without a claim of identical measured output.
+The app supports Ollama and OpenAI-compatible providers. The recorded model is a task-specific Qwen3-1.7B LoRA, v2, Q4_K_M GGUF. Its identity/hash and training limitations are in `training/MODEL_CARD.md`. Exact recorded inference weights are now a free separate download: https://drive.google.com/drive/folders/1QKowbbtmtR_lsBVqIutJC47aol_hT1Ta . Download the entire folder, unzip it, keep all 45 parts and metadata together, and run `python3 join_model.py` (Windows: `py join_model.py`). The script checks each part and the final 1,107,409,312-byte GGUF against SHA256 `8995426484543fbc2d7dc24234eadddebd8ec4d2194be6953b576ae9922e3c7b`. Import with `ollama create farthing2 -f Modelfile`, then use `BRAIN_PROVIDER=ollama OLLAMA_MODEL=farthing2 BRAIN_TIMEOUT_MS=105000 npm start` after your sandbox setup. Apache 2.0 base-model licence, modification notice and model card are included. Exact inference weights are available; exact retraining is not reproducible from a fully frozen v2 dataset. Different hardware or decoding conditions may produce different output. Alternatively supply your own local model, without a claim of identical measured output.
 
 For llama.cpp serving an available local model on port 8089:
 
@@ -51,10 +56,14 @@ No interviews, users, recovered cash, payment-speed improvement, time saved, mar
 
 Research, sources, caveats, model card, security notes, tests and reproducible scripts are in the archive. Source code is MIT, including the launcher. Model weights have separate terms. Local fonts include their licences. Published-source screenshots are not included in public presentation media; factual summaries retain citations.
 
-Current archive `2-oweleaf-source-current.zip` SHA256: `b73fc722e4c2ea653a6d8aad7980ab0992fbde48c6f77156a3f181a500c92c93`. It includes an updated per-file manifest. Initial `3-oweleaf-source.zip` SHA256: `316b61e3658a3d16ed468ae976cb95b03f2eccff9213dcc67244ae477da245cc`. `5-SOURCE_MANIFEST.json` covers initial snapshot per-file hashes, not an archive hash. No credentials, private runtime state, customer invoices or private review reports are shipped.
 
-## Current release status, 12 November 2026
+</details>
 
-The current archive adds a dated status notice above historical pending-sandbox text. The 12 November integrated run supersedes historical pending-sandbox status in `evals/RESULTS.md`, `HACKATHON_INTELLIGENCE.md` inside the initial source snapshot. Those checkpoint records are not the current submission description. The sandbox+AI path and public demo are now verified as described above. No Devpost submission is implied.
+## Release provenance
 
-The one-command launcher remains the initial tested code snapshot. The current archive has the same application/test code with corrected documentation and exact-model download instructions. Initial source and tests are retained for provenance.
+
+</details>
+
+## Release provenance
+
+Current archive `source-current.zip` SHA256: `444313b11bbd2f2454affefde14b6bad5fb5ebf2db82da78cdec9a17c0be1fce`. Includes readable source, tests, evidence and per-file manifest. The launcher verifies and extracts this shipped archive with Node standard libraries, then runs tests/demo in a fresh temporary folder. Download or clone the complete repository so run.mjs and source-current.zip sit together. Earlier numbered files are historical checkpoints; use only source-current.zip and run.mjs above. Initial archive retained for history: `3-oweleaf-source.zip`, SHA256 `316b61e3658a3d16ed468ae976cb95b03f2eccff9213dcc67244ae477da245cc`. `5-SOURCE_MANIFEST.json` describes the initial snapshot, not the new release. No credentials, private state or private panel reports are shipped. No Devpost submission is implied.
