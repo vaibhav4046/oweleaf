@@ -1,6 +1,6 @@
 # 12 November 2026, morning patch
 
-152/152 Node tests pass, including environment/list-pagination and seven new restore/copy/paid-amount tests. 27/27 local full-app UI checks pass with zero page errors; desktop and mobile screenshots inspected. 20/20 separate browser-only static sample checks pass. These are automated checks, not human-usability evidence or a new PayPal sandbox run.
+152/152 Node tests pass, including environment/list-pagination and seven new restore/copy/paid-amount tests. 29/29 local full-app UI checks pass with zero page errors; desktop and mobile screenshots inspected. 26/26 separate browser-only static sample checks pass. These are automated checks, not human-usability evidence or a new PayPal sandbox run.
 
 PayPal invoice listing now follows up to50pages, refuses partial/overlapping/changing page counts, and validates sandbox/live environment names. Docs: https://developer.paypal.com/docs/api/invoicing/v2/invoices-list . A multi-page read is not an atomic provider snapshot; the final-send reread is still required. This build does not handle more than5000invoices per read.
 

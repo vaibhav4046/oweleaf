@@ -21,7 +21,7 @@ Narrated walkthrough (1:57, original sandbox stills + labelled fixture UI): http
 ## Current verified checks
 
 - 152/152 Node tests, including pagination, dependency timeouts, recovery, approval safety and authentication.
-- 27/27 full-app automated UI checks; 20/20 separate static-sample checks. Desktop/mobile pixels inspected, zero page errors. Not human-usability testing.
+- 29/29 full-app automated UI checks; 26/26 separate static-sample checks. Desktop/mobile pixels inspected, zero page errors. Not human-usability testing.
 - Earlier actual sandbox recording: four synthetic invoices, local CPU model, eight integrated UI checks. No real customers or money. API success is not inbox delivery or payment.
 - New: reversible dismissed drafts, source-bound plain-language copy, visible decision states, paid totals and reactive guide. Also: bounded complete-list reads, explicit fixture/sandbox/live labels, clearer private-account setup. Interrupted approvals never auto-retry; corrupt state/auth fail closed.
 

@@ -6,8 +6,8 @@ Updated 12 November 2026, after merged-head verification.
 - Phase: submission hardening. No Devpost submission has been made. Final filing remains held for the owner's explicit decision.
 - Deadline: 12 November 2026,20:00 Europe/London.
 - Merge base reviewed: ee9004f85147cff1072b6481caa4784789039c53. Earlier panel patch f31b5ac retained; concurrent unique-temp persistence patch retained after152/152 fresh Node tests.
-- Full-app checks:27/27 automated UI checks,zero page errors. Static browser-only checks:20/20 after fixing sample reset redirect and revisioned assets. Not human usability evidence.
-- Hosted sample: https://vaibhav4046.github.io/oweleaf/ . Browser-only,invented data,rules,no model/PayPal/sending. Deployment recheck required after this revision.
+- Full-app checks:29/29 automated UI checks,zero page errors. Static browser-only checks:26/26 after fixing sample reset redirect and revisioned assets. Not human usability evidence.
+- Hosted sample: https://vaibhav4046.github.io/oweleaf/ . Browser-only,invented data,rules,no model/PayPal/sending. Deployment recheck required after v0.4.2: status/guide/reset feedback and source copy.
 - Public narrated walkthrough: https://youtu.be/jNWdOlZoj2U ,1:57. Original sandbox stills and labelled fixture UI; edited/retimed,AI narration. Manual transcript timing publication was processing.
 - Sandbox evidence remains the earlier four synthetic invoices,one local CPU-model draft and eight integrated UI checks. No new provider replay claimed.
 - No target-user study,production certification,payment benefit or reliable AI-superiority claim.
