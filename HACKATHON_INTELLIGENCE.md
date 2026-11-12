@@ -55,7 +55,7 @@ Eligibility excludes residents of Brazil, Quebec, Russia, Crimea, Cuba, Iran, No
 ## Evidence state of this repository
 
 - Repository: <https://github.com/vaibhav4046/oweleaf> (public at retrieval; verify the exact submission URL in Devpost).
-- Demo supplied in README: <https://youtu.be/SHzMgcIb-0E>. Confirm public visibility and runtime before filing.
+- Current README demo: <https://youtu.be/jNWdOlZoj2U> (1:57; public visibility was observed, rights-clean status and caption processing remain unverified). The earlier 1:49 video is superseded.
 - The README states a real PayPal Sandbox path, a local Qwen3-1.7B-based model, deterministic policy checks and synthetic demo data. Those are product claims that must be supported by reproducible run logs, not by this document.
 - The repository already contains tests/evaluation artifacts and an MIT licence. A passing local test suite does not itself prove PayPal network success, inbox delivery, payment, user impact or a submitted Devpost entry.
 
