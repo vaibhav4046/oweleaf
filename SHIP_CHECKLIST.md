@@ -30,7 +30,7 @@
 
 ## Final release
 
-- [x] Public main verified at `e3c19f4`.
+- [x] Public main re-verified after the final evidence updates.
 - [x] Re-open public repository and verify licence, README, source and demo link.
 - [ ] Obtain explicit owner final-submit decision and personal form answers,then file Devpost before 20:00 UK on 12 November 2026.
 - [ ] Save actual confirmation URL/screenshot in the release notes.
