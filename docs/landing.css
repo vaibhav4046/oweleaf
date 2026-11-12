@@ -46,16 +46,16 @@ pre code{background:none;padding:0;color:inherit;font-size:inherit}
 .built b{font-weight:400;color:#c9c9c4}
 
 /* glass dashboard cards */
-.stage{position:relative;min-height:520px}
-.glass{position:absolute;background:linear-gradient(160deg,#ffffff24,#ffffff0a);border:1px solid #ffffff2b;border-radius:16px;padding:18px 20px;backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);box-shadow:0 30px 70px #0007,inset 0 1px 0 #ffffff30;color:#f3f3f0}
+.stage{position:relative;display:grid;gap:0;align-content:center}
+.glass{position:relative;background:linear-gradient(160deg,#1c1c1dcc,#0e0e0fb3);border:1px solid #ffffff33;border-radius:16px;padding:18px 20px;backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);box-shadow:0 30px 70px #0007,inset 0 1px 0 #ffffff30;color:#f3f3f0}
 .glass small{display:block;font-size:9.5px;letter-spacing:1.7px;text-transform:uppercase;color:#a9a9a4;margin-bottom:8px}
-.g-plan{top:0;left:2%;width:68%;animation:drift 9s ease-in-out infinite}
-.g-promise{top:150px;right:0;width:78%;animation:drift 11s ease-in-out -3s infinite}
-.g-ask{bottom:0;left:0;width:64%;animation:drift 10s ease-in-out -6s infinite}
+.g-plan{width:78%;margin-left:2%;animation:drift 9s ease-in-out infinite}
+.g-promise{width:86%;margin:-14px 0 0 auto;z-index:2;animation:drift 11s ease-in-out -3s infinite}
+.g-ask{width:70%;margin:-14px 0 0 0;z-index:3;animation:drift 10s ease-in-out -6s infinite}
 @keyframes drift{50%{transform:translateY(-10px)}}
 .row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:9px 0;border-top:1px solid #ffffff1c;font-size:13.5px}
 .row:first-of-type{border-top:0}
-.row span:last-child{font-size:12px;color:#c4c4bf;text-align:right}
+.row span:first-child{min-width:0}.row span:last-child{font-size:12px;color:#d6d6d1;text-align:right;flex:0 1 46%}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:9px;background:#9a9a96}
 .dot.go{background:#e8a460}.dot.hold{background:#8fc4b0}
 .g-promise h3{font:normal 1.25rem var(--serif);margin:0 0 6px}
@@ -66,7 +66,7 @@ pre code{background:none;padding:0;color:inherit;font-size:inherit}
 .g-promise .acts span:first-child{background:#fff;color:#111;border-color:#fff}
 .bubble{font-size:13px;line-height:1.5;border-radius:10px;padding:9px 12px;background:#ffffff14;margin-top:7px}
 .bubble.me{background:#fff;color:#111;margin-left:22%}
-.tag{position:absolute;right:14px;bottom:-30px;font-size:11px;color:#8f8f8a;letter-spacing:.3px}
+.tag{justify-self:end;margin-top:14px;font-size:11px;color:#8f8f8a;letter-spacing:.3px}
 
 /* ---------- sections ---------- */
 .page{border-top:1px solid var(--line)}
@@ -151,12 +151,13 @@ footer{background:var(--ink);color:#8f8f8a;padding:26px 28px 40px;font-size:12px
 footer div{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 
 @media(max-width:980px){
-  .hero-grid{grid-template-columns:1fr}
-  .stage{min-height:480px;max-width:560px}
+  .hero::before{background:radial-gradient(ellipse 90% 38% at 50% 100%,#a3a39f 0%,#363636 48%,transparent 78%),var(--ink)}
+  .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .stage{max-width:560px}
   .hero h1{max-width:16ch}
 }
 @media(max-width:860px){
-  .page>div{grid-template-columns:1fr;gap:18px}
+  .page>div{grid-template-columns:minmax(0,1fr);gap:18px}
   .marker{position:static;display:flex;align-items:baseline;gap:14px}
   .marker b{font-size:2.6rem}.marker span{margin:0}
   .stats{grid-template-columns:1fr 1fr}.stat,.stat.wide{grid-column:span 1}
@@ -167,8 +168,11 @@ footer div{max-width:1180px;margin:auto;display:flex;justify-content:space-betwe
   .top{padding:16px 18px;gap:10px}.brand{font-size:26px}
   .top nav a:not(.go){display:none}
   .hero-grid,.page>div{padding-left:18px;padding-right:18px}
-  .stage{min-height:560px}.g-plan{width:92%}.g-promise{width:94%;top:170px}.g-ask{width:88%}
+  .g-plan{width:96%}.g-promise{width:96%}.g-ask{width:90%}
   .stats,.compare,.why,.flow,.steps{grid-template-columns:1fr}
   .btn{width:100%;justify-content:center}
   footer{padding:22px 18px 34px}
 }
+.page>div>div,.hero-grid>div{min-width:0}
+pre{max-width:100%}
+.honest div,.why div{min-width:0;overflow-wrap:anywhere}
