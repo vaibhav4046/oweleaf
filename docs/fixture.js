@@ -1,5 +1,5 @@
 // This is an in-tab simulation adapter for the static walkthrough, not server security.
-(()=>{'use strict';const original=window.fetch.bind(window),key='oweleaf-static-v1';let data,paused=false,holds={},proposals=[];
+(()=>{'use strict';const original=window.fetch.bind(window),key='oweleaf-static-v2';let data,paused=false,holds={},proposals=[];
 const ready=original('./fixture-data.json').then(r=>{if(!r.ok)throw Error('Sample data unavailable');return r.json()}).then(d=>{data=d;proposals=structuredClone(d.proposals);try{const saved=JSON.parse(sessionStorage.getItem(key)||'null');if(saved){paused=!!saved.paused;holds=saved.holds||{};proposals=saved.proposals||proposals}}catch{}});
 const save=()=>{try{sessionStorage.setItem(key,JSON.stringify({paused,holds,proposals}))}catch{}};
 window.farthingSession=Promise.resolve({authenticated:true,role:'owner',username:'sample',fixtureOpen:true});
