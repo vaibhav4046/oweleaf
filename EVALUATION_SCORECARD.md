@@ -1,6 +1,6 @@
 # Evaluation scorecard
 
-These are internal simulated assessments against the official PayPal AI Hackathon criteria, not scores from event judges. Evidence was reviewed 12 November 2026 against public main at `3dfc0a6`.
+These are internal simulated assessments against the official PayPal AI Hackathon criteria, not scores from event judges. Evidence was reviewed 12 November 2026 against public main at `e3c19f4`.
 
 ## Verified baseline
 
@@ -33,7 +33,7 @@ These are internal simulated assessments against the official PayPal AI Hackatho
 
 ## Highest-impact next actions
 
-1. Run persona-based user simulations and publish the scenario set, raw outputs, failures and score changes.
+1. Keep the 9/9 persona harness reproducible and use its friction findings to refine the demo.
 2. Use one current demo URL everywhere and show the PayPal source, model draft, wait decision and stale-source block end to end.
 3. File Devpost and retain the actual confirmation URL/screenshot.
 4. Do not claim real users, recovered money or production outcomes without evidence.
