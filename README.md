@@ -15,7 +15,7 @@ node 4-run.mjs --demo
 # Use the one-time setup code printed locally to create your own owner login.
 ```
 
-Or unzip `3-oweleaf-source.zip`, enter its `oweleaf/` folder, run `npm test` and `npm run demo`. The app has no install step. The fixture demo uses invented data and rules, with simulated sends. It is not the integrated sandbox recording.
+For the current source and documentation snapshot, unzip `2-oweleaf-source-current.zip`, enter its `oweleaf/` folder, run `npm test` and `npm run demo`. The app has no install step. The fixture demo uses invented data and rules, with simulated sends. It is not the integrated sandbox recording.
 
 ## Verified PayPal + AI integration
 
@@ -51,8 +51,10 @@ No interviews, users, recovered cash, payment-speed improvement, time saved, mar
 
 Research, sources, caveats, model card, security notes, tests and reproducible scripts are in the archive. Source code is MIT, including the launcher. Model weights have separate terms. Local fonts include their licences. Published-source screenshots are not included in public presentation media; factual summaries retain citations.
 
-Archive SHA256: `316b61e3658a3d16ed468ae976cb95b03f2eccff9213dcc67244ae477da245cc`. `5-SOURCE_MANIFEST.json` contains per-file hashes, not that archive hash. No credentials, private runtime state, customer invoices or private review reports are shipped.
+Current archive `2-oweleaf-source-current.zip` SHA256: `b73fc722e4c2ea653a6d8aad7980ab0992fbde48c6f77156a3f181a500c92c93`. It includes an updated per-file manifest. Initial `3-oweleaf-source.zip` SHA256: `316b61e3658a3d16ed468ae976cb95b03f2eccff9213dcc67244ae477da245cc`. `5-SOURCE_MANIFEST.json` covers initial snapshot per-file hashes, not an archive hash. No credentials, private runtime state, customer invoices or private review reports are shipped.
 
 ## Current release status, 12 November 2026
 
-The 12 November integrated run supersedes historical pending-sandbox status in `evals/RESULTS.md`, `HACKATHON_INTELLIGENCE.md` and `SUBMISSION_DESCRIPTION.md` inside the initial source snapshot. Those checkpoint records are not the current submission description. The sandbox+AI path and public demo are now verified as described above. No Devpost submission is implied.
+The current archive adds a dated status notice above historical pending-sandbox text. The 12 November integrated run supersedes historical pending-sandbox status in `evals/RESULTS.md`, `HACKATHON_INTELLIGENCE.md` inside the initial source snapshot. Those checkpoint records are not the current submission description. The sandbox+AI path and public demo are now verified as described above. No Devpost submission is implied.
+
+The one-command launcher remains the initial tested code snapshot. The current archive has the same application/test code with corrected documentation and exact-model download instructions. Initial source and tests are retained for provenance.
