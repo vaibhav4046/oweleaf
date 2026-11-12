@@ -16,7 +16,7 @@
 - [x] Fresh source checks block stale/held/changed invoices.
 - [x] Explicit fixture/sandbox/live labels and no unsupported outcome claims.
 - [x] `npm test` passes 145/145 in a clean checkout.
-- [ ] Clean-clone smoke test repeated immediately before filing.
+- [x] Clean-clone smoke test repeated immediately before filing (`node run.mjs --test`, 145/145).
 - [ ] PayPal Sandbox replay and local-model path rechecked with documented credentials/runtime.
 
 ## Demo and presentation
