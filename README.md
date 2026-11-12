@@ -18,6 +18,8 @@ Node.js 20+. No npm install. Fresh temporary state on each --demo run, rules-bas
 
 Narrated walkthrough (1:57, original sandbox stills + labelled fixture UI): https://youtu.be/jNWdOlZoj2U
 
+Judge-first replay: [DEMO_SCRIPT_90S.md](DEMO_SCRIPT_90S.md). Simulated agent-as-user checks: run `npm run persona-eval`; results are recorded in [PERSONA_EVALUATION.md](PERSONA_EVALUATION.md). These are test actors, not human research or customer evidence.
+
 ## Current verified checks
 
 - 152/152 Node tests, including pagination, dependency timeouts, recovery, approval safety and authentication.
