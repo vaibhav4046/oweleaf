@@ -53,6 +53,15 @@ if(auth.setupCode&&!auth.fixtureOpen)console.log('Oweleaf local setup code: '+au
 if(auth.fixtureOpen)console.warn('WARNING: explicit open fixture mode. No account authentication. Never use with private data.');
 const state = loadState();
 if(!state.controls){state.controls=controls(state);const n=Number(process.env.SCAN_INTERVAL_MINUTES||60);state.controls.intervalMinutes=Number.isInteger(n)&&n>=5&&n<=10080?n:60;}
+// Demo only (run.mjs --demo): open on one kept wait and one broken promise so the
+// difference is visible without waiting days. Never runs against a real account.
+if(MOCK&&process.env.OWELEAF_DEMO_SEED==='1'&&!Object.keys(state.controls.holds||{}).length){
+ const day=n=>new Date(Date.now()+n*86400000).toISOString().slice(0,10);
+ state.controls.holds={
+  'marcus@lumenworks.example':{reason:'Marcus emailed: finance will pay this week.',until:day(-4),createdAt:new Date(Date.now()-7*86400000).toISOString()},
+  'priya@kilnbakery.example':{reason:'Priya asked for a few more days. Her payment run is on that date.',until:day(3),createdAt:new Date().toISOString()},
+ };
+}
 let timer;
 function scheduleRoutine(){
  clearTimeout(timer);const c=controls(state);state.nextScanAt=c.routineEnabled?new Date(Date.now()+c.intervalMinutes*60000).toISOString():null;
@@ -115,7 +124,7 @@ async function route(req, res, url) {
   if(req.method==='POST'&&url.pathname==='/api/hold'){
     try{const input=await readBody(req),invoices=(await paypal.listInvoices()).map(i=>invoiceSummary(i,new Date()));
       if(!invoices.some(i=>String(i.payerEmail||'').toLowerCase()===String(input.email).toLowerCase()))throw Error('Payer not found in current invoice account');
-      const c=setHold(state,input.email,input.reason);audit(state,input.reason===null?'payer_hold_removed':'payer_hold_added',input.email);saveState(state);return json(res,200,{controls:c});
+      const c=setHold(state,input.email,input.reason,input.until);audit(state,input.reason===null?'payer_hold_removed':'payer_hold_added',input.email);saveState(state);return json(res,200,{controls:c});
     }catch(e){return json(res,e.status||400,{error:e.message});}
   }
   if(req.method==='GET'&&url.pathname==='/api/evidence'){

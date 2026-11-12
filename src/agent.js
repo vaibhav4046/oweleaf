@@ -7,7 +7,8 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, renameSync, unlinkS
 import { dirname, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { invoiceSummary } from './paypal.js';
-import { policyBlock, audit } from './desk.js';
+import { policyBlock, audit, controls, promiseStatus } from './desk.js';
+import { decideHeuristic } from './brain/heuristic.js';
 import { trace } from './harness/trace.js';
 
 import {readLedger,replaceFile} from './persistence.js';
@@ -48,7 +49,13 @@ export async function scan({ paypal, brain, state, now = new Date(), tracer = tr
     const history = state.history[s.id] || [];
     const recent = state.actions.some(a => a.invoiceId === s.id && now - new Date(a.at) < 86400000);
     if (recent) continue;
-    const decision = await brain.decide(s, history);
+    // A passed promise is followed up by the deterministic rules so the wording
+    // cites the client's own date. The model never sees or invents that date.
+    const promise = promiseStatus(controls(state).holds[s.payerEmail?.toLowerCase()], now);
+    if (promise?.passed) s.promise = promise;
+    const decision = s.promise
+      ? { ...decideHeuristic(s), provider: 'heuristic', model: 'rules-ladder / promise follow-up', latencyMs: 0, tokensIn: 0, tokensOut: 0, fallback: false }
+      : await brain.decide(s, history);
     tracer({
       kind: 'decision', invoiceId: s.id, invoiceNumber: s.number,
       provider: decision.provider, model: decision.model, fallback: decision.fallback,
@@ -73,6 +80,7 @@ export async function scan({ paypal, brain, state, now = new Date(), tracer = tr
       model: decision.model,
       fallback: !!decision.fallback,
       fallbackReason: decision.fallbackReason||null,
+      promise: s.promise||null,
       status: 'pending',
       createdAt: now.toISOString(),
     };

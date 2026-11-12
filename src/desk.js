@@ -8,7 +8,8 @@ export function controls(state){return {playbookId:state.controls?.playbookId||'
 export function playbook(state){return PLAYBOOKS.find(p=>p.id===controls(state).playbookId)||PLAYBOOKS[0];}
 export function policyBlock(state,invoice,now=new Date()){
  const c=controls(state),p=playbook(state),hold=c.holds[invoice.payerEmail?.toLowerCase()];
- if(hold)return `Payer hold: ${hold.reason}`;
+ // A dated promise holds reminders through the promised day, then lifts by itself.
+ if(hold&&!promiseStatus(hold,now)?.passed)return hold.until?`Payer hold until ${hold.until}: ${hold.reason}`:`Payer hold: ${hold.reason}`;
  if(invoice.daysOverdue<p.minOverdueDays)return `${p.name}: wait until ${p.minOverdueDays} days overdue`;
  if(state.actions.some(a=>a.invoiceId===invoice.id&&now-new Date(a.at)<p.cooldownHours*3600000))return `${p.name}: ${p.cooldownHours}-hour reminder cooldown`;
  return null;
@@ -23,18 +24,30 @@ export function updateControls(state,input){
  if('intervalMinutes'in input){if(!Number.isInteger(input.intervalMinutes)||input.intervalMinutes<5||input.intervalMinutes>10080)throw Error('Interval must be an integer from 5 to 10080 minutes');c.intervalMinutes=input.intervalMinutes;}
  state.controls=c;return c;
 }
-export function setHold(state,email,reason){
+const DAY_MS=86400000,MAX_PROMISE_DAYS=366;
+const utcDay=d=>Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate());
+const parseDay=s=>{if(typeof s!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(s))return NaN;const t=Date.parse(s+'T00:00:00Z');return Number.isNaN(t)||new Date(t).toISOString().slice(0,10)!==s?NaN:t;};
+// A wait note may carry the day the client promised to pay. null when undated.
+export function promiseStatus(hold,now=new Date()){
+ const t=parseDay(hold?.until);if(Number.isNaN(t))return null;
+ const daysPast=Math.round((utcDay(now)-t)/DAY_MS);
+ return {until:hold.until,passed:daysPast>0,daysPast:Math.max(daysPast,0)};
+}
+export function setHold(state,email,reason,until,now=new Date()){
  if(typeof email!=='string'||!/^\S+@\S+\.\S+$/.test(email)||email.length>254)throw Error('Valid payer email required');
  if(reason!==null&&(typeof reason!=='string'||!reason.trim()||reason.length>240))throw Error('Hold reason must be 1 to 240 characters');
+ const dated=reason!==null&&until!==undefined&&until!==null&&until!=='';
+ if(dated){const t=parseDay(until),ahead=(t-utcDay(now))/DAY_MS;if(Number.isNaN(t)||ahead<0||ahead>MAX_PROMISE_DAYS)throw Error('Promised date must be a real date from today to one year ahead (YYYY-MM-DD)');}
  const c=controls(state);email=email.toLowerCase();
- if(reason===null)delete c.holds[email];else c.holds[email]={reason:reason.trim(),createdAt:new Date().toISOString()};
+ if(reason===null)delete c.holds[email];else c.holds[email]={reason:reason.trim(),...(dated?{until}:{}),createdAt:now.toISOString()};
  state.controls=c;return c;
 }
 export function audit(state,type,detail){(state.activity||=[]).push({id:`A-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,at:new Date().toISOString(),type,detail});state.activity=state.activity.slice(-500);}
 export function explain(state,invoice,now=new Date()){
  const pending=state.proposals.find(p=>p.invoiceId===invoice.id&&['pending','checking','sending','delivery_unknown'].includes(p.status));
  const reason=state.paused?'Agent paused':!invoice.chaseable?'Paid, not due, zero balance, or not sendable':policyBlock(state,invoice,now)||(pending?`Existing proposal: ${pending.status}`:'Eligible for draft preparation');
- return {invoice,reason,pending:pending||null,playbook:playbook(state),hold:controls(state).holds[invoice.payerEmail?.toLowerCase()]||null,source:'Current invoice read + local state. Not proof of payment.'};
+ const hold=controls(state).holds[invoice.payerEmail?.toLowerCase()]||null;
+ return {invoice,reason,pending:pending||null,playbook:playbook(state),hold:hold&&{...hold,...(promiseStatus(hold,now)||{})},source:'Current invoice read + local state. Not proof of payment.'};
 }
 export function answerCommand(text,invoices,state){
  if(typeof text!=='string'||text.length>500)throw Error('Command must be at most 500 characters');

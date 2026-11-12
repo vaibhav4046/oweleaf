@@ -41,6 +41,18 @@ export function decideHeuristic(summary, config = {}) {
     return { action: 'wait', tone: null, subject: null, note: null, reasoning: `invoice ${summary.number} is not chaseable (status ${summary.status}, ${summary.daysOverdue} days past due)` };
   }
   const tone = toneForDays(summary.daysOverdue, gentleMax, firmMax);
+  // The client gave a date and it has passed while the invoice is still unpaid.
+  // The follow-up refers to their own promise instead of starting a fresh chase.
+  if (summary.promise?.passed) {
+    const promised = date({ dueDate: summary.promise.until });
+    return {
+      action: 'remind',
+      tone,
+      subject: `Following up: invoice ${summary.number} (${money(summary)})`,
+      note: `Hi ${firstName(summary.payerName)},\n\nThanks for your earlier message. You mentioned payment for invoice ${summary.number} (${money(summary)}) by ${promised}. It still shows as unpaid on my side, so I wanted to check where it stands.\n\nMany thanks,\n${signoff(summary)}`,
+      reasoning: `client promised payment by ${summary.promise.until}; ${summary.promise.daysPast} day(s) past that date and the invoice is still unpaid`,
+    };
+  }
   const t = TEMPLATES[tone];
   return {
     action: 'remind',
