@@ -4,11 +4,11 @@ These are internal simulated assessments against the official PayPal AI Hackatho
 
 ## Baseline evidence
 
-- 145/145 Node tests pass in the clean checkout (`npm test`).
-- Tests cover source revalidation, payer holds, uncertain delivery, auth/roles/CSRF, bounded provider requests, MCP read-only access and model fallback.
+- 152/152 Node tests pass in the public checkout (`npm test`); the isolated wrapper also passes 152/152.
+- Tests cover source revalidation, payer holds, uncertain delivery, reversible dismissed drafts, auth/roles/CSRF, bounded provider requests, MCP read-only access and model fallback.
 - README and `HACKATHON_INTELLIGENCE.md` disclose fixture versus sandbox/live boundaries and known limitations.
 - The product has a focused source → draft → wait/send → fresh preflight → recorded-result journey.
-- No user study, recovery uplift, hosted deployment or independently verified live end-to-end replay is currently claimed.
+- A browser-only fixture sample is hosted; no user study, recovery uplift or independently verified live end-to-end replay is currently claimed.
 
 ## Conservative provisional panel
 

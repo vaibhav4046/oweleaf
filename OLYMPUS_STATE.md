@@ -6,10 +6,10 @@ Updated: 12 November 2026 (Europe/London)
 - Verified deadline: 12 November 2026, 20:00 UK time.
 - Selected product: local-first PayPal invoice follow-up review for solo freelancers.
 - Current phase: submission hardening.
-- Release base: public `main` at commit `cc050e7` (merged PR #1).
-- Current verified test result: `npm test` = 145/145 passing in the clean `repo_oweleaf` checkout.
-- Deployment URL: none required; local run is the documented path. Hosted URL is unverified.
-- Demo URL: https://youtu.be/SHzMgcIb-0E (public visibility and rights status still require final check).
+- Release base: public `main` at commit `d83280a`.
+- Current verified test result: `npm test` = 152/152 and `node run.mjs --test` = 152/152 in the public checkout.
+- Deployment URL: browser-only fixture sample at https://vaibhav4046.github.io/oweleaf/; it has no backend, model or sending.
+- Demo URL: https://youtu.be/jNWdOlZoj2U (README states 1:57; public visibility and rights status still require final check).
 - Next executable actions: verify demo link/runtime; complete Devpost submission and retain confirmation.
 - Blockers: no confirmed Devpost submission in repository evidence; live PayPal/model replay depends on credentials/model runtime; no target-user usability study.
 

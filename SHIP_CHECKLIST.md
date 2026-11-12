@@ -15,8 +15,8 @@
 - [x] Human approval remains required before reminder send.
 - [x] Fresh source checks block stale/held/changed invoices.
 - [x] Explicit fixture/sandbox/live labels and no unsupported outcome claims.
-- [x] `npm test` passes 145/145 in a clean checkout.
-- [x] Clean-clone smoke test repeated immediately before filing (`node run.mjs --test`, 145/145).
+- [x] `npm test` passes 152/152 in a clean checkout.
+- [x] Clean-clone smoke test repeated immediately before filing (`node run.mjs --test`, 152/152).
 - [ ] PayPal Sandbox replay and local-model path rechecked with documented credentials/runtime.
 
 ## Demo and presentation
@@ -28,7 +28,7 @@
 
 ## Final release
 
-- [x] Push final commit to `https://github.com/vaibhav4046/oweleaf` (main `cc050e7`, merged PR #1).
+- [x] Push final commit to `https://github.com/vaibhav4046/oweleaf` (main `d83280a`).
 - [x] Re-open public repository and verify licence, README, source and demo link.
 - [ ] File Devpost submission before 20:00 UK on 12 November 2026.
 - [ ] Save actual confirmation URL/screenshot in the release notes.
