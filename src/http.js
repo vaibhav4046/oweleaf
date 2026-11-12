@@ -15,3 +15,10 @@ export async function requestJson(fetchImpl, url, options = {}, timeoutMs = 1500
     ]);
   } finally { clearTimeout(timer); }
 }
+
+// Ollama's own OLLAMA_HOST convention allows a bare host:port (127.0.0.1:11434).
+// fetch needs a scheme, so add one when it is missing.
+export function ollamaBaseUrl(host) {
+  const value = String(host || 'http://127.0.0.1:11434').trim().replace(/\/$/, '');
+  return /^https?:\/\//i.test(value) ? value : `http://${value}`;
+}

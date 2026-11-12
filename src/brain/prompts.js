@@ -44,10 +44,12 @@ export function parseDecision(text) {
   const actions = ['remind', 'wait', 'escalate'];
   const tones = ['gentle', 'firm', 'final'];
   if (!actions.includes(obj.action)) return null;
-  if (obj.action === 'remind' && (!tones.includes(obj.tone) || typeof obj.subject !== 'string' || typeof obj.note !== 'string' || !obj.subject.trim() || !obj.note.trim() || obj.subject.length > 200 || obj.note.length > 2000 || /[\r\n]/.test(obj.subject) || /[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(obj.subject+obj.note))) return null;
+  if (obj.action === 'remind' && ((typeof obj.tone === 'string' && !tones.includes(obj.tone)) || typeof obj.subject !== 'string' || typeof obj.note !== 'string' || !obj.subject.trim() || !obj.note.trim() || obj.subject.length > 200 || obj.note.length > 2000 || /[\r\n]/.test(obj.subject) || /[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(obj.subject+obj.note))) return null;
   return {
     action: obj.action,
-    tone: obj.tone || null,
+    // Tone is a rules decision (days overdue). A wrong tone word fails closed above; a
+    // missing or non-text tone (a stock model returned the number 3) is set by the rules.
+    tone: tones.includes(obj.tone) ? obj.tone : null,
     subject: obj.subject || null,
     note: obj.note || null,
     reasoning: String(obj.reasoning || '').slice(0, 300),

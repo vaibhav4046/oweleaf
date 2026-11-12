@@ -1,12 +1,12 @@
 import {draftIssue} from './draft-guard.js';
-import { requestJson } from '../http.js';
+import { requestJson, ollamaBaseUrl } from '../http.js';
 // Brain providers. Three interchangeable backends:
 //   heuristic - zero-setup deterministic ladder (reference behaviour)
 //   ollama    - local SLM (default for real use; qwen3:1.7b or a fine-tuned adapter)
 //   openai    - any OpenAI-compatible endpoint (used for the cloud cost baseline)
 // The SLM failing closed is a feature: unparseable output falls back to heuristic.
 
-import { decideHeuristic } from './heuristic.js';
+import { decideHeuristic, toneForDays } from './heuristic.js';
 import { buildDecisionPrompt, parseDecision } from './prompts.js';
 
 export function createBrain(config = {}) {
@@ -28,7 +28,7 @@ class HeuristicBrain {
 class OllamaBrain {
   constructor(config) {
     this.name = 'ollama';
-    this.host = (config.ollamaHost || 'http://127.0.0.1:11434').replace(/\/$/, '');
+    this.host = ollamaBaseUrl(config.ollamaHost);
     this.model = config.ollamaModel || 'qwen3:1.7b';
     this.config = config;
     this.fetch = config.fetchImpl || globalThis.fetch;
@@ -60,6 +60,7 @@ class OllamaBrain {
       tokensOut = body.eval_count || Math.ceil(raw.length / 4);
       parsed = parseDecision(raw);
       if (!parsed) fallbackReason = 'Unparseable model output';
+      if(parsed&&parsed.action==='remind'&&!parsed.tone)parsed.tone=toneForDays(summary.daysOverdue,Number(this.config.gentleMaxDays??7),Number(this.config.firmMaxDays??21));
       if(parsed){const issue=draftIssue(parsed,summary);if(issue){parsed=null;fallbackReason=issue}}
     } catch (e) {
       fallbackReason = e.message;
@@ -105,6 +106,7 @@ class OpenAIBrain {
       tokensIn = body.usage?.prompt_tokens || 0;
       tokensOut = body.usage?.completion_tokens || 0;
       parsed = parseDecision(body.choices?.[0]?.message?.content || '');
+      if(parsed&&parsed.action==='remind'&&!parsed.tone)parsed.tone=toneForDays(summary.daysOverdue,Number(this.config.gentleMaxDays??7),Number(this.config.firmMaxDays??21));
       if(parsed){const issue=draftIssue(parsed,summary);if(issue){parsed=null;fallbackReason=issue}}else fallbackReason='Unparseable model output';
     } catch (e) {
       fallbackReason=e.message;parsed = null;

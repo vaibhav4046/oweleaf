@@ -19,6 +19,7 @@ import { fixtureOperations } from './operations.js';
 import {tools as readOnlyTools} from './mcp-tools.js';
 import { controls, PLAYBOOKS, updateControls, setHold, audit, answerCommand, explain } from './desk.js';
 import { createBrain } from './brain/index.js';
+import { readClientReply } from './brain/reply.js';
 import { loadState, saveState, scan, approve, reject, restore, reconcileDelivery } from './agent.js';
 
 loadEnv();
@@ -35,7 +36,7 @@ const paypal = MOCK
       env: process.env.PAYPAL_ENV || 'sandbox',
     });
 
-const brain = createBrain({
+const brainConfig = {
   timeoutMs: Number(process.env.BRAIN_TIMEOUT_MS || 30000),
   provider: process.env.BRAIN_PROVIDER || 'heuristic',
   ollamaHost: process.env.OLLAMA_HOST,
@@ -46,7 +47,8 @@ const brain = createBrain({
   openaiModel: process.env.OPENAI_MODEL,
   gentleMaxDays: process.env.GENTLE_MAX_DAYS,
   firmMaxDays: process.env.FIRM_MAX_DAYS,
-});
+};
+const brain = createBrain(brainConfig);
 
 const auth=new LocalAuth({fixtureOpen:MOCK&&process.env.FARTHING_AUTH_MODE==='open-fixture'});
 if(auth.setupCode&&!auth.fixtureOpen)console.log('Oweleaf local setup code: '+auth.setupCode);
@@ -120,6 +122,11 @@ async function route(req, res, url) {
   }
   if(req.method==='POST'&&url.pathname==='/api/controls'){
     try{const c=updateControls(state,await readBody(req));audit(state,'controls_changed',`${c.playbookId}; routine ${c.routineEnabled?'on':'off'}; ${c.intervalMinutes} minutes`);scheduleRoutine();saveState(state);return json(res,200,{controls:c,nextScanAt:state.nextScanAt});}catch(e){return json(res,e.status||400,{error:e.message});}
+  }
+  // Reads a pasted client reply. Proposes a date and a classification; saves nothing.
+  if(req.method==='POST'&&url.pathname==='/api/promise/read'){
+    try{const input=await readBody(req);return json(res,200,await readClientReply(input.text,brainConfig));}
+    catch(e){return json(res,e.status||400,{error:e.message});}
   }
   if(req.method==='POST'&&url.pathname==='/api/hold'){
     try{const input=await readBody(req),invoices=(await paypal.listInvoices()).map(i=>invoiceSummary(i,new Date()));

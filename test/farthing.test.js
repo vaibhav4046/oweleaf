@@ -51,6 +51,7 @@ test('parseDecision: accepts clean JSON, rejects slop and threats schema', () =>
   assert.equal(parseDecision('sure! here is your json: {"action":"wait","reasoning":"ok"}').action, 'wait');
   assert.equal(parseDecision('{"action":"remind","tone":"nasty","subject":"s","note":"n"}'), null); // bad tone fails closed
   assert.equal(parseDecision('{"action":"remind"}'), null); // missing draft fails closed
+  assert.equal(parseDecision('{"action":"remind","tone":3,"subject":"s","note":"n"}').tone, null); // non-text tone: rules decide it
   assert.equal(parseDecision('no json at all'), null);
   assert.equal(parseDecision(''), null);
 });
