@@ -20,6 +20,7 @@ jobs:
               path=Path(item.filename)
               assert path.parts[0]=='oweleaf' and '..' not in path.parts and '.git' not in path.parts
               if item.is_dir():continue
+              if str(Path(*path.parts[1:])) in ['EVALUATION_SCORECARD.md','HACKATHON_INTELLIGENCE.md','SHIP_CHECKLIST.md']:continue
               assert item.file_size<10000000
               target=Path(*path.parts[1:]);target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(z.read(item))
           PYCODE
@@ -29,9 +30,18 @@ jobs:
         run: |
           git config user.name 'oweleaf-release'
           git config user.email 'oweleaf-release@users.noreply.github.com'
-          cp 1-v042-source.zip /tmp/oweleaf-v0.4.2.zip
-          echo 'edf72d4fc476be9f783e02ee720bc76739837642f4cec04e3f4618344cbd1c50  oweleaf-v0.4.2.zip' > /tmp/oweleaf-v0.4.2.sha256
           git rm 1-v042-source.zip
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import subprocess,json,hashlib,zipfile
+          files=[Path(n) for n in subprocess.check_output(['git','ls-files'],text=True).splitlines() if n!='ARCHIVE_MANIFEST.json' and not n.startswith('.github/') and Path(n).is_file()]
+          manifest={str(p):{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in files}
+          Path('ARCHIVE_MANIFEST.json').write_text(json.dumps(manifest,indent=2))
+          files.append(Path('ARCHIVE_MANIFEST.json'))
+          with zipfile.ZipFile('/tmp/oweleaf-v0.4.2.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for p in files:z.write(p,'oweleaf/'+str(p))
+          Path('/tmp/oweleaf-v0.4.2.sha256').write_text(hashlib.sha256(Path('/tmp/oweleaf-v0.4.2.zip').read_bytes()).hexdigest()+'  oweleaf-v0.4.2.zip\n')
+          PYCODE
           git add .
           git commit -m 'Polish decision status, ready counts, guide completion and reset feedback'
           git push
