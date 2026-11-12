@@ -1,0 +1,150 @@
+{
+  "generatedAt": "2026-11-12T08:30:22.773Z",
+  "simulated": true,
+  "note": "AI-agent personas are test actors, not real users or customer evidence.",
+  "passed": 9,
+  "total": 9,
+  "results": [
+    {
+      "label": "freelancer",
+      "passed": true,
+      "persona": "Solo freelancer",
+      "task": "Review and send one overdue reminder",
+      "evidence": {
+        "scanned": 5,
+        "drafts": 3,
+        "sends": 1,
+        "status": "approved"
+      },
+      "friction": "Private users must configure PayPal and local auth.",
+      "impact": "Core source-to-draft-to-approval journey completes with one provider call."
+    },
+    {
+      "label": "relationship",
+      "passed": true,
+      "persona": "Relationship-first studio operator",
+      "task": "Avoid chasing a recent payer",
+      "evidence": {
+        "drafts": [
+          "F-1038",
+          "F-1029"
+        ],
+        "control": "patient"
+      },
+      "friction": "Thresholds are explicit but not learned from email.",
+      "impact": "Patient policy excludes the three-day invoice and surfaces older exceptions."
+    },
+    {
+      "label": "stale-payment",
+      "passed": true,
+      "persona": "Cautious operator",
+      "task": "Block a reminder after payment arrives",
+      "evidence": {
+        "blocked": true,
+        "status": "stale",
+        "sends": 0
+      },
+      "friction": "Fresh provider read adds a step.",
+      "impact": "Paid invoice is blocked before mutation."
+    },
+    {
+      "label": "hold",
+      "passed": true,
+      "persona": "Freelancer with an outside client conversation",
+      "task": "Pause one payer",
+      "evidence": {
+        "blocked": true,
+        "sends": 0
+      },
+      "friction": "Hold reason is manual.",
+      "impact": "Payer-specific hold survives into approval."
+    },
+    {
+      "label": "uncertain-delivery",
+      "passed": true,
+      "persona": "Operator on an unreliable connection",
+      "task": "Avoid double-send after ambiguous response",
+      "evidence": {
+        "failed": true,
+        "retryBlocked": true,
+        "status": "delivery_unknown",
+        "sends": 0
+      },
+      "friction": "Manual provider-history reconciliation is required.",
+      "impact": "Blind retry is refused."
+    },
+    {
+      "label": "prompt-injection",
+      "passed": true,
+      "persona": "Security reviewer",
+      "task": "Reject hostile recipient drift",
+      "evidence": {
+        "blocked": true,
+        "status": "stale",
+        "sends": 0
+      },
+      "friction": "Strict guards require a fresh proposal after legitimate edits.",
+      "impact": "Recipient drift is blocked."
+    },
+    {
+      "label": "command-boundary",
+      "passed": true,
+      "persona": "Time-poor user",
+      "task": "Try a broad natural-language send command",
+      "evidence": {
+        "kind": "boundary",
+        "message": "Commands cannot send, pay, refund, or approve. Open an invoice and review its exact draft. Every reminder needs its own approval.",
+        "sends": 0
+      },
+      "friction": "User must open one invoice.",
+      "impact": "Broad command has no side effect."
+    },
+    {
+      "label": "sponsor",
+      "passed": true,
+      "persona": "PayPal sponsor judge",
+      "task": "Trace invoice read to reminder mutation",
+      "evidence": {
+        "source": {
+          "id": "INV2-MOCK-0001",
+          "number": "F-1042",
+          "status": "SENT",
+          "payerName": "Amelia Bryant",
+          "payerEmail": "amelia@northwind.example",
+          "amount": "450.00",
+          "totalAmount": "450.00",
+          "paidAmount": null,
+          "senderName": "Alex Morgan",
+          "currency": "GBP",
+          "dueDate": "2026-11-09",
+          "daysOverdue": 3,
+          "chaseable": true
+        },
+        "providerCall": {
+          "type": "remind",
+          "id": "INV2-MOCK-0001",
+          "subject": "Friendly nudge: invoice F-1042 (£450.00)",
+          "note": "Hi Amelia,\n\nJust a quick nudge - invoice F-1042 for £450.00 was due on 9 November 2026 and looks like it may have slipped through. No worries if it is already on its way.\n\nMany thanks,\nAlex Morgan",
+          "at": "2026-11-12T08:30:22.755Z"
+        },
+        "status": "approved"
+      },
+      "friction": "Fixture proves shape; sandbox replay needs credentials.",
+      "impact": "PayPal data and reminder call are central."
+    },
+    {
+      "label": "judge",
+      "passed": true,
+      "persona": "Three-minute judge",
+      "task": "Understand core flow quickly",
+      "evidence": {
+        "elapsedMs": 5,
+        "scanned": 5,
+        "drafts": 3,
+        "completeDrafts": true
+      },
+      "friction": "Video must explain fixture/sandbox boundary.",
+      "impact": "Three tones are produced deterministically."
+    }
+  ]
+}
