@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-12T15:05:07.312Z",
+  "environment": {
+    "node": "v24.12.0",
+    "os": "win32 10.0.26200",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12450HX",
+    "cores": 12
+  },
+  "workload": {
+    "concurrentUsers": 150,
+    "requestsPerUser": 12,
+    "paths": [
+      "/",
+      "/api/desk",
+      "/api/state",
+      "/home.js"
+    ],
+    "mode": "fixture, read-only"
+  },
+  "requests": 1800,
+  "failures": 0,
+  "latencyMs": {
+    "p50": 75,
+    "p95": 121,
+    "p99": 153,
+    "max": 224
+  },
+  "requestsPerSecond": 1689,
+  "pass": true
+}

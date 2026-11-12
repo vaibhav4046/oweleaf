@@ -1,0 +1,21 @@
+.ask-toggle{position:fixed;right:20px;bottom:20px;z-index:30;min-height:48px;padding:12px 20px;border-radius:999px;background:#242424;color:#fff;border:1px solid #242424;font:inherit;box-shadow:0 10px 30px #0003;cursor:pointer}
+.ask-toggle:hover{background:#454545}
+.ask-panel{position:fixed;right:20px;bottom:80px;z-index:30;width:min(400px,calc(100vw - 32px));max-height:min(560px,calc(100vh - 110px));display:flex;flex-direction:column;background:#fff;border:1px solid #d6d6d2;border-radius:14px;box-shadow:0 24px 60px #0003;overflow:hidden}
+.ask-panel[hidden]{display:none}
+.ask-panel header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #e5e5e1}
+.ask-close{background:transparent;color:#444;border:0;font-size:24px;line-height:1;min-height:44px;min-width:44px;cursor:pointer;border-radius:6px}
+.ask-close:hover{background:#eee}
+.ask-note{margin:0;padding:10px 16px;font-size:12px;color:#616161;background:#f5f5f3;line-height:1.5}
+.ask-log{padding:14px 16px;overflow:auto;flex:1;display:grid;gap:10px;align-content:start;min-height:120px}
+.ask-msg{font-size:14px;line-height:1.55;border-radius:10px;padding:10px 12px;max-width:92%}
+.ask-msg p{margin:6px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.ask-msg.bot{background:#f5f5f3;border:1px solid #e5e5e1}
+.ask-msg.you{background:#242424;color:#fff;justify-self:end}
+.ask-msg.you p{margin:0}
+.ask-chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 16px 10px}
+.ask-chip{background:#fff;color:#333;border:1px solid #ccc;border-radius:999px;padding:8px 12px;font-size:12px;min-height:36px;cursor:pointer}
+.ask-chip:hover{background:#eee}
+.ask-form{display:flex;gap:8px;padding:12px 16px 16px;border-top:1px solid #e5e5e1}
+.ask-form input{flex:1;min-width:0;min-height:44px;border:1px solid #bbb;border-radius:8px;padding:10px 12px;font:inherit;font-size:14px}
+.ask-form button{min-height:44px;padding:10px 18px}
+@media(max-width:480px){.ask-toggle{right:12px;bottom:12px}.ask-panel{right:12px;bottom:70px}}
