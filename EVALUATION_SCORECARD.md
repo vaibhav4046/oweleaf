@@ -7,7 +7,8 @@ These are internal simulated assessments against the official PayPal AI Hackatho
 - 152/152 Node tests are claimed by the current README; the current release records 29/29 full-app UI checks and 26/26 static-sample checks.
 - The product has a focused source → draft → wait/send → fresh preflight → recorded-result journey.
 - The browser-only sample is explicitly invented data with rules-only behaviour; earlier PayPal Sandbox and local-model evidence is synthetic and separate.
-- No customer interviews, recovered cash, payment-speed improvement, or production/live-money result is claimed.\n- A simulated AI-agent persona harness passes 9/9 defined workflows; this supports workflow and guardrail claims only, not human usability or market impact.
+- No customer interviews, recovered cash, payment-speed improvement, or production/live-money result is claimed.
+- A simulated AI-agent persona harness passes 9/9 defined workflows; this supports workflow and guardrail claims only, not human usability or market impact.
 
 ## Live simulated panel
 
