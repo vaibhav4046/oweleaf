@@ -1,7 +1,8 @@
 // "Ask Oweleaf": a plain-language question box over the invoices on screen.
 // Fixed rules from assistant-core.js, not a language model. It can read and explain.
 // It cannot send, approve, dismiss or change anything.
-import { answer } from './assistant-core.js';
+import { answer, findRow } from './assistant-core.js';
+import { canonicalQuestion, FALLBACK_TITLE } from './assistant-intent.js';
 
 const PROMPTS = [
   ['Who should I chase today?', 'A short plan from the invoices on screen'],
@@ -28,10 +29,29 @@ async function readJson(path) {
   return response.json();
 }
 
+// A language model is consulted only for questions the fixed rules did not recognise, and
+// only to sort them into one of five intents. Rules write every word of the answer.
+async function readIntent(text) {
+  try {
+    const response = await fetch('/api/assistant/intent', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text }) });
+    if (!response.ok) return null;
+    const data = await response.json();
+    return data && data.intent ? data : null;
+  } catch {
+    return null;
+  }
+}
+
 async function ask(text) {
   const [desk, state] = await Promise.all([readJson('/api/desk'), readJson('/api/state')]);
   const rows = desk.invoices || [];
-  return { reply: answer(text, rows, state.proposals || []), count: rows.length };
+  const proposals = state.proposals || [];
+  const reply = answer(text, rows, proposals);
+  if (reply.title !== FALLBACK_TITLE) return { reply, count: rows.length, via: null };
+  const read = await readIntent(text);
+  const question = read ? canonicalQuestion(read.intent, findRow(rows, text)) : null;
+  if (!question) return { reply, count: rows.length, via: null };
+  return { reply: answer(question, rows, proposals), count: rows.length, via: read };
 }
 
 const reducedMotion = () => globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -73,7 +93,7 @@ function mount() {
     scroll();
   };
 
-  async function botBubble(reply, count) {
+  async function botBubble(reply, count, via = null) {
     const bubble = el('div', { class: 'ask-msg bot' });
     const title = el('strong', {});
     bubble.append(title);
@@ -90,7 +110,9 @@ function mount() {
       setTimeout(() => { copy.textContent = 'Copy'; }, 1500);
     } }, 'Copy');
     bubble.append(el('div', { class: 'ask-meta' },
-      el('span', {}, `Fixed rules · ${count} invoice${count === 1 ? '' : 's'} on screen · nothing sent`), copy));
+      el('span', {}, via
+        ? `Question understood by ${via.provider === 'browser-ai' ? "your browser's on-device AI" : `${via.model} (local)`} · answered by fixed rules · nothing sent`
+        : `Fixed rules · ${count} invoice${count === 1 ? '' : 's'} on screen · nothing sent`), copy));
     scroll();
   }
 
@@ -112,8 +134,8 @@ function mount() {
     userBubble(question);
     input.value = '';
     try {
-      const { reply, count } = await ask(question);
-      await botBubble(reply, count);
+      const { reply, count, via } = await ask(question);
+      await botBubble(reply, count, via);
     } catch {
       await botBubble({ title: 'Could not read your invoices', lines: ['Press "Check invoices" and try again.'] }, 0);
     }
@@ -144,7 +166,7 @@ function mount() {
         el('button', { type: 'button', class: 'ask-new', onclick: reset }, 'New chat'),
         el('button', { type: 'button', class: 'ask-close', 'aria-label': 'Close', onclick: () => setOpen(false) }, '×'))),
     log, follow, form,
-    el('p', { class: 'ask-note' }, 'Answers come from fixed rules over the invoices on this screen. Not a language model. I cannot send or approve anything.'),
+    el('p', { class: 'ask-note' }, 'Fixed rules write every answer. If a local language model is available it only helps me understand your wording, and it cannot send or approve anything.'),
   );
   log.append(empty, cards);
 

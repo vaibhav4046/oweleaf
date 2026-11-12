@@ -45,7 +45,7 @@ export function parseReplyAnswer(raw) {
   }
 }
 
-async function askModel(config, prompt) {
+export async function askModel(config, prompt) {
   const fetchImpl = config.fetchImpl || globalThis.fetch;
   const timeoutMs = config.timeoutMs || 30000;
   if (config.provider === 'ollama') {

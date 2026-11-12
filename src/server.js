@@ -20,6 +20,7 @@ import {tools as readOnlyTools} from './mcp-tools.js';
 import { controls, PLAYBOOKS, updateControls, setHold, audit, answerCommand, explain } from './desk.js';
 import { createBrain } from './brain/index.js';
 import { readClientReply } from './brain/reply.js';
+import { readQuestion } from './brain/intent.js';
 import { loadState, saveState, scan, approve, reject, restore, reconcileDelivery } from './agent.js';
 
 loadEnv();
@@ -126,6 +127,11 @@ async function route(req, res, url) {
   // Reads a pasted client reply. Proposes a date and a classification; saves nothing.
   if(req.method==='POST'&&url.pathname==='/api/promise/read'){
     try{const input=await readBody(req);return json(res,200,await readClientReply(input.text,brainConfig));}
+    catch(e){return json(res,e.status||400,{error:e.message});}
+  }
+  // Sorts a free-form assistant question into a fixed intent. Reads language only; rules answer.
+  if(req.method==='POST'&&url.pathname==='/api/assistant/intent'){
+    try{const input=await readBody(req);return json(res,200,await readQuestion(input.text,brainConfig));}
     catch(e){return json(res,e.status||400,{error:e.message});}
   }
   if(req.method==='POST'&&url.pathname==='/api/hold'){
