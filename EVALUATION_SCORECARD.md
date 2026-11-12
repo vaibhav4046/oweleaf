@@ -46,3 +46,4 @@ The panel above was NOT re-run. Since it, these changes address its weakest dime
 - Impact: the landing page now states the problem, the sourced evidence and the UK cost figures with a cropped source screenshot and a four-item source list; the before/after counts steps removed and refuses to invent hours or money saved.
 - Presentation: a rebuilt landing page and a new 2:26 video (not yet uploaded).
 - Still true: no real users, no recovered money, synthetic data. Impact and Innovation remain limited by that. A self-score of 9 or 10 would not be credible and is not claimed.
+- 16:25 UTC: AI is now visible and does real work in the local app (reads client replies, drafts reminders) with a recorded real-model run. In the hosted sample no model runs; it is labelled. Still unscored by any independent panel.

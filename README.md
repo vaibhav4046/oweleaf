@@ -11,7 +11,7 @@
 Reminder tools make chasing faster. None of them knows when to hold back. Oweleaf keeps a **promise ledger**: when a client replies "finance will pay Friday", save the date. Reminders to that client stay blocked through Friday. The day after, if PayPal still shows the invoice unpaid, the rules prepare a follow-up that cites the client's own date ("You mentioned payment by 8 November..."). If they paid, nothing happens. This is fixed-rule behaviour, covered by tests, and the model never writes that wording.
 
 - **PayPal:** Sandbox OAuth 2.0 and Invoicing API v2 (list, read, remind). The invoice is read again from PayPal immediately before any reminder call; a paid or changed invoice blocks the approval.
-- **AI:** a local Qwen3-1.7B LoRA drafts ordinary reminder wording. Deterministic rules, not the model, decide whether a send is allowed.
+- **AI:** a small model on the freelancer's own machine (Qwen3 1.7B through Ollama) does two jobs. It **reads a pasted client reply** and says what it is: a promise to pay, "already paid", a request for time, or a dispute. And it **drafts ordinary reminder wording**. Fixed rules compute every date and decide whether a send is allowed. Measured on 12 November on a laptop GPU, ten hand-written replies, one run ([evals/REPLY_READER_EVAL.json](evals/REPLY_READER_EVAL.json)): the model named the reply type correctly 7 of 10 times at a median 0.23 s; rules got 10 of 10 dates; the model followed an instruction hidden in one client message, and the rules ignored it. A smoke test, not a benchmark. See it run: `ollama pull qwen3:1.7b`, then `node run.mjs --demo --ai`.
 - **MCP (Claude, ChatGPT, any MCP client):** three read-only tools, `todays_plan`, `client_promises` and `draft_for`, over the same decision rules the screen uses. None can send or change anything. Hosted demo over invented invoices: `https://oweleaf.vercel.app/api/mcp`. On real data: `claude mcp add oweleaf -- node src/mcp-server.js` against a running local app.
 - **Ask Oweleaf:** a plain-language box in the app ("Who should I chase today?"). Fixed rules over the invoices on screen, not a general chatbot; it refuses to send or approve.
 
@@ -27,7 +27,7 @@ node run.mjs --demo
 
 ![Oweleaf invoice review: invented sample data](approval.png)
 
-Node.js 20+. No npm install. Fresh temporary state on each --demo run, rules-based drafts, no model or PayPal calls. The demo opens on one broken promise (Marcus) and one kept wait (Priya). Persistent/private use: `npm start` after configuration, with local owner authentication. Run `node run.mjs --test` for the full test suite. Source is browsable in `src/`, tests in `test/`, the site and sample in `docs/`, the hosted MCP endpoint in `api/`.
+Node.js 20+. No npm install. Fresh temporary state on each --demo run, rules-based drafts, no model or PayPal calls. The demo opens on one broken promise (Marcus) and one kept wait (Priya). Without `--ai` no model runs and the screen says so. Persistent/private use: `npm start` after configuration, with local owner authentication. Run `node run.mjs --test` for the full test suite. Source is browsable in `src/`, tests in `test/`, the site and sample in `docs/`, the hosted MCP endpoint in `api/`.
 
 Judge-first replay: [DEMO_SCRIPT_90S.md](DEMO_SCRIPT_90S.md). Simulated agent-as-user checks: run `npm run persona-eval`; results are recorded in [PERSONA_EVALUATION.md](PERSONA_EVALUATION.md). These are test actors, not human research or customer evidence.
 
@@ -37,7 +37,7 @@ Each freelancer runs their own copy against their own PayPal account, so there i
 
 ## Current verified checks
 
-- 170/170 Node tests, including pagination, dependency timeouts, recovery, approval safety, authentication, the promise ledger, the assistant, and the stdio and hosted MCP servers. Run on Windows 11 / Node 24 on 12 November after fixing a path-separator bug that returned 404 for every page on Windows.
+- 182/182 Node tests, including pagination, dependency timeouts, recovery, approval safety, authentication, the promise ledger, reply reading, the assistant, and the stdio and hosted MCP servers. Run on Windows 11 / Node 24 on 12 November after fixing a path-separator bug that returned 404 for every page on Windows.
 - Earlier recorded runs: 29/29 full-app and 26/26 static-sample scripted UI checks (before the 12 November UI changes; not re-run, the scripts need Playwright). Since then the app, the static sample, the landing page and the assistant were checked by hand in a real browser at desktop and 375 px width, with no console errors. Not human-usability testing.
 - Earlier actual sandbox recording: four synthetic invoices, local CPU model, eight integrated UI checks. No real customers or money. API success is not inbox delivery or payment.
 - New: reversible dismissed drafts, source-bound plain-language copy, visible decision states, paid totals and reactive guide. Also: bounded complete-list reads, explicit fixture/sandbox/live labels, clearer private-account setup. Interrupted approvals never auto-retry; corrupt state/auth fail closed.
