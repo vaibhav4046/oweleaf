@@ -1,6 +1,6 @@
 # Evaluation scorecard
 
-These are internal simulated assessments against the official PayPal AI Hackathon criteria, not scores from event judges. Evidence was reviewed 12 November 2026 against public main at `23ee8c5`.
+These are internal simulated assessments against the official PayPal AI Hackathon criteria, not scores from event judges. Evidence was reviewed 12 November 2026 against public main at `4652f09`.
 
 ## Verified baseline
 
