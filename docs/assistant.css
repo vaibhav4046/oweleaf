@@ -37,3 +37,37 @@
 .ask-chip:hover{background:#1f1f20}
 .ask-form{border-top-color:#262627}
 .ask-form input{background:#0e0e0f;color:#e8e8e4;border-color:#3a3a3a}
+
+/* Chat upgrade: empty state, prompt cards, composer, provenance */
+.ask-panel{max-height:min(640px,calc(100vh - 100px))}
+.ask-head-actions{display:flex;align-items:center;gap:2px}
+.ask-new{background:transparent;color:#c9c9c4;border:1px solid #333;border-radius:999px;font-size:12px;min-height:36px;padding:6px 12px;cursor:pointer}
+.ask-new:hover{background:#1f1f20}
+.ask-empty{padding:18px 2px 6px}
+.ask-empty h2{margin:0 0 6px;font:400 26px/1.15 "Newsreader",Georgia,serif;color:#f3f3f0;letter-spacing:-.01em}
+.ask-empty p{margin:0;font-size:13px;line-height:1.55;color:#9d9d98}
+.ask-empty[hidden],.ask-cards[hidden]{display:none}
+.ask-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.ask-card{display:grid;gap:4px;text-align:left;background:#161617;color:#e8e8e4;border:1px solid #2c2c2d;border-radius:12px;padding:12px;min-height:88px;font:inherit;cursor:pointer;transition:transform .2s cubic-bezier(.16,1,.3,1),border-color .2s,background .2s}
+.ask-card strong{font-size:13px;font-weight:600;line-height:1.3}
+.ask-card span{font-size:12px;line-height:1.4;color:#8e8e89}
+.ask-card:hover{background:#1d1d1e;border-color:#4a4a4a;transform:translateY(-2px)}
+.ask-card:focus-visible,.ask-chip:focus-visible,.ask-send:focus-visible,.ask-copy:focus-visible,.ask-new:focus-visible{outline:2px solid #f3f3f0;outline-offset:2px}
+.ask-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;padding-top:8px;border-top:1px solid #2a2a2b;font-size:11px;color:#8e8e89}
+.ask-copy{background:transparent;color:#c9c9c4;border:1px solid #333;border-radius:999px;font-size:11px;min-height:32px;padding:4px 12px;cursor:pointer}
+.ask-copy:hover{background:#1f1f20}
+.ask-form{align-items:center;background:#0e0e0f;margin:0 12px 10px;padding:6px 6px 6px 14px;border:1px solid #333;border-radius:999px}
+.ask-form:focus-within{border-color:#8a8a85}
+.ask-form input{border:0;background:transparent;border-radius:0;padding:8px 0;outline:none}
+.ask-send{width:44px;min-width:44px;padding:0;border-radius:50%;background:#f3f3f0;color:#111;border:0;font-size:20px;font-weight:700;cursor:pointer;transition:opacity .2s}
+.ask-send:disabled{opacity:.35;cursor:default}
+.ask-panel.busy .ask-msg.bot:last-of-type strong::after{content:"";display:inline-block;width:6px;height:14px;margin-left:3px;vertical-align:-2px;background:#9d9d98;animation:ask-caret .8s steps(2) infinite}
+@keyframes ask-caret{50%{opacity:0}}
+.ask-note{padding:2px 16px 12px;background:transparent;font-size:11px;text-align:center}
+.ask-chips{padding-top:6px}
+@media(max-width:480px){.ask-cards{grid-template-columns:1fr}.ask-empty h2{font-size:22px}}
+@media(prefers-reduced-motion:reduce){.ask-panel,.ask-msg,.ask-card{animation:none;transition:none}.ask-panel.busy .ask-msg.bot:last-of-type strong::after{animation:none}}
+
+/* Page-level header rules must not reach into the panel */
+.ask-panel header{max-width:none;width:100%;margin:0;gap:8px;box-sizing:border-box}
+.ask-log{min-height:0}

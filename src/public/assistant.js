@@ -3,7 +3,13 @@
 // It cannot send, approve, dismiss or change anything.
 import { answer } from './assistant-core.js';
 
-const SUGGESTIONS = ['Who should I chase today?', 'What did clients promise?', 'Why Marcus?', 'Show the draft for Marcus'];
+const PROMPTS = [
+  ['Who should I chase today?', 'A short plan from the invoices on screen'],
+  ['What did clients promise?', 'Dates your clients gave you'],
+  ['Why Marcus?', 'The reason behind one decision'],
+  ['Show the draft for Marcus', 'The wording, not sent'],
+];
+const STREAM_MS = 700;
 
 function el(tag, attrs = {}, ...children) {
   const node = document.createElement(tag);
@@ -24,46 +30,123 @@ async function readJson(path) {
 
 async function ask(text) {
   const [desk, state] = await Promise.all([readJson('/api/desk'), readJson('/api/state')]);
-  return answer(text, desk.invoices || [], state.proposals || []);
+  const rows = desk.invoices || [];
+  return { reply: answer(text, rows, state.proposals || []), count: rows.length };
+}
+
+const reducedMotion = () => globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+// Reveal text word by word. Resolves when finished. Instant under reduced motion.
+function reveal(node, text, onTick) {
+  if (reducedMotion()) { node.textContent = text; return Promise.resolve(); }
+  const words = text.split(/(\s+)/);
+  const step = Math.max(1, Math.ceil(words.length / (STREAM_MS / 24)));
+  return new Promise((resolve) => {
+    let shown = 0;
+    const timer = setInterval(() => {
+      shown = Math.min(words.length, shown + step);
+      node.textContent = words.slice(0, shown).join('');
+      onTick();
+      if (shown >= words.length) { clearInterval(timer); resolve(); }
+    }, 24);
+  });
 }
 
 function mount() {
+  let busy = false;
   const log = el('div', { class: 'ask-log', 'aria-live': 'polite' });
+  const empty = el('div', { class: 'ask-empty' },
+    el('h2', {}, 'What should I look at?'),
+    el('p', {}, 'Ask about the invoices on this screen. I read and explain. I never send anything.'));
+  const cards = el('div', { class: 'ask-cards' });
+  const follow = el('div', { class: 'ask-chips' });
   const input = el('input', { id: 'askInput', type: 'text', maxlength: '300', autocomplete: 'off', placeholder: 'Ask about your invoices' });
-  const chips = el('div', { class: 'ask-chips' });
+  const send = el('button', { type: 'submit', class: 'ask-send', 'aria-label': 'Ask' }, '↑');
   const panel = el('section', { class: 'ask-panel', id: 'askPanel', role: 'dialog', 'aria-label': 'Ask Oweleaf', hidden: '' });
   const toggle = el('button', { class: 'ask-toggle', type: 'button', 'aria-expanded': 'false', 'aria-controls': 'askPanel' }, 'Ask Oweleaf');
 
-  const say = (who, title, lines) => {
-    const bubble = el('div', { class: `ask-msg ${who}` });
-    if (title) bubble.append(el('strong', {}, title));
-    for (const line of lines) bubble.append(el('p', {}, line));
-    log.append(bubble);
-    log.scrollTop = log.scrollHeight;
+  const scroll = () => { log.scrollTop = log.scrollHeight; };
+  const setBusy = (value) => { busy = value; input.disabled = value; send.disabled = value; panel.classList.toggle('busy', value); };
+
+  const userBubble = (text) => {
+    log.append(el('div', { class: 'ask-msg you' }, el('p', {}, text)));
+    scroll();
   };
+
+  async function botBubble(reply, count) {
+    const bubble = el('div', { class: 'ask-msg bot' });
+    const title = el('strong', {});
+    bubble.append(title);
+    log.append(bubble);
+    await reveal(title, reply.title, scroll);
+    for (const line of reply.lines) {
+      const p = el('p', {});
+      bubble.append(p);
+      await reveal(p, line, scroll);
+    }
+    const plain = [reply.title, ...reply.lines].join('\n');
+    const copy = el('button', { type: 'button', class: 'ask-copy', onclick: async () => {
+      try { await navigator.clipboard.writeText(plain); copy.textContent = 'Copied'; } catch { copy.textContent = 'Copy blocked'; }
+      setTimeout(() => { copy.textContent = 'Copy'; }, 1500);
+    } }, 'Copy');
+    bubble.append(el('div', { class: 'ask-meta' },
+      el('span', {}, `Fixed rules · ${count} invoice${count === 1 ? '' : 's'} on screen · nothing sent`), copy));
+    scroll();
+  }
+
+  function setFollowUps(asked) {
+    follow.replaceChildren();
+    for (const [text] of PROMPTS) {
+      if (text.toLowerCase() === asked.toLowerCase()) continue;
+      follow.append(el('button', { type: 'button', class: 'ask-chip', onclick: () => run(text) }, text));
+    }
+  }
 
   const run = async (text) => {
     const question = text.trim();
-    if (!question) return;
-    say('you', '', [question]);
+    if (!question || busy) return;
+    setBusy(true);
+    empty.hidden = true;
+    cards.hidden = true;
+    follow.replaceChildren();
+    userBubble(question);
     input.value = '';
     try {
-      const reply = await ask(question);
-      say('bot', reply.title, reply.lines);
+      const { reply, count } = await ask(question);
+      await botBubble(reply, count);
     } catch {
-      say('bot', 'Could not read your invoices', ['Press "Check invoices" and try again.']);
+      await botBubble({ title: 'Could not read your invoices', lines: ['Press "Check invoices" and try again.'] }, 0);
     }
+    setFollowUps(question);
+    setBusy(false);
+    requestAnimationFrame(scroll);
+    if (!panel.hidden) input.focus();
   };
 
-  for (const text of SUGGESTIONS) chips.append(el('button', { type: 'button', class: 'ask-chip', onclick: () => run(text) }, text));
+  for (const [text, hint] of PROMPTS) {
+    cards.append(el('button', { type: 'button', class: 'ask-card', onclick: () => run(text) }, el('strong', {}, text), el('span', {}, hint)));
+  }
 
-  const form = el('form', { class: 'ask-form', onsubmit: (event) => { event.preventDefault(); run(input.value); } },
-    input, el('button', { type: 'submit' }, 'Ask'));
+  const reset = () => {
+    if (busy) return;
+    log.querySelectorAll('.ask-msg').forEach((node) => node.remove());
+    follow.replaceChildren();
+    empty.hidden = false;
+    cards.hidden = false;
+    input.focus();
+  };
+
+  const form = el('form', { class: 'ask-form', onsubmit: (event) => { event.preventDefault(); run(input.value); } }, input, send);
   panel.append(
-    el('header', {}, el('strong', {}, 'Ask Oweleaf'), el('button', { type: 'button', class: 'ask-close', 'aria-label': 'Close', onclick: () => setOpen(false) }, '×')),
-    el('p', { class: 'ask-note' }, 'Answers come from the invoices on this screen, using fixed rules. I cannot send or approve anything.'),
-    log, chips, form,
+    el('header', {},
+      el('strong', {}, 'Ask Oweleaf'),
+      el('span', { class: 'ask-head-actions' },
+        el('button', { type: 'button', class: 'ask-new', onclick: reset }, 'New chat'),
+        el('button', { type: 'button', class: 'ask-close', 'aria-label': 'Close', onclick: () => setOpen(false) }, '×'))),
+    log, follow, form,
+    el('p', { class: 'ask-note' }, 'Answers come from fixed rules over the invoices on this screen. Not a language model. I cannot send or approve anything.'),
   );
+  log.append(empty, cards);
 
   function setOpen(open) {
     panel.hidden = !open;
@@ -72,8 +155,14 @@ function mount() {
   }
   toggle.addEventListener('click', () => setOpen(panel.hidden));
   panel.addEventListener('keydown', (event) => { if (event.key === 'Escape') setOpen(false); });
+  document.addEventListener('keydown', (event) => {
+    const tag = event.target?.tagName;
+    if (event.key === '/' && !event.metaKey && !event.ctrlKey && tag !== 'INPUT' && tag !== 'TEXTAREA' && !event.target?.isContentEditable) {
+      event.preventDefault();
+      setOpen(true);
+    }
+  });
 
-  say('bot', 'Hello', ['Ask me who to chase today, what a client promised, or why an invoice is waiting.']);
   document.body.append(toggle, panel);
 }
 
