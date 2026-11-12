@@ -2,7 +2,7 @@
 import{mkdtempSync,readdirSync,cpSync}from'node:fs';import{tmpdir}from'node:os';import{join,dirname}from'node:path';import{fileURLToPath}from'node:url';import{spawn}from'node:child_process';
 const root=dirname(fileURLToPath(import.meta.url)),test=process.argv.includes('--test'),demo=process.argv.includes('--demo');if(test===demo)throw Error('Choose --test or --demo. Persistent mode: npm start.');
 const work=mkdtempSync(join(tmpdir(),'oweleaf-'));
-if(test){for(const name of ['src','test','package.json'])cpSync(join(root,name),join(work,name),{recursive:true});}
+if(test){for(const name of ['src','test','package.json','api','docs'])cpSync(join(root,name),join(work,name),{recursive:true});}
 const testRoot=test?work:root;
 const args=test?['--test',...readdirSync(join(testRoot,'test')).filter(f=>f.endsWith('.test.js')).map(f=>join(testRoot,'test',f))]:[join(root,'src/server.js')];
 console.log(`Oweleaf ${test?'tests':'invented-data demo'}: ${work}`);if(demo)console.log('No login needed. Open http://127.0.0.1:'+(process.env.PORT||4173)+'. Temporary fixture data only. No model or PayPal calls. Persistent/private work uses npm start with local authentication.');
