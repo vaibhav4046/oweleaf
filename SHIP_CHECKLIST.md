@@ -16,19 +16,19 @@
 - [x] Fresh source checks block stale/held/changed invoices.
 - [x] Explicit fixture/sandbox/live labels and no unsupported outcome claims.
 - [x] `node run.mjs --test` passes 152/152 in a clean checkout.
-- [ ] Clean-clone smoke test repeated immediately before filing. Earlier f31b5ac clone152/152 passed; merged source152/152 passed separately.
+- [ ] Clean-clone smoke test repeated immediately before filing. `node run.mjs --test` has passed 152/152 in the clean release checkout.
 - [ ] PayPal Sandbox replay and local-model path rechecked with documented credentials/runtime.
 
 ## Demo and presentation
 
 - [x] YouTube demo link present in README.
-- [x] New public1:57video opened and pixels inspected: https://youtu.be/jNWdOlZoj2U . Captions processing needs follow-up; AI narration/original stills disclosed.
+- [x] Current public 1:57 video: https://youtu.be/jNWdOlZoj2U . Captions/rights status remains to be checked.
 - [ ] Three-minute script clearly shows PayPal + AI, source facts, wait decision, approval guard and outcome.
 - [ ] Backup recording/export retained locally.
 
 ## Final release
 
-- [x] Earlier merge pushed to `https://github.com/vaibhav4046/oweleaf` (main `cc050e7`, merged PR #1).
+- [x] Public main verified at `23ee8c5`.
 - [x] Re-open public repository and verify licence, README, source and demo link.
 - [ ] Obtain explicit owner final-submit decision and personal form answers,then file Devpost before 20:00 UK on 12 November 2026.
 - [ ] Save actual confirmation URL/screenshot in the release notes.
