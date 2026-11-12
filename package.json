@@ -12,6 +12,7 @@
     "test": "node --test test/*.test.js",
     "eval": "node src/harness/eval.js",
     "bench": "node src/harness/bench.js",
+    "persona-eval": "node scripts/persona-eval.mjs",
     "scan": "node src/cli-scan.js",
     "workflows:demo": "node src/cli-workflows.js",
     "mcp:read": "node src/mcp-server.js"
