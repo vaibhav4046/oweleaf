@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta charset="utf-8"><link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Oweleaf | The invoice chaser that knows when not to chase</title>
 <meta name="description" content="Oweleaf reads overdue PayPal invoices, remembers what each client promised, and prepares a follow-up only when a promise is broken. You approve every send. The problem, the evidence, the cost and a working sample.">
@@ -216,7 +216,7 @@
         <div role="listitem" class="you"><b>You</b>Read, then approve or wait. PayPal is reread before the reminder call.</div>
       </div>
       <div class="facts">
-        <div><b>182 tests</b>Approval safety, stale-invoice blocking, promises, reply reading, MCP, restart recovery, login. <code>node run.mjs --test</code></div>
+        <div><b>210 tests</b>Approval safety, stale-invoice blocking, promises, reply triage, encrypted PayPal key vault, MCP, restart recovery, login. <code>node run.mjs --test</code></div>
         <div><b>0 dependencies</b>Plain Node.js 20+. Nothing to install, nothing to audit from npm.</div>
         <div><b>150 at once</b>150 simultaneous users, 1,800 requests, 0 failures, 95% answered within 93 ms. One laptop, sample data. <code>node scripts/load-check.mjs</code></div>
       </div>

@@ -1,6 +1,7 @@
 // Reply triage: the model reads the client's words, PayPal is the source of truth, rules propose.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { triageReply, decide } from '../src/triage.js';
 
 const NOW = new Date('2026-11-12T12:00:00Z');
@@ -85,4 +86,8 @@ test('decide is pure and never proposes sending', () => {
     const d = decide({ kind, date: kind === 'promise' ? '2026-11-20' : null }, summary, { paid: null }, null, NOW);
     assert.ok(['hold', 'none', 'stop_chasing'].includes(d.proposal.action), kind);
   }
+});
+
+test('hosted copy of triage core rules is identical to the app copy', () => {
+  assert.equal(readFileSync(new URL('../docs/triage-core.js', import.meta.url), 'utf8'), readFileSync(new URL('../src/public/triage-core.js', import.meta.url), 'utf8'));
 });

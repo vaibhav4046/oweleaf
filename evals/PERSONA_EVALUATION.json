@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-12T10:31:18.936Z",
+  "generatedAt": "2026-11-12T20:13:18.840Z",
   "simulated": true,
   "note": "AI-agent personas are test actors, not real users or customer evidence.",
   "passed": 9,
@@ -125,7 +125,7 @@
           "id": "INV2-MOCK-0001",
           "subject": "Friendly nudge: invoice F-1042 (£450.00)",
           "note": "Hi Amelia,\n\nJust a quick nudge - invoice F-1042 for £450.00 was due on 9 November 2026 and looks like it may have slipped through. No worries if it is already on its way.\n\nMany thanks,\nAlex Morgan",
-          "at": "2026-11-12T10:31:18.917Z"
+          "at": "2026-11-12T20:13:18.831Z"
         },
         "status": "approved"
       },
@@ -138,7 +138,7 @@
       "persona": "Three-minute judge",
       "task": "Understand core flow quickly",
       "evidence": {
-        "elapsedMs": 3,
+        "elapsedMs": 2,
         "scanned": 5,
         "drafts": 3,
         "completeDrafts": true
