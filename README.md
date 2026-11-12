@@ -1,14 +1,23 @@
 # Oweleaf
 
-Solo freelancers should not have to choose between chasing a late invoice and protecting a client relationship. Oweleaf puts the invoice, a drafted reminder and a "wait for the client" note into one approval, and rereads PayPal before anything goes out. The real PayPal sandbox path is recorded; the click-through below is an invented-data sample, not a live payment app.
+**The invoice chaser that knows when not to chase.** Oweleaf reads a freelancer's overdue PayPal invoices, remembers what each client promised, and prepares a follow-up only when a promise is broken. A person approves every send, and PayPal is read again immediately before anything goes out.
+
+- **Live site:** https://oweleaf.vercel.app (the problem, evidence, cost, solution, and a working sample)
+- **Working sample:** https://oweleaf.vercel.app/app (invented data, no login, no install)
+- **Video (1:57):** https://youtu.be/jNWdOlZoj2U (recorded before the promise feature and the PayPal-wording correction below)
+
+## What is unique
+
+Reminder tools make chasing faster. None of them knows when to hold back. Oweleaf keeps a **promise ledger**: when a client replies "finance will pay Friday", save the date. Reminders to that client stay blocked through Friday. The day after, if PayPal still shows the invoice unpaid, the rules prepare a follow-up that cites the client's own date ("You mentioned payment by 8 November..."). If they paid, nothing happens. This is fixed-rule behaviour, covered by tests, and the model never writes that wording.
 
 - **PayPal:** Sandbox OAuth 2.0 and Invoicing API v2 (list, read, remind). The invoice is read again from PayPal immediately before any reminder call; a paid or changed invoice blocks the approval.
-- **AI:** a local Qwen3-1.7B LoRA drafts the follow-up wording. Deterministic rules, not the model, decide whether a send is allowed.
-- **Video (1:57):** https://youtu.be/jNWdOlZoj2U
+- **AI:** a local Qwen3-1.7B LoRA drafts ordinary reminder wording. Deterministic rules, not the model, decide whether a send is allowed.
+- **MCP (Claude, ChatGPT, any MCP client):** three read-only tools, `todays_plan`, `client_promises` and `draft_for`, over the same decision rules the screen uses. None can send or change anything. Hosted demo over invented invoices: `https://oweleaf.vercel.app/api/mcp`. On real data: `claude mcp add oweleaf -- node src/mcp-server.js` against a running local app.
+- **Ask Oweleaf:** a plain-language box in the app ("Who should I chase today?"). Fixed rules over the invoices on screen, not a general chatbot; it refuses to send or approve.
 
 ## Try it
 
-[Open the browser-only sample](https://vaibhav4046.github.io/oweleaf/) - invented data, no backend, model or sending. [Rules vs recorded model example](https://vaibhav4046.github.io/oweleaf/comparison.html).
+[Open the browser-only sample](https://oweleaf.vercel.app/app) - invented data, no backend, model or sending. [Rules vs recorded model example](https://oweleaf.vercel.app/comparison.html). The same files are also served at https://vaibhav4046.github.io/oweleaf/ .
 
 ```sh
 git clone https://github.com/vaibhav4046/oweleaf.git && cd oweleaf
@@ -18,16 +27,18 @@ node run.mjs --demo
 
 ![Oweleaf invoice review: invented sample data](approval.png)
 
-Node.js 20+. No npm install. Fresh temporary state on each --demo run, rules-based drafts, no model or PayPal calls. Persistent/private use: `npm start` after configuration, with local owner authentication. Run `node run.mjs --test` for the full test suite. Source is browsable in `src/`, tests in `test/`, static sample in `docs/`.
-
-Narrated walkthrough (1:57, original sandbox stills + labelled fixture UI): https://youtu.be/jNWdOlZoj2U
+Node.js 20+. No npm install. Fresh temporary state on each --demo run, rules-based drafts, no model or PayPal calls. The demo opens on one broken promise (Marcus) and one kept wait (Priya). Persistent/private use: `npm start` after configuration, with local owner authentication. Run `node run.mjs --test` for the full test suite. Source is browsable in `src/`, tests in `test/`, the site and sample in `docs/`, the hosted MCP endpoint in `api/`.
 
 Judge-first replay: [DEMO_SCRIPT_90S.md](DEMO_SCRIPT_90S.md). Simulated agent-as-user checks: run `npm run persona-eval`; results are recorded in [PERSONA_EVALUATION.md](PERSONA_EVALUATION.md). These are test actors, not human research or customer evidence.
 
+## Scale
+
+Each freelancer runs their own copy against their own PayPal account, so there is no shared server to overload. The site, sample and assistant are static files; the hosted MCP endpoint is a stateless function over invented data. Measured on one Windows laptop, fixture mode, read-only requests: 150 concurrent simulated users, 1,800 requests, 0 failures, p95 93 ms ([evals/LOAD_CHECK.json](evals/LOAD_CHECK.json), `node scripts/load-check.mjs`). This says nothing about PayPal's own latency and is not a production capacity claim.
+
 ## Current verified checks
 
-- 152/152 Node tests, including pagination, dependency timeouts, recovery, approval safety and authentication. Re-run on Windows 11 / Node 24 on 12 November after fixing a path-separator bug that returned 404 for every page on Windows.
-- 29/29 full-app automated UI checks; 26/26 separate static-sample checks. Desktop/mobile pixels inspected, zero page errors. Not human-usability testing.
+- 170/170 Node tests, including pagination, dependency timeouts, recovery, approval safety, authentication, the promise ledger, the assistant, and the stdio and hosted MCP servers. Run on Windows 11 / Node 24 on 12 November after fixing a path-separator bug that returned 404 for every page on Windows.
+- Earlier recorded runs: 29/29 full-app and 26/26 static-sample scripted UI checks (before the 12 November UI changes; not re-run, the scripts need Playwright). Since then the app, the static sample, the landing page and the assistant were checked by hand in a real browser at desktop and 375 px width, with no console errors. Not human-usability testing.
 - Earlier actual sandbox recording: four synthetic invoices, local CPU model, eight integrated UI checks. No real customers or money. API success is not inbox delivery or payment.
 - New: reversible dismissed drafts, source-bound plain-language copy, visible decision states, paid totals and reactive guide. Also: bounded complete-list reads, explicit fixture/sandbox/live labels, clearer private-account setup. Interrupted approvals never auto-retry; corrupt state/auth fail closed.
 
