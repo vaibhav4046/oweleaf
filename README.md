@@ -14,7 +14,9 @@ Node.js 20+. Zero PayPal or model credentials for fixture mode, no npm install a
 
 ![Original approval UI, invented fixture data](4-6-approval.png)
 
-Public integrated demo: https://youtu.be/rbd67UlYfJY
+Narrated demo (1:49, actual sandbox + labelled current fixture UI): https://youtu.be/SHzMgcIb-0E
+
+Earlier silent integrated recording retained for provenance: https://youtu.be/rbd67UlYfJY
 
 **Rules are the safety boundary. The local model is the drafting voice.** Approval rechecks the invoice amount, currency, recipient, payment state, pause and payer holds. Model output cannot authorize a send. The recorded CPU run used a 105-second limit; earlier calls timed out and earlier drafts made factual errors. Refused output falls back to clearly labelled rules. This is a known latency and quality limit, not an AI-superiority claim.
 
@@ -55,11 +57,6 @@ No interviews, users, recovered cash, payment-speed improvement, time saved, mar
 ## Research and licence
 
 Research, sources, caveats, model card, security notes, tests and reproducible scripts are in the archive. Source code is MIT, including the launcher. Model weights have separate terms. Local fonts include their licences. Published-source screenshots are not included in public presentation media; factual summaries retain citations.
-
-
-</details>
-
-## Release provenance
 
 
 </details>
