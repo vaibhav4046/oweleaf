@@ -37,3 +37,12 @@ These are internal simulated assessments against the official PayPal AI Hackatho
 2. Use one current demo URL everywhere and show the PayPal source, model draft, wait decision and stale-source block end to end.
 3. File Devpost and retain the actual confirmation URL/screenshot.
 4. Do not claim real users, recovered money or production outcomes without evidence.
+
+## Changes since this panel (12 November, 15:30 UTC)
+
+The panel above was NOT re-run. Since it, these changes address its weakest dimensions, but they have not been scored by anyone independent:
+
+- Innovation: a promise ledger that lifts a wait by itself and writes a follow-up citing the client's own date; one decision engine shared by the screen, an assistant and MCP tools.
+- Impact: the landing page now states the problem, the sourced evidence and the UK cost figures with a cropped source screenshot and a four-item source list; the before/after counts steps removed and refuses to invent hours or money saved.
+- Presentation: a rebuilt landing page and a new 2:26 video (not yet uploaded).
+- Still true: no real users, no recovered money, synthetic data. Impact and Innovation remain limited by that. A self-score of 9 or 10 would not be credible and is not claimed.

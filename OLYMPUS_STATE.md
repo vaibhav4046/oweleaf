@@ -1,19 +1,15 @@
 # OLYMPUS state
 
-Updated 12 November 2026, 14:35 UTC.
+Updated 12 November 2026, 15:30 UTC.
 
-- Product: local-first PayPal invoice follow-up review for solo freelancers.
-- Deadline: 12 November 2026, 12:00 PST = 20:00 UTC (verified on the official Devpost schedule and rules pages, 10:15 UTC).
-- Phase: submission. No Devpost submission has been made. Filing needs the owner: login, eligibility declarations and personal answers.
-- Latest fixes on public main (12 November):
-  - P0 fixed: every page returned 404 on Windows (hard-coded `/` in the static-file guard, `src/server.js`). The documented `node run.mjs --demo` path showed no UI on Windows.
-  - P1 fixed: state/auth writes failed with EPERM on Windows under concurrent renames; 6 of 152 tests failed there. Bounded rename retry added in `src/persistence.js`.
-  - P1 fixed (truthfulness): UI and README implied the payer receives the drafted words. PayPal's Invoicing v2 specification says user-provided `subject` and `note` on remind are not honored. Copy now says PayPal sends its standard reminder; the draft has "Copy wording" and "Open in my email" actions.
-- Checks re-run on Windows 11 / Node 24: `node run.mjs --test` 152/152, three consecutive runs. Core journey, all ten pages, mobile 375px and the copy action checked in a real browser, zero console errors. The 29 full-app and 26 static scripted UI checks were NOT re-run after these changes.
-- Hosted sample: https://vaibhav4046.github.io/oweleaf/ . Browser-only, invented data, rules, no model/PayPal/sending.
-- Video: https://youtu.be/jNWdOlZoj2U , 1:57, public. Its description carries stale counts (145/25/12) and predates the PayPal-wording correction. Not re-recorded.
-- PayPal Sandbox path: NOT replayed today. No sandbox credentials on this machine. Evidence remains the earlier recorded run (`evals/SANDBOX_FINDINGS.md`).
-- Simulated judge panel: NOT re-run after these fixes. `EVALUATION_SCORECARD.md` still reflects the earlier panel (median 68, lowest 56).
-- Paste-ready submission text prepared locally for the owner (not published).
-- Next executable action: owner files Devpost with the prepared text, edits the YouTube description, saves the confirmation URL.
+- Product: Oweleaf, the invoice chaser that knows when not to chase. Local-first PayPal invoice follow-up review for solo freelancers.
+- Deadline: 12 November 2026, 12:00 PST = 20:00 UTC (official Devpost schedule and rules pages).
+- Phase: submission. No Devpost submission has been made. Filing needs the owner: login, eligibility declarations, personal answers.
+- Live: https://oweleaf.vercel.app (landing), https://oweleaf.vercel.app/app (sample), https://oweleaf.vercel.app/api/mcp (hosted read-only MCP over invented data). Same files on https://vaibhav4046.github.io/oweleaf/ .
+- Added 12 November: promise ledger (dated wait notes lift by themselves and the follow-up cites the client's date, written by rules not the model); "Ask Oweleaf" assistant; read-only MCP tools `todays_plan`, `client_promises`, `draft_for` (stdio for the real app, hosted stateless endpoint for the sample); dark landing page with sourced evidence, cost, before/after; Vercel config; load check.
+- Fixed 12 November: P0 Windows 404 for every page; P1 Windows EPERM rename failures; P1 UI and README implied the payer receives the drafted words (PayPal ignores custom subject/note on remind).
+- Verified: `node run.mjs --test` 170/170 on Windows 11 / Node 24. Landing, sample, assistant, mobile 375 px and the Vercel deployment checked in a real browser, no console errors. Hosted MCP exercised over the network (initialize, tools/list, tools/call, 405 on GET, 202 on notification). Load check: 150 concurrent simulated users, 1,800 requests, 0 failures, p95 93 ms, fixture mode, one laptop.
+- NOT done: scripted UI suites (29 full-app, 26 static) not re-run, they need Playwright; PayPal Sandbox replay (no credentials here); inspection of the delivered reminder email; simulated judge panel not re-run; no human user testing.
+- Video: `media/oweleaf-demo.mp4` (2:26, synthetic voice, burned-in captions) and `media/oweleaf-demo-captions-only.mp4` built locally, not uploaded. Public video https://youtu.be/jNWdOlZoj2U is the older cut. Uploading is owner-only.
+- Next executable action: owner uploads the new video (optional), files Devpost with the prepared text, saves the confirmation URL.
 - No target-user study, production certification, payment benefit or AI-superiority claim.

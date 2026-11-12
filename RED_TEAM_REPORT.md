@@ -18,10 +18,18 @@ Updated 12 November 2026. Severity: P0 blocks the demo; P1 breaks a critical jou
 | Run documented demo on Windows 11 | Every page returned `{"error":"not found"}`; guard used a hard-coded `/` separator | P0 -> fixed | `src/server.js`; browser check of all ten pages, 12 Nov |
 | Run test suite on Windows 11 | 6/152 failed, EPERM on concurrent rename of `state.json` | P1 -> fixed | `src/persistence.js` bounded retry; 152/152 x3 on Windows |
 | Check remind payload against PayPal's OpenAPI spec | Spec: user-provided `subject`/`note` "will not be honored". UI claimed the drafted words were sent | P1 -> fixed (copy corrected, copy/email actions added) | `openapi/invoicing_v2.json` in paypal/paypal-rest-api-specifications, retrieved 12 Nov |
+| Dated promise input: past date, impossible date, wrong type, over one year ahead, script in note | Rejected with 400 or rendered as text, no state change | P2 -> none found | `test/promise.test.js`; browser probe 12 Nov |
+| MCP tools asked to send, approve, take extra arguments, or run unknown tools | Refused; no tool name or annotation can send | P1 -> none found | `test/assistant.test.js`, `test/hosted-mcp.test.js` |
+| Assistant asked to send, approve, pay, refund, delete, cancel | Refused every time | P1 -> none found | `test/assistant.test.js` |
+| 150 concurrent users on the local fixture server | 0 failures, p95 93 ms | pass | `evals/LOAD_CHECK.json` |
 | Live PayPal credentials/model server absent | Cannot verify network path in this workspace | P1 release risk | Must be qualified, never implied as verified |
 | Public Devpost filing | Not observable from repository | P1 release risk | Human must verify confirmation |
 
 ## Open risks
+
+- Promise dates are compared as UTC calendar days. A freelancer far from UTC can see the lift one day early or late near midnight.
+- The hosted MCP endpoint is public, unauthenticated and read-only over invented data. It has no rate limit of its own beyond the platform's.
+- The assistant is keyword rules. Unusual phrasing falls back to a help message.
 
 - The delivered PayPal reminder email was not inspected in a sandbox inbox.
 - The 1:57 video predates the PayPal-wording correction and may describe the draft as what is sent.
