@@ -1,51 +1,70 @@
-> Current status, 12 November 2026 00:56 GMT: actual PayPal sandbox + local CPU model + UI wait/reload/release/approval reminder path passed8/8. The four invoices were wholly synthetic; reminder API returned success, not proof of receipt/payment. Public demo https://youtu.be/rbd67UlYfJY and source https://github.com/vaibhav4046/oweleaf exist. Devpost registration/submission is not implied. One successful gentle case at105s limit does not erase prior failures. Exact inference weights are in the public folder linked from root README; frozen retraining dataset remains incomplete. Earlier pending statements below are historical checkpoint records, superseded by evals/SANDBOX_FINDINGS.md.
+# Hackathon intelligence
 
-# PayPal AI Hackathon intelligence
+**Retrieval date:** 12 November 2026 (Europe/London). **Target resolved:** PayPal AI Hackathon — “Build what’s next with PayPal and AI”. The supplied Oweleaf repository and demo video are consistent with this event: the product uses PayPal Sandbox plus a local AI model.
 
-Retrieved 11 November 2026, 08:33 GMT. Official rules are governing, not this summary. No entry or declarations accepted in this pass.
+## Governing sources
 
-## Deadline and timing
+- Official Devpost rules: <https://paypalaihackathon.devpost.com/rules>
+- Official dates: <https://paypalaihackathon.devpost.com/details/dates>
+- Official FAQ: <https://paypalaihackathon.devpost.com/details/faqs>
+- PayPal announcement: <https://developer.paypal.com/community/blog/PayPal_AI_Hackathon/>
 
-Submission: 1 October 2026 09:15 America/Los_Angeles to Thursday 12 November 2026 12:00 America/Los_Angeles. Calculated with Python zoneinfo: Thursday 12 November 20:00 Europe/London (GMT). At 11 November 08:33:28 GMT, 35.44 hours remained. Judging 1-15 December. Rules say winners around 21 December 14:00 Pacific; dates page says 09:00 Pacific. Preserve discrepancy, do not promise exact announcement time. No payout by 12 November: awards follow judging and required forms, delivered within 60 days of completed forms.
+The official rules and Devpost listing are the governing specification. Third-party summaries are used only as cross-checks.
 
-## Required product and access
+## Deadline and timeline
 
-Build/update an application meaningfully integrating PayPal developer platform in the free sandbox plus an AI model/tool/platform. PayPal must be central. Optional partner tools are not required. Existing projects require significant progress during the submission period. Functional local build with complete repository setup instructions qualifies: a public deployed URL is not mandatory. Static mockup alone does not qualify. Keep available free for judging through 15 December.
+- Submission window: 1 October 2026, 09:15 Pacific Daylight Time through **12 November 2026, 12:00 Pacific Standard Time**.
+- UK conversion: **12 November 2026, 20:00 Europe/London (GMT)**. This is the live cutoff as of retrieval.
+- Judging: 1 December 2026, 14:00 Pacific through 15 December 2026, 08:00 Pacific.
+- Winners: around 21 December 2026. The rules and dates page show different announcement times (14:00 vs 09:00 Pacific); do not rely on the exact hour.
 
-Public open-source GitHub/GitLab/Bitbucket repository with visible license, all source/assets and instructions required. Text description, tools/models and how used. Public YouTube functioning-demo video under three minutes. Video must not include third-party trademarks or copyrighted material without permission. Current private pitch contains source-page screenshots: permission for public use is unverified. Prepare a rights-reviewed variant before public release rather than treating public availability as permission.
+## Hard project requirements
 
-## Judging
+The submission must:
 
-Stage 1 pass/fail: theme, viability, reasonable use of required APIs/SDKs. Stage 2 five equally weighted categories, 20% each: Technological Implementation; Design; Potential Impact; Innovation/Idea; Presentation. First tie-break is technology, then subsequent categories in listed order. Use these weights, not the user's fallback.
+1. Meaningfully integrate at least one PayPal developer technology, API, SDK, product or capability, using the free Sandbox.
+2. Meaningfully incorporate an AI tool, model or platform; PayPal integration must remain central.
+3. Provide a working prototype or proof of concept. A static mockup is insufficient.
+4. Include a public GitHub, GitLab or Bitbucket repository with all source/assets/instructions and a visible open-source licence file.
+5. Include a text description and identify the AI/tools used and how they are used.
+6. Include a public YouTube demo video under three minutes showing the project functioning on the target device. The video must not use third-party trademarks or copyrighted music/material without permission.
+7. Keep the demo/repository available for judging through the judging period.
 
-Suggested internal 0-10 evidence rubric (not the official scoring scale): 0 absent; 2 described only; 4 partial demo or unverified integration; 6 working but important gaps; 8 complete with strong reproducible evidence; 10 exceptional, externally validated, clearly differentiated. Do not award compliance through a numerical average.
+A hosted URL is optional if complete local run instructions produce a functional build. Registration or a public repository does not prove that a Devpost submission was successfully filed.
 
-## Eligibility and IP gates
+## Official judging
 
-Legal age of majority; solo/team/organization accepted. Residency exclusions include Brazil, Quebec, Russia, Crimea, Cuba, Iran, North Korea and broadly sanctioned/prohibited places. Promotion-entity employees/agents, judges, close household/family and conflicts excluded. UK is not listed as excluded, but individual age/conflict/residency attestations still require the owner. Registration is not proof of eligibility.
+Stage One is pass/fail: the project must fit the theme and reasonably use the required APIs/SDKs.
 
-AI tools are required in the product. No separate explicit blanket permission for autonomous AI-authored development was located in the rules/FAQ. IP requires original work owned by entrant, licenses respected, and components resulting from entrant ideas/creativity; third-party technical assistance may be contracted subject to ownership. Do not misstate who built it. Owner must review own-work, eligibility, publicity and tax declarations. Sponsor may promote name/likeness/voice/image for three years. Public release/submission remains owner-gated.
+Stage Two uses five equally weighted criteria (20% each):
 
-## Prizes
+- **Technological Implementation:** depth and skill of PayPal Developer Platform and AI use; genuine, non-trivial working implementation.
+- **Design:** coherent complete product experience, not only a technical proof of concept.
+- **Potential Impact:** specific real problem, real audience and demonstrated value.
+- **Innovation/Idea:** creativity, novelty and distinction from existing concepts.
+- **Presentation:** clear end-to-end video and understandable problem, audience and value.
 
-Grand: USD12,000/8,000/5,000. Five USD5,000 honorable mentions: Most Creative, Most Impactful, Best Demo Delivery, Best Use of PayPal + AI, Best Use of Agentic Commerce. Sponsor awards have separate technology conditions. Render awards are USD1,000/750/500 CREDITS, not cash. At most one grand OR honorable plus one sponsor award. Required forms within ten business days; identity/role verification, taxes and fees apply. No prize or cash date guaranteed.
+Tie-break order starts with Technological Implementation, then follows the listed order.
 
-## Current compliance state
+## Prizes and restrictions
 
-- Working local fixture app and MIT license: present; 117 Node / 14 core UI / 15 secondary secure UI checks in evals.
-- Genuine PayPal sandbox interaction: not yet verified, blocking sponsor fit. New supplied 079 login rejected once at 08:35; user then requested email-code sign-in, being investigated.
-- AI provider implemented and separately evaluated; recorded app currently rules fallback. A meaningful integrated AI demonstration still needs proving. Do not call rules alone AI.
-- Repository public link: not created. YouTube public link: not created. Declaration/actual submission: not accepted.
-- 167.891s private backup film: present, fixtures and simulated send clearly labelled. Third-party screenshot rights need clearing for public use.
-- Current public gallery unavailable according to originality research. Recheck before deadline. Previous published project claims are competitor self-reports, not audited performance.
+The rules list $12,000 / $8,000 / $5,000 grand prizes; five $5,000 honourable mentions (Most Creative, Most Impactful, Best Demo Delivery, Best Use of PayPal + AI, Best Use of Agentic Commerce); and optional sponsor awards. Render awards are credits, not cash. A project may receive at most one grand or honourable prize plus one sponsor prize. Winner forms, identity/eligibility checks, taxes and other rule conditions apply.
 
-## Official citations
+Eligibility excludes residents of Brazil, Quebec, Russia, Crimea, Cuba, Iran, North Korea and comprehensively sanctioned locations; the UK is not listed as excluded. The entrant must independently confirm age, residency, conflicts and ownership declarations. AI-assisted development is not a substitute for those declarations.
 
-https://paypalaihackathon.devpost.com/rules
-https://paypalaihackathon.devpost.com/details/dates
-https://paypalaihackathon.devpost.com/details/faqs
-https://developer.paypal.com/community/blog/PayPal_AI_Hackathon/
-https://developer.paypal.com/api/get-started
-https://developer.paypal.com/platforms/disputes/set-up
+## Evidence state of this repository
 
-Prior-winner research (not evidence of current winning odds): https://developer.paypal.com/community/blog/winners-dev-days-hackathon/
+- Repository: <https://github.com/vaibhav4046/oweleaf> (public at retrieval; verify the exact submission URL in Devpost).
+- Demo supplied in README: <https://youtu.be/SHzMgcIb-0E>. Confirm public visibility and runtime before filing.
+- The README states a real PayPal Sandbox path, a local Qwen3-1.7B-based model, deterministic policy checks and synthetic demo data. Those are product claims that must be supported by reproducible run logs, not by this document.
+- The repository already contains tests/evaluation artifacts and an MIT licence. A passing local test suite does not itself prove PayPal network success, inbox delivery, payment, user impact or a submitted Devpost entry.
+
+## Unknowns requiring final verification before submission
+
+- Whether an eligible Devpost submission has actually been created and filed.
+- Whether the current YouTube URL is public, under three minutes and rights-clean.
+- Whether the exact PayPal Sandbox integration can be replayed from a clean environment using only the documented setup.
+- Whether the current public repository reflects the final commit and contains every required asset.
+- Entrant eligibility/ownership declarations and any sponsor-category checkboxes.
+
+**Operational conclusion:** treat the deadline as **20:00 UK time today** and freeze scope around a reliable PayPal-Sandbox + AI end-to-end demo, public repository, rights-clean sub-three-minute video and verified Devpost submission.

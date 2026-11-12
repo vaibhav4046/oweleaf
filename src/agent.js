@@ -3,8 +3,9 @@
 // Proactive by design: run --once for a single scan, or the server runs it on
 // SCAN_INTERVAL_MINUTES. Nothing ever sends without an approval click.
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, renameSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, renameSync, unlinkSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
+import { randomUUID } from 'node:crypto';
 import { invoiceSummary } from './paypal.js';
 import { policyBlock, audit } from './desk.js';
 import { trace } from './harness/trace.js';
@@ -22,8 +23,12 @@ export function loadState() {
 
 export function saveState(state) {
   mkdirSync(dirname(DB_FILE), { recursive: true });
-  writeFileSync(DB_FILE + '.tmp', JSON.stringify(state, null, 2));
-  renameSync(DB_FILE + '.tmp', DB_FILE);
+  // Tests and real requests can persist concurrently. A shared fixed temp
+  // name lets one writer rename another writer's temp file out from under it.
+  // Use a unique sibling so each rename remains atomic and independent.
+  const temporary = `${DB_FILE}.${process.pid}.${randomUUID()}.tmp`;
+  writeFileSync(temporary, JSON.stringify(state, null, 2));
+  renameSync(temporary, DB_FILE);
 }
 
 const scanning = new WeakSet();
