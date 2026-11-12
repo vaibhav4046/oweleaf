@@ -10,6 +10,6 @@ else if(url==='/api/hold'){if(body.reason===null)delete holds[body.email];else{i
 else if(url==='/api/pause'||url==='/api/resume')paused=url==='/api/pause';
 else if(url==='/api/scan')result={scannedCount:data.invoices.length,newProposals:[]};
 else if(url==='/api/auth/logout'){try{sessionStorage.removeItem(key)}catch{};location.reload();return Response.json({reset:true})}
-else{const m=url.match(/^\/api\/proposals\/([^/]+)\/(approve|reject)$/),p=m&&proposals.find(p=>p.id===decodeURIComponent(m[1])),i=p&&data.invoices.find(i=>i.id===p.invoiceId);if(!p||p.status!=='pending')throw Error('No pending sample draft');if(m[2]==='approve'&&(paused||holds[i.payerEmail]||!i.chaseable))throw Error('Sample is paused, held or not eligible');p.status=m[2]==='approve'?'approved':'rejected'}save();return Response.json(result)}catch(e){return Response.json({error:e.message},{status:400})}};
+else{const m=url.match(/^\/api\/proposals\/([^/]+)\/(approve|reject|restore)$/),p=m&&proposals.find(p=>p.id===decodeURIComponent(m[1])),i=p&&data.invoices.find(i=>i.id===p.invoiceId);if(!p||(m[2]==='restore'?p.status!=='rejected':p.status!=='pending'))throw Error('No pending sample draft');if(m[2]==='approve'&&(paused||holds[i.payerEmail]||!i.chaseable))throw Error('Sample is paused, held or not eligible');p.status=m[2]==='restore'?'pending':m[2]==='approve'?'approved':'rejected'}save();return Response.json(result)}catch(e){return Response.json({error:e.message},{status:400})}};
 // Keep the shared UI's logout redirect from leaving the sample. Reset reloads above.
 })();

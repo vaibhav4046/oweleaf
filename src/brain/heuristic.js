@@ -8,21 +8,24 @@ export function toneForDays(daysOverdue, gentleMax = 7, firmMax = 21) {
   return 'final';
 }
 
+const money = s => new Intl.NumberFormat('en-GB', {style:'currency',currency:s.currency}).format(s.amount);
+const date = s => /^\d{4}-\d{2}-\d{2}$/.test(s.dueDate||'') ? new Date(s.dueDate+'T00:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}) : 'the agreed date';
+const signoff = s => s.senderName || '[Your name]';
 const TEMPLATES = {
   gentle: {
-    subject: (s) => `Friendly nudge: invoice ${s.number} (${s.currency} ${s.amount})`,
+    subject: (s) => `Friendly nudge: invoice ${s.number} (${money(s)})`,
     note: (s) =>
-      `Hi ${firstName(s.payerName)},\n\nJust a quick nudge - invoice ${s.number} for ${s.currency} ${s.amount} was due on ${s.dueDate} and looks like it may have slipped through. No worries if it is already on its way.\n\nMany thanks`,
+      `Hi ${firstName(s.payerName)},\n\nJust a quick nudge - invoice ${s.number} for ${money(s)} was due on ${date(s)} and looks like it may have slipped through. No worries if it is already on its way.\n\nMany thanks,\n${signoff(s)}`,
   },
   firm: {
-    subject: (s) => `Overdue: invoice ${s.number} (${s.currency} ${s.amount}) - ${s.daysOverdue} days`,
+    subject: (s) => `Overdue: invoice ${s.number} (${money(s)}) - ${s.daysOverdue} days`,
     note: (s) =>
-      `Hi ${firstName(s.payerName)},\n\nInvoice ${s.number} for ${s.currency} ${s.amount} was due on ${s.dueDate} and is now ${s.daysOverdue} days overdue. Could you share a payment update, or reply if there is an issue on your side.\n\nThank you`,
+      `Hi ${firstName(s.payerName)},\n\nInvoice ${s.number} for ${money(s)} was due on ${date(s)} and is now ${s.daysOverdue} days overdue. Could you share a payment update, or reply if there is an issue on your side?\n\nThank you,\n${signoff(s)}`,
   },
   final: {
-    subject: (s) => `Payment update requested: invoice ${s.number} (${s.currency} ${s.amount})`,
+    subject: (s) => `Payment update requested: invoice ${s.number} (${money(s)})`,
     note: (s) =>
-      `Hi ${firstName(s.payerName)},\n\nInvoice ${s.number} for ${s.currency} ${s.amount} remains unpaid ${s.daysOverdue} days after its due date (${s.dueDate}). Please share a payment update or contact me with any question.\n\nRegards`,
+      `Hi ${firstName(s.payerName)},\n\nInvoice ${s.number} for ${money(s)} remains unpaid ${s.daysOverdue} days after its due date (${date(s)}). Please share a payment update or reply with any questions.\n\nRegards,\n${signoff(s)}`,
   },
 };
 

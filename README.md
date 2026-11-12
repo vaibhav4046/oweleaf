@@ -4,6 +4,8 @@ Solo freelancers should not have to choose between chasing a late invoice and pr
 
 ## Try it
 
+[Open the browser-only sample](https://vaibhav4046.github.io/oweleaf/) - invented data, no backend, model or sending. [Rules vs recorded model example](https://vaibhav4046.github.io/oweleaf/comparison.html).
+
 ```sh
 git clone https://github.com/vaibhav4046/oweleaf.git && cd oweleaf
 node run.mjs --demo
@@ -14,14 +16,14 @@ node run.mjs --demo
 
 Node.js 20+. No npm install. Fresh temporary state on each --demo run, rules-based drafts, no model or PayPal calls. Persistent/private use: `npm start` after configuration, with local owner authentication. Run `node run.mjs --test` for the full test suite. Source is browsable in `src/`, tests in `test/`, static sample in `docs/`.
 
-Narrated demo (1:49, actual sandbox + labelled fixture UI): https://youtu.be/SHzMgcIb-0E
+Narrated walkthrough (1:57, original sandbox stills + labelled fixture UI): https://youtu.be/jNWdOlZoj2U
 
 ## Current verified checks
 
-- 145/145 Node tests, including pagination, dependency timeouts, recovery, approval safety and authentication.
-- 25/25 full-app automated UI checks; 12/12 separate static-sample checks. Desktop/mobile pixels inspected, zero page errors. Not human-usability testing.
+- 152/152 Node tests, including pagination, dependency timeouts, recovery, approval safety and authentication.
+- 27/27 full-app automated UI checks; 18/18 separate static-sample checks. Desktop/mobile pixels inspected, zero page errors. Not human-usability testing.
 - Earlier actual sandbox recording: four synthetic invoices, local CPU model, eight integrated UI checks. No real customers or money. API success is not inbox delivery or payment.
-- New: bounded complete-list reads, explicit fixture/sandbox/live labels, clearer private-account setup. Interrupted approvals never auto-retry; corrupt state/auth fail closed.
+- New: reversible dismissed drafts, source-bound plain-language copy, visible decision states, paid totals and reactive guide. Also: bounded complete-list reads, explicit fixture/sandbox/live labels, clearer private-account setup. Interrupted approvals never auto-retry; corrupt state/auth fail closed.
 
 **Rules guard the send. The model drafts the words.** A human reviews each reminder, and the app rereads the invoice before sending. The recorded CPU integration allowed 105 seconds; earlier calls timed out or made factual errors. No conclusive AI-superiority or winning-odds claim.
 

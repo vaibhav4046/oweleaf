@@ -131,6 +131,14 @@ export function reject({ state, proposalId }) {
   return p;
 }
 
+// Restoring only reopens review. Approval still revalidates current provider data.
+export function restore({state,proposalId}) {
+ const p=state.proposals.find(x=>x.id===proposalId);
+ if(!p || p.status!=='rejected')throw Error('Only a dismissed draft can be restored');
+ if(state.proposals.some(x=>x!==p&&x.invoiceId===p.invoiceId&&['pending','checking','sending','delivery_unknown'].includes(x.status)))throw Error('Another active draft exists for this invoice');
+ p.status='pending';audit(state,'draft_restored',p.invoiceNumber);saveState(state);return p;
+}
+
 // Manual recovery never replays the uncertain request or reopens the old draft.
 export async function reconcileDelivery({paypal,state,proposalId,outcome,evidence,confirmed}) {
  const p=state.proposals.find(x=>x.id===proposalId);

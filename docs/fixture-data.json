@@ -11,7 +11,10 @@
       "currency": "GBP",
       "dueDate": "2026-11-09",
       "daysOverdue": 3,
-      "chaseable": true
+      "chaseable": true,
+      "senderName": "Alex Morgan",
+      "totalAmount": "450.00",
+      "paidAmount": null
     },
     {
       "id": "INV2-MOCK-0002",
@@ -23,7 +26,10 @@
       "currency": "GBP",
       "dueDate": "2026-10-31",
       "daysOverdue": 12,
-      "chaseable": true
+      "chaseable": true,
+      "senderName": "Alex Morgan",
+      "totalAmount": "1280.00",
+      "paidAmount": null
     },
     {
       "id": "INV2-MOCK-0003",
@@ -35,7 +41,10 @@
       "currency": "GBP",
       "dueDate": "2026-10-16",
       "daysOverdue": 27,
-      "chaseable": true
+      "chaseable": true,
+      "senderName": "Alex Morgan",
+      "totalAmount": "320.00",
+      "paidAmount": null
     },
     {
       "id": "INV2-MOCK-0004",
@@ -47,7 +56,10 @@
       "currency": "GBP",
       "dueDate": "2026-11-10",
       "daysOverdue": 2,
-      "chaseable": false
+      "chaseable": false,
+      "senderName": "Alex Morgan",
+      "totalAmount": "600.00",
+      "paidAmount": "600.00"
     },
     {
       "id": "INV2-MOCK-0005",
@@ -59,15 +71,18 @@
       "currency": "GBP",
       "dueDate": "2026-11-18",
       "daysOverdue": -6,
-      "chaseable": false
+      "chaseable": false,
+      "senderName": "Alex Morgan",
+      "totalAmount": "890.00",
+      "paidAmount": null
     }
   ],
   "proposals": [
     {
       "action": "remind",
       "tone": "gentle",
-      "subject": "Friendly nudge: invoice F-1042 (GBP 450.00)",
-      "note": "Hi Amelia,\n\nJust a quick nudge - invoice F-1042 for GBP 450.00 was due on 2026-11-09 and looks like it may have slipped through. No worries if it is already on its way.\n\nMany thanks",
+      "subject": "Friendly nudge: invoice F-1042 (£450.00)",
+      "note": "Hi Amelia,\n\nJust a quick nudge - invoice F-1042 for £450.00 was due on 9 November 2026 and looks like it may have slipped through. No worries if it is already on its way.\n\nMany thanks,\nAlex Morgan",
       "reasoning": "3 days overdue -> gentle tone (gentle <= 7d < firm <= 21d < final)",
       "id": "STATIC-0",
       "invoiceId": "INV2-MOCK-0001",
@@ -78,8 +93,8 @@
     {
       "action": "remind",
       "tone": "firm",
-      "subject": "Overdue: invoice F-1038 (GBP 1280.00) - 12 days",
-      "note": "Hi Marcus,\n\nInvoice F-1038 for GBP 1280.00 was due on 2026-10-31 and is now 12 days overdue. Could you share a payment update, or reply if there is an issue on your side.\n\nThank you",
+      "subject": "Overdue: invoice F-1038 (£1,280.00) - 12 days",
+      "note": "Hi Marcus,\n\nInvoice F-1038 for £1,280.00 was due on 31 October 2026 and is now 12 days overdue. Could you share a payment update, or reply if there is an issue on your side?\n\nThank you,\nAlex Morgan",
       "reasoning": "12 days overdue -> firm tone (gentle <= 7d < firm <= 21d < final)",
       "id": "STATIC-1",
       "invoiceId": "INV2-MOCK-0002",
@@ -90,8 +105,8 @@
     {
       "action": "remind",
       "tone": "final",
-      "subject": "Payment update requested: invoice F-1029 (GBP 320.00)",
-      "note": "Hi Priya,\n\nInvoice F-1029 for GBP 320.00 remains unpaid 27 days after its due date (2026-10-16). Please share a payment update or contact me with any question.\n\nRegards",
+      "subject": "Payment update requested: invoice F-1029 (£320.00)",
+      "note": "Hi Priya,\n\nInvoice F-1029 for £320.00 remains unpaid 27 days after its due date (16 October 2026). Please share a payment update or reply with any questions.\n\nRegards,\nAlex Morgan",
       "reasoning": "27 days overdue -> final tone (gentle <= 7d < firm <= 21d < final)",
       "id": "STATIC-2",
       "invoiceId": "INV2-MOCK-0003",

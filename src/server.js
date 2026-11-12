@@ -19,7 +19,7 @@ import { fixtureOperations } from './operations.js';
 import {tools as readOnlyTools} from './mcp-tools.js';
 import { controls, PLAYBOOKS, updateControls, setHold, audit, answerCommand, explain } from './desk.js';
 import { createBrain } from './brain/index.js';
-import { loadState, saveState, scan, approve, reject, reconcileDelivery } from './agent.js';
+import { loadState, saveState, scan, approve, reject, restore, reconcileDelivery } from './agent.js';
 
 loadEnv();
 
@@ -171,6 +171,8 @@ async function route(req, res, url) {
       return json(res, 400, { ok: false, error: e.message });
     }
   }
+  const restoreMatch=url.pathname.match(/^\/api\/proposals\/(.+)\/restore$/);
+  if(req.method==='POST'&&restoreMatch){try{return json(res,200,{ok:true,proposal:restore({state,proposalId:decodeURIComponent(restoreMatch[1])})})}catch(e){return json(res,400,{error:e.message})}}
   // static UI
   if (req.method === 'GET') {
     const path = url.pathname === '/' ? '/index.html' : url.pathname;

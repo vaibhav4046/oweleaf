@@ -10,6 +10,7 @@ export function fixtureInvoices() {
   return [
     {
       id: 'INV2-MOCK-0001',
+      invoicer: { name: { given_name: 'Alex', surname: 'Morgan' } },
       status: 'SENT',
       detail: { invoice_number: 'F-1042', invoice_date: daysAgo(40), currency_code: 'GBP', payment_term: { due_date: daysAgo(3) } },
       due_date: { date: daysAgo(3) },
@@ -19,6 +20,7 @@ export function fixtureInvoices() {
     },
     {
       id: 'INV2-MOCK-0002',
+      invoicer: { name: { given_name: 'Alex', surname: 'Morgan' } },
       status: 'SENT',
       detail: { invoice_number: 'F-1038', invoice_date: daysAgo(60), currency_code: 'GBP' },
       due_date: { date: daysAgo(12) },
@@ -28,6 +30,7 @@ export function fixtureInvoices() {
     },
     {
       id: 'INV2-MOCK-0003',
+      invoicer: { name: { given_name: 'Alex', surname: 'Morgan' } },
       status: 'SENT',
       detail: { invoice_number: 'F-1029', invoice_date: daysAgo(80), currency_code: 'GBP' },
       due_date: { date: daysAgo(27) },
@@ -37,6 +40,7 @@ export function fixtureInvoices() {
     },
     {
       id: 'INV2-MOCK-0004',
+      invoicer: { name: { given_name: 'Alex', surname: 'Morgan' } },
       status: 'PAID',
       detail: { invoice_number: 'F-1045', invoice_date: daysAgo(10), currency_code: 'GBP' },
       due_date: { date: daysAgo(2) },
@@ -46,6 +50,7 @@ export function fixtureInvoices() {
     },
     {
       id: 'INV2-MOCK-0005',
+      invoicer: { name: { given_name: 'Alex', surname: 'Morgan' } },
       status: 'SENT',
       detail: { invoice_number: 'F-1046', invoice_date: daysAgo(5), currency_code: 'GBP' },
       due_date: { date: daysAgo(-6) }, // not yet due

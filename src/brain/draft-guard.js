@@ -3,7 +3,8 @@
 export function draftIssue(decision, summary) {
  if(decision?.action!=='remind')return null;
  const text=decision.subject+'\n'+decision.note;
- if(!text.includes(String(summary.number))||!text.includes(String(summary.amount))||!text.includes(String(summary.currency)))return 'Draft omits the exact source invoice, amount or currency';
+ const formatted=new Intl.NumberFormat('en-GB',{style:'currency',currency:summary.currency}).format(summary.amount);
+ if(!text.includes(String(summary.number))||!((text.includes(String(summary.amount))&&text.includes(String(summary.currency)))||text.includes(formatted)))return 'Draft omits the exact source invoice, amount or currency';
  if(summary.daysOverdue>0&&/\b(?:before (?:the )?due date|not yet due|not overdue|due in \d+ (?:days?|hours?))\b/i.test(text))return 'Draft contradicts the overdue source status';
  if(/\b(?:was|were|is)\s+sent\s+(?:on|at)\b/i.test(text))return 'Draft invents an invoice sent date';
  if(/\b(?:this week|by (?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)|immediately|urgently|as soon as possible)\b/i.test(text))return 'Draft adds unsupported urgency or a new payment deadline';
